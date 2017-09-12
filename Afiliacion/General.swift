@@ -150,7 +150,7 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
             print("Persona politica")
         }
         if scrollView.contentOffset.y > 200 && scrollView.contentOffset.y < 692{
-            print("Domicilioakakakakaka")
+            print("Domiciliodfadfasdfasdfasdf")
         }
     }
     func actionOnFinishedScrolling() {
