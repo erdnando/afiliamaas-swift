@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16E195" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="BUZON" representedClassName="BUZON_A" syncable="YES" codeGenerationType="class">
+        <attribute name="comentario_b" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="estatus_b" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="fecha_alta_b" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="fecha_modificacion_b" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="id_solicitud_b" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="id_usuario_b" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="motivo_b" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="producto_b" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="promedio_scoring_b" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="solicitud_xml_b" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="BUZON_A" representedClassName="BUZON_A" syncable="YES" codeGenerationType="class">
+        <attribute name="comentario" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="estatus" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="fecha_alta" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="fecha_modificacion" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="id_solicitud" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="id_usuario" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="motivo" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="producto" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="promedio_scoring" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="solicitud_xml" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="CATALOGO_A" representedClassName="CATALOGO_A" syncable="YES" codeGenerationType="class">
+        <attribute name="descripcion" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="estatus" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id_catalogo" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="id_tipo_catalogo" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="padre" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="CATALOGO_B" representedClassName="CATALOGO_A" syncable="YES" codeGenerationType="class">
+        <attribute name="descripcion" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="estatus" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id_catalogo" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="id_tipo_catalogo" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="padre" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="CitasMetrica" representedClassName="CitasMetrica" syncable="YES" codeGenerationType="class">
+        <attribute name="caducada" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cancelada" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="exitosa" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nueva" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="realizada" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="total" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="PARAMETRO" representedClassName="PARAMETRO" syncable="YES" codeGenerationType="class">
+        <attribute name="estatus" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id_parametro" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="parametro" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="valor" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="ProductoA" representedClassName="ProductoA" syncable="YES" codeGenerationType="class">
+        <attribute name="comercial" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="descripcion" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="estatus" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fecha_creacion" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id_empresa" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="id_producto" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="nombre" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="ProductoB" representedClassName="ProductoA" syncable="YES" codeGenerationType="class">
+        <attribute name="comercial" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="descripcion" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="estatus" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fecha_creacion" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id_empresa" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="id_producto" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="nombre" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="RegAgendaA" representedClassName="RegAgendaA" syncable="YES" codeGenerationType="class">
+        <attribute name="anio" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="anio_nac" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="calle" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="colonia" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="companiamovil" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cpdom" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="delegacion" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dia" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dia_nac" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="estado" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="estatus" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="estatusenvio" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="estatusresidencia" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fin" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id_citas" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="id_producto" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="id_promotor" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="iddelmun" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="idestado" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="ingresos" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="inicio" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="materno" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="mes" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="mes_nac" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="montovivienda" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="noext" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="noint" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nombre" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="observaciones" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="paterno" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="resultado_cita" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rfc" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="segundo_nombre" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sexo" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="telcasa" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="telmovil" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tiemporesidencia" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="RegAgendaB" representedClassName="RegAgendaA" syncable="YES" codeGenerationType="class">
+        <attribute name="anio" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="anio_nac" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="calle" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="colonia" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="companiamovil" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cpdom" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="delegacion" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dia" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dia_nac" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="estado" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="estatus" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="estatusenvio" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="estatusresidencia" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fin" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id_citas" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="id_producto" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="id_promotor" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="iddelmun" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="idestado" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="ingresos" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="inicio" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="materno" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="mes" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="mes_nac" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="montovivienda" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="noext" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="noint" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nombre" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="observaciones" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="paterno" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="resultado_cita" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rfc" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="segundo_nombre" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sexo" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="telcasa" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="telmovil" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tiemporesidencia" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="USUARIO" representedClassName="USUARIO" syncable="YES" codeGenerationType="class">
+        <attribute name="compania" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="contrasena" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id_usuario" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="tipo_usuario" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="user" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="BUZON_A" positionX="-63" positionY="-18" width="128" height="195"/>
+        <element name="BUZON" positionX="-36" positionY="81" width="128" height="195"/>
+        <element name="CATALOGO_A" positionX="-9" positionY="144" width="128" height="120"/>
+        <element name="CATALOGO_B" positionX="9" positionY="153" width="128" height="120"/>
+        <element name="CitasMetrica" positionX="27" positionY="162" width="128" height="135"/>
+        <element name="PARAMETRO" positionX="-18" positionY="117" width="128" height="105"/>
+        <element name="ProductoA" positionX="-9" positionY="126" width="128" height="150"/>
+        <element name="ProductoB" positionX="0" positionY="135" width="128" height="150"/>
+        <element name="RegAgendaA" positionX="9" positionY="144" width="128" height="615"/>
+        <element name="RegAgendaB" positionX="18" positionY="171" width="128" height="615"/>
+        <element name="USUARIO" positionX="27" positionY="180" width="128" height="120"/>
+    </elements>
+</model>
