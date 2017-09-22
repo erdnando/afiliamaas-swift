@@ -44,7 +44,7 @@ class ViewController: UIViewController {
     
     //Datos usuario
     var Idusuario = 0
-   
+    var Token = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         //Quitar Opcion de Regresar
@@ -264,13 +264,14 @@ class ViewController: UIViewController {
                     Buscarusuario()
                 }
             }
-           /*
+            /*
             Verparam()
             print("BuzonB:",buzonA.count)
             print("CatalogoB",cataloA.count)
+ 
             verBuzon()
-            verCatalogos()
-           */
+           // verCatalogos()
+            */
             
         }
     }
@@ -353,7 +354,7 @@ class ViewController: UIViewController {
         print("Registros del Buzon activo")
         var num = 0
         repeat {
-            print("indice:",num,"Id:",buzonA[num].id_solicitud,"Estatus:",buzonA[num].estatus,"fecha",buzonA[num].fecha_alta!)
+            print("indice:",num,"Xml:",buzonB[num].solicitud_xml_b!)
             
             num = num+1
         }while num < buzonA.count
@@ -401,20 +402,21 @@ class ViewController: UIViewController {
             if var responseJSON = responseJSON as? [String: Any] {
                 DispatchQueue.main.async {
                  self.ToastExample(message: "Obteniendo usuario...")
-                    let compania =  responseJSON["Compania"]
-                    print(compania!)
+                   
                     self.Idusuario = responseJSON["IdUsuario"] as! Int
+                    print("Id Usuario: ",self.Idusuario)
                     
-                    print(self.Idusuario)
                     if self.Idusuario == 0 {
                         let alert = UIAlertController(title: "AVISO!", message: "¡Login Incorrecto!" , preferredStyle: UIAlertControllerStyle.alert)
                         alert.addAction(UIAlertAction(title: "Aceptar", style: UIAlertActionStyle.default, handler: nil))
                         self.present(alert, animated: true, completion: nil)
                     }else {
                         print("usuario encontrado")
+                        self.Token = (responseJSON["Token"] as? String)!
+                        print("Token Usuario: ",self.Token)
                         self.Buscarparamba()
-                
                     }
+                    
                 }
             }else{
                 print(" no Respuesta Json")
@@ -434,12 +436,17 @@ class ViewController: UIViewController {
                 num = num+1
             }
         }while num < paramArray.count
+        
         if paramArray[num].valor == "A" {
             print("Tamano de buzon A:",buzonA.count)
             self.Buzoninsert = "B"
             if buzonA.count == 0{
-                 self.Buscarparamca()
-              
+                
+                if self.buzonB.count == 0 {
+                    self.Buscarparamca()
+                }else {
+                    self.Eliminarbuzon(Arreglo: "B")
+                }
             } else {
                  Buscarbuzon(Arreglo: paramArray[num].valor!)
             }
@@ -447,11 +454,16 @@ class ViewController: UIViewController {
             self.Buzoninsert = "A"
             print("Tamano de buzon B:",buzonB.count)
             if buzonB.count == 0 {
-                self.Buscarparamca()
+                if buzonA.count == 0 {
+                    self.Buscarparamca()
+                }else {
+                    Eliminarbuzon(Arreglo: "A")
+                }
             }else {
                   Buscarbuzon(Arreglo: paramArray[num].valor!)
             }
         }
+        
     }
     
     //Buscar estatus 6 y 7
@@ -508,8 +520,7 @@ class ViewController: UIViewController {
                 print("no ay estatus pendientes")
                 ToastExample(message: "No ay estatus pendientes")
                 if buzonA.count == 0 {
-                 
-                    self.Buscarparamca()
+                     self.Buscarparamca()
                 }else {
                      Eliminarbuzon(Arreglo: "A")
                 }
@@ -557,7 +568,7 @@ class ViewController: UIViewController {
                 
                 do {
                     buzonA = try managedContext.fetch(fetchRequest) as! [Rbuzon]
-                    print("Registro borrado")
+                    print("Registro borrado A")
                     id = id-1
                 } catch let error as NSError {
                     print("Error While Fetching Data From DB: \(error.userInfo)")
@@ -586,7 +597,7 @@ class ViewController: UIViewController {
                 
                 do {
                     buzonB = try managedContext.fetch(fetchRequest) as! [BUZON_A]
-                    print("Registro borrado")
+                    print("Registro borrado B")
                     id = id-1
                 } catch let error as NSError {
                     print("Error While Fetching Data From DB: \(error.userInfo)")
@@ -648,7 +659,7 @@ class ViewController: UIViewController {
                 
                 do {
                     cataloA = try managedContext.fetch(fetchRequest) as! [CATALOGO_A]
-                    print("Registro borrado")
+                    print("Registro Cat",id,"Borrado")
                     id = id-1
                 } catch let error as NSError {
                     print("Error While Fetching Data From DB: \(error.userInfo)")
@@ -677,7 +688,7 @@ class ViewController: UIViewController {
                 
                 do {
                     cataloB = try managedContext.fetch(fetchRequest) as! [Rcatalogo]
-                    print("Registro borrado")
+                    print("Registro Cat",id,"Borrado")
                     id = id-1
                 } catch let error as NSError {
                     print("Error While Fetching Data From DB: \(error.userInfo)")
@@ -810,7 +821,13 @@ class ViewController: UIViewController {
     
     func Wsuuid(){
         
-        let json: [String: Any] = ["idUsuario": String(Idusuario), "UUID": Uniqueid]
+        
+        let json: [String: Any] = ["idUsuario": String(Idusuario),
+                                   "UUID": Uniqueid,
+                                   "llave":["Usuario": User.text!,
+                                            "Compania":Empresa.text!,
+                                            "Token":self.Token]]
+        
         let jsonData = try? JSONSerialization.data(withJSONObject: json)
         
         // create post request
@@ -836,8 +853,21 @@ class ViewController: UIViewController {
                 DispatchQueue.main.async {
                 self.ToastExample(message: "Validando usuario en dispositivo movil")
                     let resultado =  responseJSON["validaUUIDResult"] as! String
-                    print(resultado)
-                    if resultado == "true" {
+                    print("Respuesta UUID:",resultado)
+                    var validador = ""
+                    let letters = resultado.characters.map{ String($0) }
+                    let longitud = resultado.characters.count
+                    var num = 0
+                    repeat{
+                        if letters[num] == "@" {
+                            break
+                        }else {
+                            validador = validador + letters[num]
+                            num = num+1
+                        }
+                    }while num < longitud
+                  
+                    if validador == "true" {
                         
                         print("usuario ligado a este dispositivo")
                         print("El Buzon a insertar es:",self.Buzoninsert)
@@ -845,7 +875,7 @@ class ViewController: UIViewController {
                         print("El producto a insertar es:",self.productinsert)
                         print("La agenda a insertar es:",self.agendinsert)
                         self.WsGetBuzon()
-                        self.WsCatalogos()
+                       
                        
                     }else{
                         let alert = UIAlertController(title: "¡Este perfil del promotor: "+self.User.text!+" no puede instalarse en este dispositivo "+self.Uniqueid, message: "Solicite al administrador el permiso correspondiente" , preferredStyle: UIAlertControllerStyle.alert)
@@ -864,17 +894,22 @@ class ViewController: UIViewController {
     }
     
     func WsGetBuzon(){
-      
+      print("entro al ws get buzon")
         let json: [String: Any] = [
-            "Promotoria":"",
-            "RegPromotor":"",
-            "Compania":Empresa.text!,
-            "Formato":"",
-            "Usuario":User.text!,
-            "Contrasenia":Pass.text!,
-            "Coordinador":["ClaveC":"","NombreC":""],
-            "Gerente":["ClaveG":"","NombreG":""],
-            "TipoUsuario":"4"
+            "objPromotor": [
+                "Promotoria":"",
+                "RegPromotor":"",
+                "Compania":Empresa.text!,
+                "Formato":"",
+                "Usuario":User.text!,
+                "Contrasenia":Pass.text!,
+                "Coordinador":["ClaveC":"","NombreC":""],
+                "Gerente":["ClaveG":"","NombreG":""],
+                "TipoUsuario":"4"
+            ],
+            "llave":["Usuario": User.text!,
+                     "Compania":Empresa.text!,
+                     "Token":self.Token]
         ]
         let jsonData = try? JSONSerialization.data(withJSONObject: json)
         
@@ -912,7 +947,7 @@ class ViewController: UIViewController {
                         
                         let esta = Solicitud[i]["ESTATUS"] as? String
                        // print(esta!)
-                        
+                   
                         var  fechaar = Solicitud[i]["FECHA_ALTA"] as? String
                         if fechaar == nil {
                             fechaar = ""
@@ -940,8 +975,54 @@ class ViewController: UIViewController {
                             solicitud = ""
                         }
                         
-        self.Insertarbuzon(coment: coment!, est: esta!, fechaa: fechaar!, fecham: fechamr!, idsol: idsolr!, product: producto!, prom: prome!, sol: solicitud!)
+                        //Imagenes
+                        var ext1 = Solicitud[i]["E164"] as? String
+                        if ext1 == nil {
+                            ext1 = ""
+                        }
+                        var ext2 = Solicitud[i]["E264"] as? String
+                        if ext2 == nil {
+                            ext2 = ""
+                        }
+                        var ext3 = Solicitud[i]["E364"] as? String
+                        if ext3 == nil {
+                            ext3 = ""
+                        }
+                        var ext4 = Solicitud[i]["E464"] as? String
+                        if ext4 == nil {
+                            ext4 = ""
+                        }
+                        var ext5 = Solicitud[i]["E564"] as? String
+                        if ext5 == nil {
+                            ext5 = ""
+                        }
+                        var docc1 = Solicitud[i]["DOC_C164"] as? String
+                        if docc1 == nil {
+                            docc1 = ""
+                        }
+                       
+                        var docc2 = Solicitud[i]["DOC_C264"] as? String
+                        if docc2 == nil {
+                            docc2 = ""
+                        }
+                        
+                        var docia = Solicitud[i]["DOC_IA64"] as? String
+                        if docia == nil {
+                            docia = ""
+                        }
+                        var docif = Solicitud[i]["DOC_IF64"] as? String
+                        if docif == nil {
+                            docif = ""
+                        }
+                        var fi = Solicitud[i]["F164"] as? String
+                        if fi == nil {
+                            fi = ""
+                        }
+                        
+                        self.Insertarbuzon(coment: coment!, est: esta!, fechaa: fechaar!, fecham: fechamr!, idsol: idsolr!, product: producto!, prom: prome!, sol: solicitud!,ext1: ext1!,ext2:ext2!,ext3:ext3!,ext4:ext4!,ext5:ext5!,docc1:docc1!,docc2:docc2!,docia:docia!,docif:docif!,fi:fi!)
+                        
                     }
+                     self.WsCatalogos()
                 }
             } catch {
                 print("hubo un error")
@@ -953,7 +1034,7 @@ class ViewController: UIViewController {
         
     }
     
-    func Insertarbuzon(coment:String,est:String,fechaa:String,fecham:String,idsol:String,product:String,prom:String,sol:String){
+    func Insertarbuzon(coment:String,est:String,fechaa:String,fecham:String,idsol:String,product:String,prom:String,sol:String,ext1:String,ext2:String,ext3:String,ext4:String,ext5:String,docc1:String,docc2:String,docia:String,docif:String,fi:String){
         
         if Buzoninsert == "A" {
             let dateFormatter = DateFormatter()
@@ -974,9 +1055,19 @@ class ViewController: UIViewController {
             newBuz.setValue(product, forKey: "producto")
             newBuz.setValue(prom, forKey: "promedio_scoring")
             newBuz.setValue(sol, forKey: "solicitud_xml")
+            newBuz.setValue(ext1, forKey: "ext_c1")
+            newBuz.setValue(ext2, forKey: "ext_c2")
+            newBuz.setValue(ext3, forKey: "ext_c3")
+            newBuz.setValue(ext4, forKey: "ext_c4")
+            newBuz.setValue(ext5, forKey: "ext_c5")
+            newBuz.setValue(docc1, forKey: "doc_c1")
+            newBuz.setValue(docc2, forKey: "doc_c2")
+            newBuz.setValue(docia, forKey: "doc_ia")
+            newBuz.setValue(docif, forKey: "doc_if")
+            newBuz.setValue(fi, forKey: "fi")
             do {
                 try context.save()
-                print("Solicitud insertada")
+                print("Solicitud insertada A!!!!!!")
                 
             }catch {
                 print(error)
@@ -1002,9 +1093,19 @@ class ViewController: UIViewController {
             newBuz.setValue(product, forKey: "producto_b")
             newBuz.setValue(prom, forKey: "promedio_scoring_b")
             newBuz.setValue(sol, forKey: "solicitud_xml_b")
+            newBuz.setValue(ext1, forKey: "ext_c1")
+            newBuz.setValue(ext2, forKey: "ext_c2")
+            newBuz.setValue(ext3, forKey: "ext_c3")
+            newBuz.setValue(ext4, forKey: "ext_c4")
+            newBuz.setValue(ext5, forKey: "ext_c5")
+            newBuz.setValue(docc1, forKey: "doc_c1")
+            newBuz.setValue(docc2, forKey: "doc_c2")
+            newBuz.setValue(docia, forKey: "doc_ia")
+            newBuz.setValue(docif, forKey: "doc_if")
+            newBuz.setValue(fi, forKey: "fi")
             do {
                 try context.save()
-                print("Solicitud insertada")
+                print("Solicitud insertada B!!!!")
                 
             }catch {
                 print(error)
@@ -1017,16 +1118,22 @@ class ViewController: UIViewController {
     func WsCatalogos(){
       
         let json: [String: Any] = [
-            "Promotoria":"",
-            "RegPromotor":"",
-            "Compania":Empresa.text!,
-            "Formato":"",
-            "Usuario":User.text!,
-            "Contrasenia":Pass.text!,
-            "Coordinador":["ClaveC":"","NombreC":""],
-            "Gerente":["ClaveG":"","NombreG":""],
-            "TipoUsuario":"4"
+            "objPromotor": [
+                "Promotoria":"",
+                "RegPromotor":"",
+                "Compania":Empresa.text!,
+                "Formato":"",
+                "Usuario":User.text!,
+                "Contrasenia":Pass.text!,
+                "Coordinador":["ClaveC":"","NombreC":""],
+                "Gerente":["ClaveG":"","NombreG":""],
+                "TipoUsuario":"4"
+            ],
+            "llave":["Usuario": User.text!,
+                     "Compania":Empresa.text!,
+                     "Token":self.Token]
         ]
+
         let jsonData = try? JSONSerialization.data(withJSONObject: json)
         
         // create post request
@@ -1056,24 +1163,24 @@ class ViewController: UIViewController {
                     print("************Ws Catalogos*************")
                     for i in 0 ..< Solicitud.count{
                         let desc = Solicitud[i]["DESCRIPCION"] as? String
-                       // print(desc!)
+                        //print(desc!)
                         
                         let idCat = Solicitud[i]["ID_CATALOGO"] as? String
-                      //  print(idCat!)
+                        //print(idCat!)
                         
                         let idTipo = Solicitud[i]["ID_TIPO_CATALOGO"] as? String
-                       // print(idTipo!)
+                       //print(idTipo!)
                         
                         let padre = Solicitud[i]["PADRE"] as? String
-                       // print(padre!)
+                       //print(padre!)
                         self.Insertarcatalogo(desc: desc!, idcat: idCat!, idtc: idTipo!, pad: padre!)
                     }
-                   
                     if self.userArray.count == 0 {
                         self.Insertarusuario()
                     }else{
                         self.EliminarUsuario()
                     }
+                  
                 }
             } catch {
                 print("hubo un error")
@@ -1166,7 +1273,7 @@ class ViewController: UIViewController {
     }
     
     func Updateparam(){
-         self.ToastExample(message: "Finalizando...")
+        self.ToastExample(message: "Finalizando...")
         let request = NSFetchRequest<PARAMETRO>(entityName: "PARAMETRO")
         do {
             let searchResults = try context.fetch(request)
@@ -1181,7 +1288,7 @@ class ViewController: UIViewController {
                     task.valor = self.productinsert
                 }
                 if task.parametro == "AGENDA_ACTIVA" {
-                    task.valor = self.agendinsert
+                    task.valor =  self.agendinsert
                 }
             }
         } catch {
@@ -1196,6 +1303,7 @@ class ViewController: UIViewController {
             vc.id = Idusuario
             self.navigationController?.pushViewController(vc, animated: false)
         }
+        
     }
 }
 

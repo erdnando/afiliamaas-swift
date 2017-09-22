@@ -2,9 +2,19 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16E195" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="BUZON_A" representedClassName="BUZON_A" syncable="YES" codeGenerationType="class">
         <attribute name="comentario_b" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="doc_c1" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="doc_c2" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="doc_ia" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="doc_if" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="estatus_b" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="ext_c1" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="ext_c2" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="ext_c3" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="ext_c4" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="ext_c5" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="fecha_alta_b" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="fecha_modificacion_b" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="fi" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id_solicitud_b" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="id_usuario_b" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="motivo_b" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -44,9 +54,19 @@
     </entity>
     <entity name="Rbuzon" representedClassName="Rbuzon" syncable="YES" codeGenerationType="class">
         <attribute name="comentario" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="doc_c1" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="doc_c2" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="doc_ia" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="doc_if" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="estatus" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="ext_c1" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="ext_c2" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="ext_c3" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="ext_c4" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="ext_c5" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="fecha_alta" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="fecha_modificacion" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="fi" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id_solicitud" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="id_usuario" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="motivo" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -158,13 +178,13 @@
         <attribute name="user" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="BUZON_A" positionX="126" positionY="243" width="128" height="195"/>
-        <element name="Rcatalogo" positionX="45" positionY="162" width="128" height="120"/>
+        <element name="BUZON_A" positionX="126" positionY="243" width="128" height="345"/>
+        <element name="CATALOGO_A" positionX="144" positionY="297" width="128" height="120"/>
         <element name="CitasMetrica" positionX="54" positionY="171" width="128" height="135"/>
         <element name="PARAMETRO" positionX="72" positionY="198" width="128" height="105"/>
         <element name="Producto" positionX="90" positionY="207" width="128" height="150"/>
-        <element name="Rbuzon" positionX="45" positionY="90" width="128" height="195"/>
-        <element name="CATALOGO_A" positionX="144" positionY="297" width="128" height="120"/>
+        <element name="Rbuzon" positionX="45" positionY="90" width="128" height="345"/>
+        <element name="Rcatalogo" positionX="45" positionY="162" width="128" height="120"/>
         <element name="RegAgenda" positionX="117" positionY="261" width="128" height="615"/>
         <element name="Rproducto" positionX="99" positionY="243" width="128" height="150"/>
         <element name="Rregagenda" positionX="108" positionY="252" width="128" height="615"/>

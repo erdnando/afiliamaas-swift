@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9A085B981F4C86490071B8FE /* Domicilio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A085B971F4C86490071B8FE /* Domicilio.swift */; };
-		9A085B9A1F4CAC750071B8FE /* PersonaPolitica.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A085B991F4CAC750071B8FE /* PersonaPolitica.swift */; };
-		9A085B9C1F4CAC910071B8FE /* Referencias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A085B9B1F4CAC910071B8FE /* Referencias.swift */; };
 		9A085BE51F4F3F700071B8FE /* siguiente.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A085BE41F4F3F700071B8FE /* siguiente.png */; };
 		9A085BE91F4F42990071B8FE /* atras.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A085BE81F4F42990071B8FE /* atras.png */; };
 		9A085C141F4F7D410071B8FE /* Aceptadas.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A085C0E1F4F7D410071B8FE /* Aceptadas.png */; };
@@ -26,7 +23,6 @@
 		9A085C251F4F7D560071B8FE /* Todas2.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A085C1F1F4F7D560071B8FE /* Todas2.png */; };
 		9A085C271F4F910E0071B8FE /* Acceder.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A085C261F4F910E0071B8FE /* Acceder.png */; };
 		9A287B1A1F2F8D8A00AF0C5E /* Nuevo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A287B191F2F8D8A00AF0C5E /* Nuevo.swift */; };
-		9A287B1C1F2F9B0F00AF0C5E /* Economicos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A287B1B1F2F9B0F00AF0C5E /* Economicos.swift */; };
 		9A287B1E1F2F9F6A00AF0C5E /* Foto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A287B1D1F2F9F6A00AF0C5E /* Foto.swift */; };
 		9A287B201F2FA27F00AF0C5E /* Imagen.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A287B1F1F2FA27F00AF0C5E /* Imagen.png */; };
 		9A287B281F34E18700AF0C5E /* Foton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A287B271F34E18700AF0C5E /* Foton.swift */; };
@@ -48,12 +44,11 @@
 		9AB8EC881F61FB2200CA58AD /* Solicitudes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB8EC871F61FB2200CA58AD /* Solicitudes.swift */; };
 		9AB8EC8A1F62F86000CA58AD /* General.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB8EC891F62F86000CA58AD /* General.swift */; };
 		9AE0FE2A1F54D15C008B4A36 /* BD.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9AE0FE281F54D15C008B4A36 /* BD.xcdatamodeld */; };
+		9AE983FE1F70410600310F18 /* Visor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE983FD1F70410600310F18 /* Visor.swift */; };
+		9AE984001F7175C600310F18 /* Nuevogeneral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE983FF1F7175C600310F18 /* Nuevogeneral.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		9A085B971F4C86490071B8FE /* Domicilio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Domicilio.swift; sourceTree = "<group>"; };
-		9A085B991F4CAC750071B8FE /* PersonaPolitica.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonaPolitica.swift; sourceTree = "<group>"; };
-		9A085B9B1F4CAC910071B8FE /* Referencias.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Referencias.swift; sourceTree = "<group>"; };
 		9A085BE41F4F3F700071B8FE /* siguiente.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = siguiente.png; sourceTree = "<group>"; };
 		9A085BE81F4F42990071B8FE /* atras.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = atras.png; sourceTree = "<group>"; };
 		9A085C0E1F4F7D410071B8FE /* Aceptadas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Aceptadas.png; sourceTree = "<group>"; };
@@ -70,7 +65,6 @@
 		9A085C1F1F4F7D560071B8FE /* Todas2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Todas2.png; sourceTree = "<group>"; };
 		9A085C261F4F910E0071B8FE /* Acceder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Acceder.png; sourceTree = "<group>"; };
 		9A287B191F2F8D8A00AF0C5E /* Nuevo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Nuevo.swift; sourceTree = "<group>"; };
-		9A287B1B1F2F9B0F00AF0C5E /* Economicos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Economicos.swift; sourceTree = "<group>"; };
 		9A287B1D1F2F9F6A00AF0C5E /* Foto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Foto.swift; sourceTree = "<group>"; };
 		9A287B1F1F2FA27F00AF0C5E /* Imagen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Imagen.png; sourceTree = "<group>"; };
 		9A287B271F34E18700AF0C5E /* Foton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Foton.swift; sourceTree = "<group>"; };
@@ -94,6 +88,8 @@
 		9AB8EC871F61FB2200CA58AD /* Solicitudes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Solicitudes.swift; sourceTree = "<group>"; };
 		9AB8EC891F62F86000CA58AD /* General.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = General.swift; sourceTree = "<group>"; };
 		9AE0FE291F54D15C008B4A36 /* BD.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BD.xcdatamodel; sourceTree = "<group>"; };
+		9AE983FD1F70410600310F18 /* Visor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Visor.swift; path = ../Visor.swift; sourceTree = "<group>"; };
+		9AE983FF1F7175C600310F18 /* Nuevogeneral.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Nuevogeneral.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,22 +154,20 @@
 				9A7EDEF41F2BBBAB000BA36A /* BaseViewController.swift */,
 				9A7EDEF51F2BBBAB000BA36A /* MenuViewController.swift */,
 				9A7EDEF81F2BBCD1000BA36A /* Home.swift */,
-				9A287B191F2F8D8A00AF0C5E /* Nuevo.swift */,
+				9AE983FD1F70410600310F18 /* Visor.swift */,
 				9A7EDEDF1F2BA68C000BA36A /* Main.storyboard */,
 				9A7EDEE21F2BA68C000BA36A /* Assets.xcassets */,
 				9A7EDEE41F2BA68C000BA36A /* LaunchScreen.storyboard */,
 				9A7EDEE71F2BA68C000BA36A /* Info.plist */,
-				9A287B1B1F2F9B0F00AF0C5E /* Economicos.swift */,
 				9A287B1D1F2F9F6A00AF0C5E /* Foto.swift */,
 				9A287B271F34E18700AF0C5E /* Foton.swift */,
 				9A30A2A01F44A43C0011E190 /* Todos.swift */,
-				9A085B971F4C86490071B8FE /* Domicilio.swift */,
-				9A085B991F4CAC750071B8FE /* PersonaPolitica.swift */,
-				9A085B9B1F4CAC910071B8FE /* Referencias.swift */,
 				9AE0FE281F54D15C008B4A36 /* BD.xcdatamodeld */,
 				9AB8EC851F61AB1E00CA58AD /* SolicitudesCell.swift */,
 				9AB8EC871F61FB2200CA58AD /* Solicitudes.swift */,
 				9AB8EC891F62F86000CA58AD /* General.swift */,
+				9A287B191F2F8D8A00AF0C5E /* Nuevo.swift */,
+				9AE983FF1F7175C600310F18 /* Nuevogeneral.swift */,
 			);
 			path = Afiliacion;
 			sourceTree = "<group>";
@@ -289,16 +283,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A085B981F4C86490071B8FE /* Domicilio.swift in Sources */,
-				9A085B9C1F4CAC910071B8FE /* Referencias.swift in Sources */,
 				9A287B281F34E18700AF0C5E /* Foton.swift in Sources */,
 				9A7EDEDE1F2BA68C000BA36A /* ViewController.swift in Sources */,
 				9AB8EC881F61FB2200CA58AD /* Solicitudes.swift in Sources */,
-				9A287B1C1F2F9B0F00AF0C5E /* Economicos.swift in Sources */,
 				9AB8EC861F61AB1E00CA58AD /* SolicitudesCell.swift in Sources */,
+				9AE983FE1F70410600310F18 /* Visor.swift in Sources */,
 				9A30A2A11F44A43C0011E190 /* Todos.swift in Sources */,
-				9A085B9A1F4CAC750071B8FE /* PersonaPolitica.swift in Sources */,
 				9A7EDEDC1F2BA68C000BA36A /* AppDelegate.swift in Sources */,
+				9AE984001F7175C600310F18 /* Nuevogeneral.swift in Sources */,
 				9A7EDEF91F2BBCD1000BA36A /* Home.swift in Sources */,
 				9A7EDEF61F2BBBAB000BA36A /* BaseViewController.swift in Sources */,
 				9A287B1E1F2F9F6A00AF0C5E /* Foto.swift in Sources */,

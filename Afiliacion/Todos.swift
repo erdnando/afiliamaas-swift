@@ -11,6 +11,7 @@ import CoreData
 class Todos: UIViewController,XMLParserDelegate,UITableViewDataSource,UITableViewDelegate {
     
     var Buzonactivo = ""
+    var Catalogoactivo = ""
     //Objetos CoreData
     var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
@@ -18,6 +19,7 @@ class Todos: UIViewController,XMLParserDelegate,UITableViewDataSource,UITableVie
     var paramArray:[PARAMETRO] = []
     var buzonA:[Rbuzon] = []
     var buzonB:[BUZON_A] = []
+    
     
     var Nombre:[String] = []
     var Apep:[String] = []
@@ -41,7 +43,9 @@ class Todos: UIViewController,XMLParserDelegate,UITableViewDataSource,UITableVie
         fetchData2()
         fetchData3()
         fetchData4()
+       
         Buscarparamba()
+        Buscarparamca()
     }
     
     func fetchData2() {
@@ -74,12 +78,14 @@ class Todos: UIViewController,XMLParserDelegate,UITableViewDataSource,UITableVie
         }
     }
     
+    
+    
     //Buscar buzon activo
     func Buscarparamba(){
         var num = 0
         repeat{
             if paramArray[num].parametro == "BUZON_ACTIVO" {
-                print("Buzon activo es:",paramArray[num].valor!)
+                //buzon activo
                 break
             }else {
                 num = num+1
@@ -92,6 +98,24 @@ class Todos: UIViewController,XMLParserDelegate,UITableViewDataSource,UITableVie
             Buzonactivo = "B"
             verBuzonb()
         }
+    }
+    //Buscar Catalogo Activo
+    func Buscarparamca() {
+        var num = 0
+        repeat{
+            if paramArray[num].parametro == "CATALOGO_ACTIVO" {
+               //Catalogo Activo
+                break
+            }else {
+                num = num+1
+            }
+        }while num < paramArray.count
+        if paramArray[num].valor == "A" {
+            Catalogoactivo = "A"
+        }else {
+            Catalogoactivo = "B"
+        }
+        
     }
     //Estraer Xml dependiendo quie sea el buzon activo
     func verBuzona(){
@@ -114,7 +138,7 @@ class Todos: UIViewController,XMLParserDelegate,UITableViewDataSource,UITableVie
         repeat {
            
            //print(buzonB[num].solicitud_xml_b!)
-            beginParsing(xml: buzonA[num].solicitud_xml!)
+            beginParsing(xml: buzonB[num].solicitud_xml_b!)
             num = num+1
         }while num < buzonB.count
         ExtDatos()
@@ -141,7 +165,7 @@ class Todos: UIViewController,XMLParserDelegate,UITableViewDataSource,UITableVie
             Apem.append(vapem[num])
             num = num+3
         }while num < vapem.count-1
-       // verDatos()
+        //verDatos()
     }
     
     
@@ -211,7 +235,7 @@ class Todos: UIViewController,XMLParserDelegate,UITableViewDataSource,UITableVie
             formatter.dateFormat =  "dd/MM/yyyy"
             let fecha = formatter.string(from: buzonB[indexPath.row].fecha_alta_b! as Date)
             cell.IdSolicitud.text = String(buzonB[indexPath.row].id_solicitud_b)
-            cell.Nombre.text = "Nombre"
+            cell.Nombre.text = Nombre[indexPath.row] + " " + Apep[indexPath.row] + " " + Apem[indexPath.row]
             cell.Fecha.text =  fecha
         }
            
@@ -224,9 +248,14 @@ class Todos: UIViewController,XMLParserDelegate,UITableViewDataSource,UITableVie
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let sol = self.storyboard?.instantiateViewController(withIdentifier: "Solicitud_Detalle") as? Solicitudes {
-            sol.Id = String(buzonA[indexPath.row].id_solicitud)
+            if Buzonactivo == "A" {
+                sol.Id = String(buzonA[indexPath.row].id_solicitud)
+            }else {
+                sol.Id = String(buzonB[indexPath.row].id_solicitud_b)
+            }
             sol.BuzonActivo = self.Buzonactivo
-            self.navigationController?.pushViewController(sol, animated: false)
+            sol.CatalogoActivo = self.Catalogoactivo
+            self.navigationController?.pushViewController(sol, animated: true)
         }
     }
 
