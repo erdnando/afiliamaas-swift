@@ -18,9 +18,17 @@ class Foto: BaseViewController {
     addSlideMenuButton()
         if let availableimage = takenPhoto {
             imageView.image = availableimage
+        print("nombre de la imagen: ",imageView.image!)
         }
+      convert(Imagen: imageView.image!)
     }
     
+    func convert(Imagen:UIImage) {
+        let imageData: NSData = UIImageJPEGRepresentation(Imagen, 0.4)! as NSData
+        let imageStr = imageData.base64EncodedString(options: .lineLength64Characters)
+        print("Imgen codificada en base 64:",imageStr)
+        
+    }
     
     
     @IBAction func Camara(_ sender: UIButton) {

@@ -43,6 +43,9 @@
 		9AB8EC861F61AB1E00CA58AD /* SolicitudesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB8EC851F61AB1E00CA58AD /* SolicitudesCell.swift */; };
 		9AB8EC881F61FB2200CA58AD /* Solicitudes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB8EC871F61FB2200CA58AD /* Solicitudes.swift */; };
 		9AB8EC8A1F62F86000CA58AD /* General.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB8EC891F62F86000CA58AD /* General.swift */; };
+		9AD6827D1F795C2200B641D4 /* CustomUITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD6827C1F795C2200B641D4 /* CustomUITextField.swift */; };
+		9AD6827F1F79B64B00B641D4 /* Identificacionf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD6827E1F79B64B00B641D4 /* Identificacionf.swift */; };
+		9AD682811F7C5E7A00B641D4 /* Firma.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD682801F7C5E7A00B641D4 /* Firma.swift */; };
 		9AE0FE2A1F54D15C008B4A36 /* BD.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9AE0FE281F54D15C008B4A36 /* BD.xcdatamodeld */; };
 		9AE983FE1F70410600310F18 /* Visor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE983FD1F70410600310F18 /* Visor.swift */; };
 		9AE984001F7175C600310F18 /* Nuevogeneral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE983FF1F7175C600310F18 /* Nuevogeneral.swift */; };
@@ -87,6 +90,9 @@
 		9AB8EC851F61AB1E00CA58AD /* SolicitudesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SolicitudesCell.swift; sourceTree = "<group>"; };
 		9AB8EC871F61FB2200CA58AD /* Solicitudes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Solicitudes.swift; sourceTree = "<group>"; };
 		9AB8EC891F62F86000CA58AD /* General.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = General.swift; sourceTree = "<group>"; };
+		9AD6827C1F795C2200B641D4 /* CustomUITextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomUITextField.swift; sourceTree = "<group>"; };
+		9AD6827E1F79B64B00B641D4 /* Identificacionf.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Identificacionf.swift; sourceTree = "<group>"; };
+		9AD682801F7C5E7A00B641D4 /* Firma.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Firma.swift; sourceTree = "<group>"; };
 		9AE0FE291F54D15C008B4A36 /* BD.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BD.xcdatamodel; sourceTree = "<group>"; };
 		9AE983FD1F70410600310F18 /* Visor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Visor.swift; path = ../Visor.swift; sourceTree = "<group>"; };
 		9AE983FF1F7175C600310F18 /* Nuevogeneral.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Nuevogeneral.swift; sourceTree = "<group>"; };
@@ -154,6 +160,7 @@
 				9A7EDEF41F2BBBAB000BA36A /* BaseViewController.swift */,
 				9A7EDEF51F2BBBAB000BA36A /* MenuViewController.swift */,
 				9A7EDEF81F2BBCD1000BA36A /* Home.swift */,
+				9AD6827C1F795C2200B641D4 /* CustomUITextField.swift */,
 				9AE983FD1F70410600310F18 /* Visor.swift */,
 				9A7EDEDF1F2BA68C000BA36A /* Main.storyboard */,
 				9A7EDEE21F2BA68C000BA36A /* Assets.xcassets */,
@@ -168,6 +175,8 @@
 				9AB8EC891F62F86000CA58AD /* General.swift */,
 				9A287B191F2F8D8A00AF0C5E /* Nuevo.swift */,
 				9AE983FF1F7175C600310F18 /* Nuevogeneral.swift */,
+				9AD6827E1F79B64B00B641D4 /* Identificacionf.swift */,
+				9AD682801F7C5E7A00B641D4 /* Firma.swift */,
 			);
 			path = Afiliacion;
 			sourceTree = "<group>";
@@ -287,9 +296,12 @@
 				9A7EDEDE1F2BA68C000BA36A /* ViewController.swift in Sources */,
 				9AB8EC881F61FB2200CA58AD /* Solicitudes.swift in Sources */,
 				9AB8EC861F61AB1E00CA58AD /* SolicitudesCell.swift in Sources */,
+				9AD6827D1F795C2200B641D4 /* CustomUITextField.swift in Sources */,
 				9AE983FE1F70410600310F18 /* Visor.swift in Sources */,
 				9A30A2A11F44A43C0011E190 /* Todos.swift in Sources */,
 				9A7EDEDC1F2BA68C000BA36A /* AppDelegate.swift in Sources */,
+				9AD6827F1F79B64B00B641D4 /* Identificacionf.swift in Sources */,
+				9AD682811F7C5E7A00B641D4 /* Firma.swift in Sources */,
 				9AE984001F7175C600310F18 /* Nuevogeneral.swift in Sources */,
 				9A7EDEF91F2BBCD1000BA36A /* Home.swift in Sources */,
 				9A7EDEF61F2BBBAB000BA36A /* BaseViewController.swift in Sources */,

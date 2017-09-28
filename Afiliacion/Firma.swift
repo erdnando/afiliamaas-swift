@@ -1,30 +1,16 @@
 //
-//  Nuevo.swift
+//  Firma.swift
 //  Afiliacion
 //
-//  Created by stefanini on 7/31/17.
+//  Created by stefanini on 27/09/17.
 //  Copyright © 2017 stefanini. All rights reserved.
 //
 
 import UIKit
-import CoreData
-class Nuevo: BaseViewController {
+
+class Firma: UIViewController {
     
-    //Etiquetas
-    @IBOutlet weak var General: UILabel!
-    @IBOutlet weak var LDom: UILabel!
-    @IBOutlet weak var Domicilio: UILabel!
-    @IBOutlet weak var LDatos: UILabel!
-    @IBOutlet weak var Datos: UILabel!
-    @IBOutlet weak var Lpersona: UILabel!
-    @IBOutlet weak var Persona: UILabel!
-    @IBOutlet weak var Lreferencias: UILabel!
-    @IBOutlet weak var Referencias: UILabel!
-    @IBOutlet weak var Ldocumentos: UILabel!
-    @IBOutlet weak var Documentos: UILabel!
-    
-    var prueba = ""
-     //General
+    //General
     var Grnombre = ""
     var Grsnombre = ""
     var Grapep = ""
@@ -119,102 +105,85 @@ class Nuevo: BaseViewController {
     var bcontratop = ""
     var bfirma = ""
     
-    var identificador = 0
     var margen = 0
     var deslizar = 0
+    
+    @IBOutlet weak var Panel: UIImageView!
+    var lastPoint = CGPoint.zero
+    var red: CGFloat = 0.0
+    var green: CGFloat = 0.0
+    var blue: CGFloat = 0.0
+    var brushWidth: CGFloat = 10.0
+    var opacity: CGFloat = 1.0
+    var swiped = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        addSlideMenuButton()
-        //Etiquetas Redondas
-        
-        General.layer.masksToBounds = true
-        General.layer.cornerRadius = 17.5
-        
-        Domicilio?.layer.masksToBounds = true
-        Domicilio?.layer.cornerRadius = 17.5
-        
-        Datos.layer.masksToBounds = true
-        Datos.layer.cornerRadius = 17.5
-        
-        Persona.layer.masksToBounds = true
-        Persona.layer.cornerRadius = 17.5
-        
-        Referencias.layer.masksToBounds = true
-        Referencias.layer.cornerRadius = 17.5
-        
-        Documentos.layer.masksToBounds = true
-        Documentos.layer.cornerRadius = 17.5
-        
-       
-        
-        
-        if identificador == 2 {
-            LDom?.backgroundColor = UIColor.blue
-            Domicilio?.backgroundColor = UIColor.blue
-        }
-        if identificador == 3 {
-            LDom?.backgroundColor = UIColor.blue
-            Domicilio?.backgroundColor = UIColor.blue
-            LDatos.backgroundColor = UIColor.blue
-            Datos.backgroundColor = UIColor.blue
-        }
-        if identificador == 4 {
-            LDom?.backgroundColor = UIColor.blue
-            Domicilio?.backgroundColor = UIColor.blue
-            LDatos.backgroundColor = UIColor.blue
-            Datos.backgroundColor = UIColor.blue
-            Lpersona.backgroundColor = UIColor.blue
-            Persona.backgroundColor = UIColor.blue
-        }
-        if identificador == 5 {
-            LDom?.backgroundColor = UIColor.blue
-            Domicilio?.backgroundColor = UIColor.blue
-            LDatos.backgroundColor = UIColor.blue
-            Datos.backgroundColor = UIColor.blue
-            Lpersona.backgroundColor = UIColor.blue
-            Persona.backgroundColor = UIColor.blue
-            Lreferencias.backgroundColor = UIColor.blue
-            Referencias.backgroundColor = UIColor.blue
-        }
-        if identificador == 6 {
-            LDom?.backgroundColor = UIColor.blue
-            Domicilio?.backgroundColor = UIColor.blue
-            LDatos.backgroundColor = UIColor.blue
-            Datos.backgroundColor = UIColor.blue
-            Lpersona.backgroundColor = UIColor.blue
-            Persona.backgroundColor = UIColor.blue
-            Lreferencias.backgroundColor = UIColor.blue
-            Referencias.backgroundColor = UIColor.blue
-            Ldocumentos.backgroundColor = UIColor.blue
-            Documentos.backgroundColor = UIColor.blue
-        }
-        General.backgroundColor = UIColor.blue
 
     }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        swiped = false
+        if let touch = touches.first {
+            lastPoint = touch.location(in: self.view)
+        }
+    }
     
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    func drawLineFrom(fromPoint: CGPoint, toPoint: CGPoint) {
         
-        if segue.identifier == "NuevoGeneral"{
-            let Ngen = segue.destination as! Nuevogeneral
+        UIGraphicsBeginImageContextWithOptions(view.bounds.size, false, 0)
+        
+        Panel.image?.draw(in: view.bounds)
+        
+        let context = UIGraphicsGetCurrentContext()
+        
+        context?.move(to: fromPoint)
+        context?.addLine(to: toPoint)
+        
+        context?.setLineCap(CGLineCap.round)
+        context?.setLineWidth(brushWidth)
+        context?.setStrokeColor(red: red, green: green, blue: blue, alpha: 1.0)
+        context?.setBlendMode(CGBlendMode.normal)
+        context?.strokePath()
+        
+        Panel.image = UIGraphicsGetImageFromCurrentImageContext()
+        Panel.alpha = opacity
+        UIGraphicsEndImageContext()
+    }
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        swiped = true
+        if let touch = touches.first {
+            let currentPoint = touch.location(in: view)
+            drawLineFrom(fromPoint: lastPoint, toPoint: currentPoint)
             
+            lastPoint = currentPoint
+        }
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if !swiped {
+            // draw a single point
+            self.drawLineFrom(fromPoint: lastPoint, toPoint: lastPoint)
+        }
+   }
+    
+    @IBAction func Guardar(_ sender: UIBarButtonItem) {
+        convert(Imagen: Panel.image!)
+        if  let Ngen = self.storyboard?.instantiateViewController(withIdentifier: "Newgen") as? Nuevogeneral {
             //General
             Ngen.Grnombre = Grnombre
             Ngen.Grsnombre = Grsnombre
             Ngen.Grapep = Grapep
             Ngen.Grapem = Grapem
             Ngen.Grtipo = Grtipo
-            Ngen.Gridtipo = Gridtipo
             Ngen.Gridentificacion = Gridentificacion
             Ngen.sexo = sexo
             Ngen.Grnacionalidad = Grnacionalidad
-            Ngen.Gridnacionalidad = Gridnacionalidad
             Ngen.Grfecha = Grfecha
             Ngen.Grrfc = Grrfc
             Ngen.Grestcivil = Grestcivil
-            Ngen.Gridestcivil = Gridestcivil
             Ngen.Grnumero = Grnumero
-        
+            
             
             //Domicilio
             Ngen.Drcalle = Drcalle
@@ -222,26 +191,21 @@ class Nuevo: BaseViewController {
             Ngen.Drnumi = Drnumi
             Ngen.Drcolonia = Drcolonia
             Ngen.Drestado = Drestado
-            Ngen.Dridestado = Dridestado
             Ngen.Drdel = Drdel
-            Ngen.Driddel = Driddel
             Ngen.Drcp = Drcp
             Ngen.Drtiempo = Drtiempo
             Ngen.Drestatus = Drestatus
-            Ngen.Dridestatus = Dridestatus
             Ngen.Drmonto = Drmonto
             Ngen.Drcorreo = Drcorreo
             Ngen.Drtelefono = Drtelefono
             Ngen.Drmovil = Drmovil
             Ngen.Drcompania = Drcompania
-            Ngen.Dridcompania = Dridcompania
             
             //Datos economicos
             Ngen.Drnombre = Drnombre
             Ngen.Drgiro = Drgiro
             Ngen.Drantiguedad = Drantiguedad
             Ngen.Drtipo = Drtipo
-            Ngen.Dridtipo = Dridtipo
             Ngen.Drpuesto = Drpuesto
             Ngen.Dringreso = Dringreso
             Ngen.Drcasado = Drcasado
@@ -252,9 +216,7 @@ class Nuevo: BaseViewController {
             Ngen.Drnumi2 = Drnumi2
             Ngen.Drcolonia2 = Drcolonia2
             Ngen.Drestado2 = Drestado2
-            Ngen.Dridestado2 = Dridestado2
             Ngen.Drdel2 = Drdel2
-            Ngen.Driddel2 = Driddel2
             Ngen.Drcp2 = Drcp2
             Ngen.Drtelefono2 = Drtelefono2
             Ngen.Drextencion = Drextencion
@@ -272,21 +234,18 @@ class Nuevo: BaseViewController {
             Ngen.Rrapep = Rrapep
             Ngen.Rrapem = Rrapem
             Ngen.Rrnacionalidad = Rrnacionalidad
-            Ngen.Rridnacionalidad = Rridnacionalidad
             Ngen.Rrtelefono = Rrtelefono
             
             Ngen.R2rnombre = R2rnombre
             Ngen.R2rapep = R2rapep
             Ngen.R2rapem = R2rapem
             Ngen.R2rnacionalidad = Rr2nacionalidad
-            Ngen.Rridnacionalidad2 = Rridnacionalidad2
             Ngen.R2rtelefono = R2rtelefono
             
             Ngen.R3rnombre = R3rnombre
             Ngen.R3rapep = R3rapep
             Ngen.R3rapem = R3rapem
             Ngen.Rr3nacionalidad = Rr3nacionalidad
-            Ngen.Rridnacionalidad3 = Rridnacionalidad3
             Ngen.R3rtelefono = R3rtelefono
             //Documentos
             Ngen.bidentificacionf = bidentificacionf
@@ -294,10 +253,20 @@ class Nuevo: BaseViewController {
             Ngen.bcontrato = bcontrato
             Ngen.bcontratop = bcontratop
             Ngen.bfirma = bfirma
-                        
+            
+            
             Ngen.deslizar = deslizar
             Ngen.margeny = margen
-           
+            self.navigationController?.pushViewController(Ngen, animated: true)
         }
     }
+    
+    
+    func convert(Imagen:UIImage) {
+        let imageData: NSData = UIImageJPEGRepresentation(Imagen, 0.4)! as NSData
+        bfirma = imageData.base64EncodedString(options: .lineLength64Characters)
+        print("Imgen codificada en base 64:",bfirma)
+        
+    }
+
 }

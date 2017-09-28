@@ -11,9 +11,8 @@ import UIKit
 class BaseViewController: UIViewController, SlideMenuDelegate {
     
     
-    
-    
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
@@ -33,7 +32,7 @@ class BaseViewController: UIViewController, SlideMenuDelegate {
         case 1:
             self.openViewControllerBasedOnIdentifier("New")
         case 2:
-            self.openViewControllerBasedOnIdentifier("Home")
+            self.openViewControllerBasedOnIdentifier("Foto")
         break
         case 3:
             self.openViewControllerBasedOnIdentifier("Inicio")

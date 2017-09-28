@@ -8,10 +8,10 @@
 
 import UIKit
 import CoreData
-class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate{
+class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,UITextFieldDelegate{
     //Scroll
     @IBOutlet weak var myscroll: UIScrollView!
-
+   
     //General
     @IBOutlet weak var Gnombre: UITextField!
     var Grnombre = ""
@@ -29,18 +29,21 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate{
     var Grnumero = ""
     @IBOutlet weak var Gtipo: UILabel!
     var Grtipo = ""
+    var Gridtipo = "" //id
     @IBOutlet weak var Gptipo: UIPickerView!
     @IBOutlet weak var Gh: UISwitch!
     @IBOutlet weak var Gm: UISwitch!
     var sexo = ""
     @IBOutlet weak var Gnacionalidad: UILabel!
     var Grnacionalidad = ""
+    var Gridnacionalidad = "" //id
     @IBOutlet weak var Gpnacionalidad: UIPickerView!
     @IBOutlet weak var Gfecha: UILabel!
     var Grfecha = ""
     @IBOutlet weak var Gpfecha: UIDatePicker!
     @IBOutlet weak var Gestcivil: UILabel!
     var Grestcivil = ""
+    var Gridestcivil = "" //id
     @IBOutlet weak var Gpestcivil: UIPickerView!
     
     
@@ -56,9 +59,11 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate{
     var Drcolonia = ""
     @IBOutlet weak var Destado: UILabel!
     var Drestado = ""
+    var Dridestado = ""
     @IBOutlet weak var Dpestado: UIPickerView!
     @IBOutlet weak var Ddel: UILabel!
     var Drdel = ""
+    var Driddel = ""
     @IBOutlet weak var Dpdel: UIPickerView!
     @IBOutlet weak var Dcp: UITextField!
     var Drcp = ""
@@ -66,6 +71,7 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate{
     var Drtiempo = ""
     @IBOutlet weak var Destatus: UILabel!
     var Drestatus = ""
+    var Dridestatus = ""
     @IBOutlet weak var Dpestatus: UIPickerView!
     @IBOutlet weak var Dmonto: UITextField!
     var Drmonto = ""
@@ -77,6 +83,7 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate{
     var Drmovil = ""
     @IBOutlet weak var Dcompania: UILabel!
     var Drcompania = ""
+    var Dridcompania = ""
     @IBOutlet weak var Dpcompania: UIPickerView!
     
     //Datos econmicos
@@ -89,6 +96,7 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate{
     var Drantiguedad = ""
     @IBOutlet weak var Dtipo: UILabel!
     var Drtipo = ""
+    var Dridtipo = ""
     @IBOutlet weak var Dptipo: UIPickerView!
     @IBOutlet weak var Dpuesto: UITextField!
     var Drpuesto = ""
@@ -110,9 +118,11 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate{
     var Drcolonia2 = ""
     @IBOutlet weak var Destado2: UILabel!
     var Drestado2 = ""
+    var Dridestado2 = ""
     @IBOutlet weak var Dpestado2: UIPickerView!
     @IBOutlet weak var Ddel2: UILabel!
     var Drdel2 = ""
+    var Driddel2 = ""
     @IBOutlet weak var Dpdel2: UIPickerView!
     @IBOutlet weak var Dcp2: UITextField!
     var Drcp2 = ""
@@ -145,6 +155,7 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate{
     var Rrapem = ""
     @IBOutlet weak var Rnacionalidad: UILabel!
     var Rrnacionalidad = ""
+    var Rridnacionalidad = ""
     @IBOutlet weak var Rpnacionalidad: UIPickerView!
     @IBOutlet weak var Rtelefono: UITextField!
     var Rrtelefono = ""
@@ -157,6 +168,7 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate{
     var R2rapem = ""
     @IBOutlet weak var R2nacionalidad: UILabel!
     var R2rnacionalidad = ""
+    var Rridnacionalidad2 = ""
     @IBOutlet weak var R2pnacionalidad: UIPickerView!
     @IBOutlet weak var R2telefono: UITextField!
     var R2rtelefono = ""
@@ -169,33 +181,57 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate{
     var R3rapem = ""
     @IBOutlet weak var R3nacionalidad: UILabel!
     var Rr3nacionalidad = ""
+    var Rridnacionalidad3 = ""
     @IBOutlet weak var R3pnacionalidad: UIPickerView!
     @IBOutlet weak var R3telefono: UITextField!
     var R3rtelefono = ""
     
+    //Documentos
+    @IBOutlet weak var Iidenntificacionf: UIImageView!
+    var bidentificacionf = ""
+    @IBOutlet weak var Iidentificaciont: UIImageView!
+    var bidentificaciont = ""
+    @IBOutlet weak var Icontrato: UIImageView!
+    var bcontrato = ""
+    @IBOutlet weak var Icontratop: UIImageView!
+    var bcontratop = ""
+    @IBOutlet weak var Ifirma: UIImageView!
+    var bfirma = ""
     //Base de datos
+    var userArray:[USUARIO] = []
     var paramArray:[PARAMETRO] = []
     var cataloA:[CATALOGO_A] = []
     var cataloB:[Rcatalogo] = []
-
+    
+    
+    //Datos de promotor
+    var usuario = ""
+    var pass = ""
+    var comp = ""
+    
     //Arreglo de Spinner
-    var Tipo:[String] = []
-    var Nacionalidad:[String] = []
-    var Estadocivil:[String] = []
-    var Estado:[String] = []
-    var Delegacion:[String] = []
-    var Compania:[String] = []
-    var Estatus:[String] = []
-    var contrato:[String] = []
+    var Tipo = [Dictionary<String,String>]()
+    var Nacionalidad = [Dictionary<String,String>]()
+    var Estadocivil = [Dictionary<String,String>]()
+    var Estado = [Dictionary<String,String>]()
+    var Delegacion = [Dictionary<String,String>]()
+    var Compania = [Dictionary<String,String>]()
+    var Estatus = [Dictionary<String,String>]()
+    var contrato = [Dictionary<String,String>]()
     
     //catalogo activo
     var Catalogoactivo = ""
     var visibilidad = false
     var deslizar = 0
-     var margeny = 0
+    var margeny = 0
+   
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //funcion que oculta el teclado
+        self.hideKeyboardWhenTappedAround()
         myscroll.delegate = self
+        fetchData()
         fetchData2()
         fetchData5()
         fetchData6()
@@ -206,6 +242,63 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate{
         }else {
             CatalogoB()
         }
+        //Delegate de etiquetas
+        //General
+        Gnombre.delegate = self
+        Gsnombre.delegate = self
+        Gapep.delegate = self
+        Gapem.delegate = self
+        Gidentificacion.delegate = self
+        Grfc.delegate = self
+        Gnumero.delegate = self
+        //Domicilio
+        Dcalle.delegate = self
+        Dnume.delegate = self
+        Dnumi.delegate = self
+        Dcolonia.delegate = self
+        Dcp.delegate = self
+        Dtiempo.delegate = self
+        Dmonto.delegate = self
+        Dtelefono.delegate = self
+        Dmovil.delegate = self
+        //Datos economicos
+        Dnombre.delegate = self
+        Dgiro.delegate = self
+        Dantiguedad.delegate = self
+        Dpuesto.delegate = self
+        Dingreso.delegate = self
+        Dcasado.delegate = self
+        Dfuente.delegate = self
+        Dotros.delegate = self
+        Dcalle2.delegate = self
+        Dnume2.delegate = self
+        Dnumi2.delegate = self
+        Dcolonia2.delegate = self
+        Dcp2.delegate = self
+        Dtelefono2.delegate = self
+        Dextencion.delegate = self
+        //Persona politica
+        Pfuncion.delegate = self
+        Pfuncion2.delegate = self
+        Pparentesco.delegate = self
+        
+        //Referencias familiares
+        Rnombre.delegate = self
+        Rapep.delegate = self
+        Rapem.delegate = self
+        Rtelefono.delegate = self
+        
+        R2nombre.delegate = self
+        R2apep.delegate = self
+        R2apem.delegate = self
+        R2telefono.delegate = self
+        
+        R3nombre.delegate = self
+        R3apep.delegate = self
+        R3apem.delegate = self
+        R3telefono.delegate = self
+        
+        //Delgate de picker view
         Gptipo.delegate = self
         Gptipo.dataSource = self as? UIPickerViewDataSource
         
@@ -304,19 +397,19 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate{
             //Persona Politica
             if persona == "SI" {
                 Psi.isOn = true
-            }else {
-                if persona == "NO" {
-                    Pno.isOn = true
-                }
             }
+            if persona == "NO" {   //Aqui me quede
+                Pno.isOn = true
+            }
+               
+            
             Pfuncion.text = Prfuncion
             
             if parentesco == "SI" {
                 Psi2.isOn = true
-            }else {
-                if persona == "NO" {
-                    Pno2.isOn = true
-                }
+            }
+            if parentesco == "NO" {
+                Pno2.isOn = true
             }
             Pfuncion2.text = Prfuncion2
             Pparentesco.text = Prparentesco
@@ -363,12 +456,846 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate{
             R2nacionalidad.text = R2rnacionalidad
             R3nacionalidad.text = Rr3nacionalidad
         }
+        //Accion en etiquetas
+        //Accion en imagenes
         
+        //Identificacion frente
+        let Identf = UITapGestureRecognizer(target: self, action: #selector(Nuevogeneral.frente))
+        Iidenntificacionf.addGestureRecognizer(Identf)
+        Iidenntificacionf.isUserInteractionEnabled = true
+        
+        
+        //Identificacion atras
+        let Identa = UITapGestureRecognizer(target: self, action: #selector(Nuevogeneral.atras))
+        Iidentificaciont.addGestureRecognizer(Identa)
+        Iidentificaciont.isUserInteractionEnabled = true
+        
+        
+        //firma
+        let firm = UITapGestureRecognizer(target: self, action: #selector(Nuevogeneral.firma))
+        Ifirma.addGestureRecognizer(firm)
+        Ifirma.isUserInteractionEnabled = true
+      
+        
+        //Contrato pt1
+        let cont = UITapGestureRecognizer(target: self, action: #selector(Nuevogeneral.cont))
+        Icontrato.addGestureRecognizer(cont)
+        Icontrato.isUserInteractionEnabled = true
+      
+        
+        //Contrato pt2
+        let cont2 = UITapGestureRecognizer(target: self, action: #selector(Nuevogeneral.contp))
+        Icontratop.addGestureRecognizer(cont2)
+        Icontratop.isUserInteractionEnabled = true
+        
+        //funcion para cargar imagen en imageview
+        CargarImagen()
         //recuperar valor de margen
         DispatchQueue.main.async
             {
                 self.myscroll.contentOffset.y = CGFloat(self.margeny)
             }
+    }
+    
+    func CargarImagen() {
+        //identificacion frente
+        let identf : Data = Data(base64Encoded: bidentificacionf, options: .ignoreUnknownCharacters)!
+        let decodedimagef = UIImage(data: identf)
+        Iidenntificacionf.image = decodedimagef
+        
+        //identificacion atras
+        let identa : Data = Data(base64Encoded: bidentificaciont, options: .ignoreUnknownCharacters)!
+        let decodedimagea = UIImage(data: identa)
+        Iidentificaciont.image = decodedimagea
+        
+        //firma
+        let fir : Data = Data(base64Encoded: bfirma, options: .ignoreUnknownCharacters)!
+        let decodedimagefir = UIImage(data: fir)
+        Ifirma.image = decodedimagefir
+        
+        //contrato
+        let cont : Data = Data(base64Encoded: bcontrato, options: .ignoreUnknownCharacters)!
+        let decodedimagecont = UIImage(data: cont)
+        Icontrato.image = decodedimagecont
+        
+        //contrato parte 2
+        let contp : Data = Data(base64Encoded: bcontratop, options: .ignoreUnknownCharacters)!
+        let decodedimagecontp = UIImage(data: contp)
+        Icontratop.image = decodedimagecontp
+    }
+    
+    func frente() {
+        if  let sol = self.storyboard?.instantiateViewController(withIdentifier: "Identificacionf") as? Identificacionf {
+            sol.margen = Int(myscroll.contentOffset.y)
+            //General
+            sol.Grnombre = Gnombre.text!
+            sol.Grsnombre = Gsnombre.text!
+            sol.Grapep = Gapep.text!
+            sol.Grapem = Gapem.text!
+            sol.Grtipo = Gtipo.text!
+            sol.Gridtipo = Gridtipo
+            sol.Gridentificacion = Gidentificacion.text!
+            sol.sexo = sexo
+            sol.Grnacionalidad = Gnacionalidad.text!
+            sol.Gridnacionalidad = Gridnacionalidad
+            sol.Grfecha = Gfecha.text!
+            sol.Grrfc = Grfc.text!
+            sol.Grestcivil = Gestcivil.text!
+            sol.Gridestcivil = Gridestcivil
+            sol.Grnumero = Gnumero.text!
+            
+            //Domicilio
+            sol.Drcalle = Dcalle.text!
+            sol.Drnume = Dnume.text!
+            sol.Drnumi = Dnumi.text!
+            sol.Drcolonia = Dcolonia.text!
+            sol.Drestado = Destado.text!
+            sol.Dridestado = Dridestado
+            sol.Drdel = Ddel.text!
+            sol.Driddel = Driddel
+            sol.Drcp = Dcp.text!
+            sol.Drtiempo = Dtiempo.text!
+            sol.Drestatus = Destatus.text!
+            sol.Dridestatus = Dridestatus
+            sol.Drmonto = Dmonto.text!
+            sol.Drcorreo = Dcorreo.text!
+            sol.Drtelefono = Dtelefono.text!
+            sol.Drmovil = Dmovil.text!
+            sol.Drcompania = Dcompania.text!
+            sol.Dridcompania = Dridcompania
+            
+            //Datos economicos
+            sol.Drnombre = Dnombre.text!
+            sol.Drgiro = Dgiro.text!
+            sol.Drantiguedad = Dantiguedad.text!
+            sol.Drtipo = Dtipo.text!
+            sol.Dridtipo = Dridtipo
+            sol.Drpuesto = Dpuesto.text!
+            sol.Dringreso = Dingreso.text!
+            sol.Drcasado = Dcasado.text!
+            sol.Drfuente = Dfuente.text!
+            sol.Drotros = Dotros.text!
+            sol.Drcalle2 = Dcalle2.text!
+            sol.Drnume2 = Dnume2.text!
+            sol.Drnumi2 = Dnumi2.text!
+            sol.Drcolonia2 = Dcolonia2.text!
+            sol.Drestado2 = Destado2.text!
+            sol.Dridestado2 = Dridestado2
+            sol.Drdel2 = Ddel2.text!
+            sol.Driddel2 = Driddel2
+            sol.Drcp2 = Dcp2.text!
+            sol.Drtelefono2 = Dtelefono2.text!
+            sol.Drextencion = Dextencion.text!
+            
+            //Persona politica
+            sol.person = persona
+            sol.Prfuncion = Pfuncion.text!
+            sol.parentesco = parentesco
+            sol.Prfuncion2 = Pfuncion2.text!
+            sol.Prparentesco = Pparentesco.text!
+            
+            //Referencias familiares
+            sol.Rrnombre = Rnombre.text!
+            sol.Rrapep = Rapep.text!
+            sol.Rrapem = Rapem.text!
+            sol.Rrnacionalidad = Rnacionalidad.text!
+            sol.Rridnacionalidad = Rridnacionalidad
+            sol.Rrtelefono = Rtelefono.text!
+            
+            sol.R2rnombre = R2nombre.text!
+            sol.R2rapep = R2apep.text!
+            sol.R2rapem = R2apem.text!
+            sol.Rr2nacionalidad = R2nacionalidad.text!
+            sol.Rridnacionalidad2 = Rridnacionalidad2
+            sol.R2rtelefono = R2telefono.text!
+            
+            sol.R3rnombre = R3nombre.text!
+            sol.R3rapep = R3apep.text!
+            sol.R3rapem = R3apem.text!
+            sol.Rr3nacionalidad = R3nacionalidad.text!
+            sol.Rridnacionalidad3 = Rridnacionalidad3
+            sol.R3rtelefono = R3telefono.text!
+            
+            //Documentos
+            sol.bidentificacionf = bidentificacionf
+            sol.bidentificaciont = bidentificaciont
+            sol.bcontrato = bcontrato
+            sol.bcontratop = bcontratop
+            sol.bfirma = bfirma
+            
+            sol.deslizar = 1
+            self.navigationController?.pushViewController(sol, animated: false)
+        }
+    }
+    func atras() {
+        
+    }
+    func firma(){
+        if  let sol = self.storyboard?.instantiateViewController(withIdentifier: "Firma") as? Firma {
+            sol.margen = Int(myscroll.contentOffset.y)
+            //General
+            sol.Grnombre = Gnombre.text!
+            sol.Grsnombre = Gsnombre.text!
+            sol.Grapep = Gapep.text!
+            sol.Grapem = Gapem.text!
+            sol.Grtipo = Gtipo.text!
+            sol.Gridtipo = Gridtipo
+            sol.Gridentificacion = Gidentificacion.text!
+            sol.sexo = sexo
+            sol.Grnacionalidad = Gnacionalidad.text!
+            sol.Gridnacionalidad = Gridnacionalidad
+            sol.Grfecha = Gfecha.text!
+            sol.Grrfc = Grfc.text!
+            sol.Grestcivil = Gestcivil.text!
+            sol.Gridestcivil = Gridestcivil
+            sol.Grnumero = Gnumero.text!
+            
+            //Domicilio
+            sol.Drcalle = Dcalle.text!
+            sol.Drnume = Dnume.text!
+            sol.Drnumi = Dnumi.text!
+            sol.Drcolonia = Dcolonia.text!
+            sol.Drestado = Destado.text!
+            sol.Dridestado = Dridestado
+            sol.Drdel = Ddel.text!
+            sol.Driddel = Driddel
+            sol.Drcp = Dcp.text!
+            sol.Drtiempo = Dtiempo.text!
+            sol.Drestatus = Destatus.text!
+            sol.Dridestatus = Dridestatus
+            sol.Drmonto = Dmonto.text!
+            sol.Drcorreo = Dcorreo.text!
+            sol.Drtelefono = Dtelefono.text!
+            sol.Drmovil = Dmovil.text!
+            sol.Drcompania = Dcompania.text!
+            sol.Dridcompania = Dridcompania
+            
+            //Datos economicos
+            sol.Drnombre = Dnombre.text!
+            sol.Drgiro = Dgiro.text!
+            sol.Drantiguedad = Dantiguedad.text!
+            sol.Drtipo = Dtipo.text!
+            sol.Dridtipo = Dridtipo
+            sol.Drpuesto = Dpuesto.text!
+            sol.Dringreso = Dingreso.text!
+            sol.Drcasado = Dcasado.text!
+            sol.Drfuente = Dfuente.text!
+            sol.Drotros = Dotros.text!
+            sol.Drcalle2 = Dcalle2.text!
+            sol.Drnume2 = Dnume2.text!
+            sol.Drnumi2 = Dnumi2.text!
+            sol.Drcolonia2 = Dcolonia2.text!
+            sol.Drestado2 = Destado2.text!
+            sol.Dridestado2 = Dridestado2
+            sol.Drdel2 = Ddel2.text!
+            sol.Driddel2 = Driddel2
+            sol.Drcp2 = Dcp2.text!
+            sol.Drtelefono2 = Dtelefono2.text!
+            sol.Drextencion = Dextencion.text!
+            
+            //Persona politica
+            sol.person = persona
+            sol.Prfuncion = Pfuncion.text!
+            sol.parentesco = parentesco
+            sol.Prfuncion2 = Pfuncion2.text!
+            sol.Prparentesco = Pparentesco.text!
+            
+            //Referencias familiares
+            sol.Rrnombre = Rnombre.text!
+            sol.Rrapep = Rapep.text!
+            sol.Rrapem = Rapem.text!
+            sol.Rrnacionalidad = Rnacionalidad.text!
+            sol.Rridnacionalidad = Rridnacionalidad
+            sol.Rrtelefono = Rtelefono.text!
+            
+            sol.R2rnombre = R2nombre.text!
+            sol.R2rapep = R2apep.text!
+            sol.R2rapem = R2apem.text!
+            sol.Rr2nacionalidad = R2nacionalidad.text!
+            sol.Rridnacionalidad2 = Rridnacionalidad2
+            sol.R2rtelefono = R2telefono.text!
+            
+            sol.R3rnombre = R3nombre.text!
+            sol.R3rapep = R3apep.text!
+            sol.R3rapem = R3apem.text!
+            sol.Rr3nacionalidad = R3nacionalidad.text!
+            sol.Rridnacionalidad3 = Rridnacionalidad3
+            sol.R3rtelefono = R3telefono.text!
+            
+            //Documentos
+            sol.bidentificacionf = bidentificacionf
+            sol.bidentificaciont = bidentificaciont
+            sol.bcontrato = bcontrato
+            sol.bcontratop = bcontratop
+            sol.bfirma = bfirma
+            
+            sol.deslizar = 1
+            self.navigationController?.pushViewController(sol, animated: false)
+        }
+    }
+    func cont() {
+        
+    }
+    func contp() {
+        
+    }
+    //Funcion Delegate de  numero de caracteres y eliminar ingreso de caracteres especiales
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        //General
+        if textField == self.Gnombre {
+            //solo acepta letras y numeros
+            let invalidChars = NSCharacterSet.alphanumerics.inverted
+            let rango = string.rangeOfCharacter(from: invalidChars)
+            if rango != nil {
+                
+                return false
+            } else {
+                //solo tiene un rango de 50 caracteres
+                guard let text = Gnombre.text else { return true }
+                let newLength = text.characters.count + string.characters.count - range.length
+                return newLength <= 50
+            }
+        }
+        
+        if textField == self.Gsnombre {
+            //solo acepta letras y numeros
+            let invalidChars = NSCharacterSet.alphanumerics.inverted
+            let rango = string.rangeOfCharacter(from: invalidChars)
+            if rango != nil {
+                
+                return false
+            } else {
+                //solo tiene un rango de 50 caracteres
+                guard let text = Gsnombre.text else { return true }
+                let newLength = text.characters.count + string.characters.count - range.length
+                return newLength <= 50
+            }
+        }
+        
+        if textField == self.Gapep {
+            //solo acepta letras y numeros
+            let invalidChars = NSCharacterSet.alphanumerics.inverted
+            let rango = string.rangeOfCharacter(from: invalidChars)
+            if rango != nil {
+                
+                return false
+            } else {
+                //solo tiene un rango de 50 caracteres
+                guard let text = Gapep.text else { return true }
+                let newLength = text.characters.count + string.characters.count - range.length
+                return newLength <= 50
+            }
+        }
+        
+        if textField == self.Gapem {
+            //solo acepta letras y numeros
+            let invalidChars = NSCharacterSet.alphanumerics.inverted
+            let rango = string.rangeOfCharacter(from: invalidChars)
+            if rango != nil {
+                
+                return false
+            } else {
+                //solo tiene un rango de 50 caracteres
+                guard let text = Gapem.text else { return true }
+                let newLength = text.characters.count + string.characters.count - range.length
+                return newLength <= 50
+            }
+        }
+        
+        if textField == self.Gidentificacion {
+            //solo tiene un rango de 20 caracteres
+            guard let text = Gidentificacion.text else { return true }
+            let newLength = text.characters.count + string.characters.count - range.length
+            return newLength <= 20
+        }
+        
+        if textField == self.Grfc {
+            //solo acepta letras y numeros
+            let invalidChars = NSCharacterSet.alphanumerics.inverted
+            let rango = string.rangeOfCharacter(from: invalidChars)
+            if rango != nil {
+                
+                return false
+            } else {
+                //solo tiene un rango de 13 caracteres
+                guard let text = Grfc.text else { return true }
+                let newLength = text.characters.count + string.characters.count - range.length
+                return newLength <= 13
+            }
+        }
+        
+        if textField == self.Gnumero {
+          //solo tiene un rango de 3 caracteres
+          guard let text = Gnumero.text else { return true }
+          let newLength = text.characters.count + string.characters.count - range.length
+          return newLength <= 3
+        }
+        //******************************************Domicilio*******************************
+        if textField == self.Dcalle {
+            //solo acepta letras y numeros
+            let invalidChars = NSCharacterSet.alphanumerics.inverted
+            let rango = string.rangeOfCharacter(from: invalidChars)
+            if rango != nil {
+                
+                return false
+            } else {
+                //solo tiene un rango de 50 caracteres
+                guard let text = Dcalle.text else { return true }
+                let newLength = text.characters.count + string.characters.count - range.length
+                return newLength <= 50
+            }
+        }
+        
+        if textField == self.Dnume {
+            //solo tiene un rango de 4 caracteres
+            guard let text = Dnume.text else { return true }
+            let newLength = text.characters.count + string.characters.count - range.length
+            return newLength <= 4
+        }
+        
+        if textField == self.Dnumi {
+        //solo tiene un rango de 4 caracteres
+        guard let text = Dnumi.text else { return true }
+        let newLength = text.characters.count + string.characters.count - range.length
+        return newLength <= 4
+        }
+        
+        if textField == self.Dcolonia {
+            //solo acepta letras y numeros
+            let invalidChars = NSCharacterSet.alphanumerics.inverted
+            let rango = string.rangeOfCharacter(from: invalidChars)
+            if rango != nil {
+                
+                return false
+            } else {
+                //solo tiene un rango de 50 caracteres
+                guard let text = Dcolonia.text else { return true }
+                let newLength = text.characters.count + string.characters.count - range.length
+                return newLength <= 50
+            }
+        }
+        
+        if textField == self.Dcp {
+          //solo tiene un rango de 5 caracteres
+           guard let text = Dcp.text else { return true }
+           let newLength = text.characters.count + string.characters.count - range.length
+           return newLength <= 5
+        }
+        
+        if textField == self.Dtiempo {
+           //solo tiene un rango de 2 caracteres
+                guard let text = Dtiempo.text else { return true }
+                let newLength = text.characters.count + string.characters.count - range.length
+                return newLength <= 2
+        }
+        
+        if textField == self.Dmonto {
+            if(string == "." ){
+                let countdots = (Dmonto.text?.components(separatedBy: ".").count)! - 1
+                if countdots > 0 && string == "."
+                {
+                    return false
+                }
+            }
+            return true
+        }
+        
+        if textField == self.Dtelefono {
+           //solo tiene un rango de 14 caracteres
+           guard let text = Dtelefono.text else { return true }
+           let newLength = text.characters.count + string.characters.count - range.length
+           return newLength <= 14
+        }
+        
+        if textField == self.Dmovil {
+           //solo tiene un rango de 10 caracteres
+           guard let text = Dmovil.text else { return true }
+           let newLength = text.characters.count + string.characters.count - range.length
+           return newLength <= 10
+        }
+        
+        //******************************Datos economicos*********************************
+        if textField == self.Dnombre {
+            //solo acepta letras y numeros
+            let invalidChars = NSCharacterSet.alphanumerics.inverted
+            let rango = string.rangeOfCharacter(from: invalidChars)
+            if rango != nil {
+                
+                return false
+            } else {
+                //solo tiene un rango de 50 caracteres
+                guard let text = Dnombre.text else { return true }
+                let newLength = text.characters.count + string.characters.count - range.length
+                return newLength <= 50
+            }
+        }
+        
+        if textField == self.Dgiro {
+            //solo acepta letras y numeros
+            let invalidChars = NSCharacterSet.alphanumerics.inverted
+            let rango = string.rangeOfCharacter(from: invalidChars)
+            if rango != nil {
+                
+                return false
+            } else {
+                //solo tiene un rango de 50 caracteres
+                guard let text = Dgiro.text else { return true }
+                let newLength = text.characters.count + string.characters.count - range.length
+                return newLength <= 50
+            }
+        }
+        
+        if textField == self.Dantiguedad {
+           //solo tiene un rango de 2 caracteres
+           guard let text = Dantiguedad.text else { return true }
+           let newLength = text.characters.count + string.characters.count - range.length
+           return newLength <= 2
+        }
+        
+        if textField == self.Dpuesto {
+            //solo acepta letras y numeros
+            let invalidChars = NSCharacterSet.alphanumerics.inverted
+            let rango = string.rangeOfCharacter(from: invalidChars)
+            if rango != nil {
+                
+                return false
+            } else {
+                //solo tiene un rango de 50 caracteres
+                guard let text = Dpuesto.text else { return true }
+                let newLength = text.characters.count + string.characters.count - range.length
+                return newLength <= 50
+            }
+        }
+        
+        if textField == self.Dingreso {
+            //solo tiene un rango de 7 caracteres
+            guard let text = Dingreso.text else { return true }
+            let newLength = text.characters.count + string.characters.count - range.length
+            return newLength <= 7
+        }
+        
+        if textField == self.Dcasado {
+            //solo tiene un rango de 2 caracteres
+            guard let text = Dcasado.text else { return true }
+            let newLength = text.characters.count + string.characters.count - range.length
+            return newLength <= 2
+        }
+        
+        if textField == self.Dfuente {
+            //solo tiene un rango de 2 caracteres
+            guard let text = Dcasado.text else { return true }
+            let newLength = text.characters.count + string.characters.count - range.length
+            return newLength <= 10
+        }
+        
+        if textField == self.Dotros {
+           //solo tiene un rango de 7 caracteres
+           guard let text = Dotros.text else { return true }
+           let newLength = text.characters.count + string.characters.count - range.length
+           return newLength <= 7
+        }
+        
+        if textField == self.Dcalle2 {
+            //solo acepta letras y numeros
+            let invalidChars = NSCharacterSet.alphanumerics.inverted
+            let rango = string.rangeOfCharacter(from: invalidChars)
+            if rango != nil {
+                
+                return false
+            } else {
+                //solo tiene un rango de 50 caracteres
+                guard let text = Dcalle2.text else { return true }
+                let newLength = text.characters.count + string.characters.count - range.length
+                return newLength <= 50
+            }
+        }
+        
+        if textField == self.Dnume2 {
+            //solo acepta letras y numeros
+            let invalidChars = NSCharacterSet.alphanumerics.inverted
+            let rango = string.rangeOfCharacter(from: invalidChars)
+            if rango != nil {
+                
+                return false
+            } else {
+                //solo tiene un rango de 50 caracteres
+                guard let text = Dnume2.text else { return true }
+                let newLength = text.characters.count + string.characters.count - range.length
+                return newLength <= 50
+            }
+        }
+        
+        if textField == self.Dnumi2 {
+            //solo acepta letras y numeros
+            let invalidChars = NSCharacterSet.alphanumerics.inverted
+            let rango = string.rangeOfCharacter(from: invalidChars)
+            if rango != nil {
+                
+                return false
+            } else {
+                //solo tiene un rango de 50 caracteres
+                guard let text = Dnumi2.text else { return true }
+                let newLength = text.characters.count + string.characters.count - range.length
+                return newLength <= 50
+            }
+        }
+        
+        if textField == self.Dcolonia2 {
+            //solo acepta letras y numeros
+            let invalidChars = NSCharacterSet.alphanumerics.inverted
+            let rango = string.rangeOfCharacter(from: invalidChars)
+            if rango != nil {
+                
+                return false
+            } else {
+                //solo tiene un rango de 50 caracteres
+                guard let text = Dcolonia2.text else { return true }
+                let newLength = text.characters.count + string.characters.count - range.length
+                return newLength <= 50
+            }
+        }
+        
+        if textField == self.Dcp2 {
+            //solo tiene un rango de 5 caracteres
+            guard let text = Dcp2.text else { return true }
+            let newLength = text.characters.count + string.characters.count - range.length
+            return newLength <= 5
+        }
+        
+        if textField == self.Dtelefono2 {
+            //solo tiene un rango de 14 caracteres
+            guard let text = Dtelefono2.text else { return true }
+            let newLength = text.characters.count + string.characters.count - range.length
+            return newLength <= 14
+        }
+        
+        if textField == self.Dextencion {
+            //solo tiene un rango de 3 caracteres
+            guard let text = Dextencion.text else { return true }
+            let newLength = text.characters.count + string.characters.count - range.length
+            return newLength <= 3
+        }
+        //Persona politica
+        if textField == self.Pfuncion {
+            //solo acepta letras y numeros
+            let invalidChars = NSCharacterSet.alphanumerics.inverted
+            let rango = string.rangeOfCharacter(from: invalidChars)
+            if rango != nil {
+                
+                return false
+            } else {
+                //solo tiene un rango de 50 caracteres
+                guard let text = Pfuncion.text else { return true }
+                let newLength = text.characters.count + string.characters.count - range.length
+                return newLength <= 50
+            }
+        }
+        
+        if textField == self.Pfuncion2 {
+            //solo acepta letras y numeros
+            let invalidChars = NSCharacterSet.alphanumerics.inverted
+            let rango = string.rangeOfCharacter(from: invalidChars)
+            if rango != nil {
+                
+                return false
+            } else {
+                //solo tiene un rango de 50 caracteres
+                guard let text = Pfuncion2.text else { return true }
+                let newLength = text.characters.count + string.characters.count - range.length
+                return newLength <= 50
+            }
+        }
+        
+        if textField == self.Pparentesco {
+            //solo acepta letras y numeros
+            let invalidChars = NSCharacterSet.alphanumerics.inverted
+            let rango = string.rangeOfCharacter(from: invalidChars)
+            if rango != nil {
+                
+                return false
+            } else {
+                //solo tiene un rango de 50 caracteres
+                guard let text = Pparentesco.text else { return true }
+                let newLength = text.characters.count + string.characters.count - range.length
+                return newLength <= 50
+            }
+        }
+        //Referencias familiares
+        if textField == self.Rnombre {
+            //solo acepta letras y numeros
+            let invalidChars = NSCharacterSet.alphanumerics.inverted
+            let rango = string.rangeOfCharacter(from: invalidChars)
+            if rango != nil {
+                
+                return false
+            } else {
+                //solo tiene un rango de 50 caracteres
+                guard let text = Rnombre.text else { return true }
+                let newLength = text.characters.count + string.characters.count - range.length
+                return newLength <= 50
+            }
+        }
+        
+        if textField == self.Rapep {
+            //solo acepta letras y numeros
+            let invalidChars = NSCharacterSet.alphanumerics.inverted
+            let rango = string.rangeOfCharacter(from: invalidChars)
+            if rango != nil {
+                
+                return false
+            } else {
+                //solo tiene un rango de 50 caracteres
+                guard let text = Rapep.text else { return true }
+                let newLength = text.characters.count + string.characters.count - range.length
+                return newLength <= 50
+            }
+        }
+        
+        if textField == self.Rapem {
+            //solo acepta letras y numeros
+            let invalidChars = NSCharacterSet.alphanumerics.inverted
+            let rango = string.rangeOfCharacter(from: invalidChars)
+            if rango != nil {
+                
+                return false
+            } else {
+                //solo tiene un rango de 50 caracteres
+                guard let text = Rapem.text else { return true }
+                let newLength = text.characters.count + string.characters.count - range.length
+                return newLength <= 50
+            }
+        }
+      
+        if textField == self.Rtelefono {
+            //solo tiene un rango de 13 caracteres
+            guard let text = Rtelefono.text else { return true }
+            let newLength = text.characters.count + string.characters.count - range.length
+            return newLength <= 13
+        }
+    
+        if textField == self.R2nombre {
+            //solo acepta letras y numeros
+            let invalidChars = NSCharacterSet.alphanumerics.inverted
+            let rango = string.rangeOfCharacter(from: invalidChars)
+            if rango != nil {
+                
+                return false
+            } else {
+                //solo tiene un rango de 50 caracteres
+                guard let text = R2nombre.text else { return true }
+                let newLength = text.characters.count + string.characters.count - range.length
+                return newLength <= 50
+            }
+        }
+        
+        if textField == self.R2apep {
+            //solo acepta letras y numeros
+            let invalidChars = NSCharacterSet.alphanumerics.inverted
+            let rango = string.rangeOfCharacter(from: invalidChars)
+            if rango != nil {
+                
+                return false
+            } else {
+                //solo tiene un rango de 50 caracteres
+                guard let text = R2apep.text else { return true }
+                let newLength = text.characters.count + string.characters.count - range.length
+                return newLength <= 50
+            }
+        }
+        
+        if textField == self.R2apem {
+            //solo acepta letras y numeros
+            let invalidChars = NSCharacterSet.alphanumerics.inverted
+            let rango = string.rangeOfCharacter(from: invalidChars)
+            if rango != nil {
+                
+                return false
+            } else {
+                //solo tiene un rango de 50 caracteres
+                guard let text = R2apem.text else { return true }
+                let newLength = text.characters.count + string.characters.count - range.length
+                return newLength <= 50
+            }
+        }
+        
+        if textField == self.R2telefono {
+            //solo tiene un rango de 13 caracteres
+            guard let text = Rtelefono.text else { return true }
+            let newLength = text.characters.count + string.characters.count - range.length
+            return newLength <= 13
+        }
+        
+        if textField == self.R3nombre {
+            //solo acepta letras y numeros
+            let invalidChars = NSCharacterSet.alphanumerics.inverted
+            let rango = string.rangeOfCharacter(from: invalidChars)
+            if rango != nil {
+                
+                return false
+            } else {
+                //solo tiene un rango de 50 caracteres
+                guard let text = R3nombre.text else { return true }
+                let newLength = text.characters.count + string.characters.count - range.length
+                return newLength <= 50
+            }
+        }
+        
+        if textField == self.R3apep {
+            //solo acepta letras y numeros
+            let invalidChars = NSCharacterSet.alphanumerics.inverted
+            let rango = string.rangeOfCharacter(from: invalidChars)
+            if rango != nil {
+                
+                return false
+            } else {
+                //solo tiene un rango de 50 caracteres
+                guard let text = R3apep.text else { return true }
+                let newLength = text.characters.count + string.characters.count - range.length
+                return newLength <= 50
+            }
+        }
+        
+        if textField == self.R3apem {
+            //solo acepta letras y numeros
+            let invalidChars = NSCharacterSet.alphanumerics.inverted
+            let rango = string.rangeOfCharacter(from: invalidChars)
+            if rango != nil {
+                
+                return false
+            } else {
+                //solo tiene un rango de 50 caracteres
+                guard let text = R3apem.text else { return true }
+                let newLength = text.characters.count + string.characters.count - range.length
+                return newLength <= 50
+            }
+        }
+        
+        if textField == self.R3telefono {
+            //solo tiene un rango de 13 caracteres
+            guard let text = Rtelefono.text else { return true }
+            let newLength = text.characters.count + string.characters.count - range.length
+            return newLength <= 13
+        }
+        
+        return false
+    }
+    
+    //Funcion para validar correo electronico
+    func validateEmail(enteredEmail:String) -> Bool {
+        
+        let emailFormat = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let emailPredicate = NSPredicate(format:"SELF MATCHES %@", emailFormat)
+        return emailPredicate.evaluate(with: enteredEmail)
+        
+    }
+    //Ocultar Teclado
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(Nuevogeneral.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    func dismissKeyboard() {
+        view.endEditing(true)
     }
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         print("Posicion Y: ",scrollView.contentOffset.y)
@@ -384,12 +1311,15 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate{
                 sol.Grapep = Gapep.text!
                 sol.Grapem = Gapem.text!
                 sol.Grtipo = Gtipo.text!
+                sol.Gridtipo = Gridtipo
                 sol.Gridentificacion = Gidentificacion.text!
                 sol.sexo = sexo
                 sol.Grnacionalidad = Gnacionalidad.text!
+                sol.Gridnacionalidad = Gridnacionalidad
                 sol.Grfecha = Gfecha.text!
                 sol.Grrfc = Grfc.text!
                 sol.Grestcivil = Gestcivil.text!
+                sol.Gridestcivil = Gridestcivil
                 sol.Grnumero = Gnumero.text!
                 
                 //Domicilio
@@ -398,21 +1328,26 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate{
                 sol.Drnumi = Dnumi.text!
                 sol.Drcolonia = Dcolonia.text!
                 sol.Drestado = Destado.text!
+                sol.Dridestado = Dridestado
                 sol.Drdel = Ddel.text!
+                sol.Driddel = Driddel
                 sol.Drcp = Dcp.text!
                 sol.Drtiempo = Dtiempo.text!
                 sol.Drestatus = Destatus.text!
+                sol.Dridestatus = Dridestatus
                 sol.Drmonto = Dmonto.text!
                 sol.Drcorreo = Dcorreo.text!
                 sol.Drtelefono = Dtelefono.text!
                 sol.Drmovil = Dmovil.text!
                 sol.Drcompania = Dcompania.text!
+                sol.Dridcompania = Dridcompania
                 
                 //Datos economicos
                 sol.Drnombre = Dnombre.text!
                 sol.Drgiro = Dgiro.text!
                 sol.Drantiguedad = Dantiguedad.text!
                 sol.Drtipo = Dtipo.text!
+                sol.Dridtipo = Dridtipo
                 sol.Drpuesto = Dpuesto.text!
                 sol.Dringreso = Dingreso.text!
                 sol.Drcasado = Dcasado.text!
@@ -423,7 +1358,9 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate{
                 sol.Drnumi2 = Dnumi2.text!
                 sol.Drcolonia2 = Dcolonia2.text!
                 sol.Drestado2 = Destado2.text!
+                sol.Dridestado2 = Dridestado2
                 sol.Drdel2 = Ddel2.text!
+                sol.Driddel2 = Driddel2
                 sol.Drcp2 = Dcp2.text!
                 sol.Drtelefono2 = Dtelefono2.text!
                 sol.Drextencion = Dextencion.text!
@@ -440,19 +1377,30 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate{
                 sol.Rrapep = Rapep.text!
                 sol.Rrapem = Rapem.text!
                 sol.Rrnacionalidad = Rnacionalidad.text!
+                sol.Rridnacionalidad = Rridnacionalidad
                 sol.Rrtelefono = Rtelefono.text!
                 
                 sol.R2rnombre = R2nombre.text!
                 sol.R2rapep = R2apep.text!
                 sol.R2rapem = R2apem.text!
                 sol.Rr2nacionalidad = R2nacionalidad.text!
+                sol.Rridnacionalidad2 = Rridnacionalidad2
                 sol.R2rtelefono = R2telefono.text!
                 
                 sol.R3rnombre = R3nombre.text!
                 sol.R3rapep = R3apep.text!
                 sol.R3rapem = R3apem.text!
                 sol.Rr3nacionalidad = R3nacionalidad.text!
+                sol.Rridnacionalidad3 = Rridnacionalidad3
                 sol.R3rtelefono = R3telefono.text!
+                
+                //Documentos
+                sol.bidentificacionf = bidentificacionf
+                sol.bidentificaciont = bidentificaciont
+                sol.bcontrato = bcontrato
+                sol.bcontratop = bcontratop
+                sol.bfirma = bfirma
+
                 
                 sol.deslizar = 1
                 self.navigationController?.pushViewController(sol, animated: false)
@@ -472,12 +1420,15 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate{
                 sol.Grapep = Gapep.text!
                 sol.Grapem = Gapem.text!
                 sol.Grtipo = Gtipo.text!
+                sol.Gridtipo = Gridtipo
                 sol.Gridentificacion = Gidentificacion.text!
                 sol.sexo = sexo
                 sol.Grnacionalidad = Gnacionalidad.text!
+                sol.Gridnacionalidad = Gridnacionalidad
                 sol.Grfecha = Gfecha.text!
                 sol.Grrfc = Grfc.text!
                 sol.Grestcivil = Gestcivil.text!
+                sol.Gridestcivil = Gridestcivil
                 sol.Grnumero = Gnumero.text!
                 
                 //Domicilio
@@ -486,21 +1437,26 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate{
                 sol.Drnumi = Dnumi.text!
                 sol.Drcolonia = Dcolonia.text!
                 sol.Drestado = Destado.text!
+                sol.Dridestado = Dridestado
                 sol.Drdel = Ddel.text!
+                sol.Driddel = Driddel
                 sol.Drcp = Dcp.text!
                 sol.Drtiempo = Dtiempo.text!
                 sol.Drestatus = Destatus.text!
+                sol.Dridestatus = Dridestatus
                 sol.Drmonto = Dmonto.text!
                 sol.Drcorreo = Dcorreo.text!
                 sol.Drtelefono = Dtelefono.text!
                 sol.Drmovil = Dmovil.text!
                 sol.Drcompania = Dcompania.text!
+                sol.Dridcompania = Dridcompania
                 
                 //Datos economicos
                 sol.Drnombre = Dnombre.text!
                 sol.Drgiro = Dgiro.text!
                 sol.Drantiguedad = Dantiguedad.text!
                 sol.Drtipo = Dtipo.text!
+                sol.Dridtipo = Dridtipo
                 sol.Drpuesto = Dpuesto.text!
                 sol.Dringreso = Dingreso.text!
                 sol.Drcasado = Dcasado.text!
@@ -511,7 +1467,9 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate{
                 sol.Drnumi2 = Dnumi2.text!
                 sol.Drcolonia2 = Dcolonia2.text!
                 sol.Drestado2 = Destado2.text!
+                sol.Dridestado2 = Dridestado2
                 sol.Drdel2 = Ddel2.text!
+                sol.Driddel2 = Driddel2
                 sol.Drcp2 = Dcp2.text!
                 sol.Drtelefono2 = Dtelefono2.text!
                 sol.Drextencion = Dextencion.text!
@@ -528,21 +1486,30 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate{
                 sol.Rrapep = Rapep.text!
                 sol.Rrapem = Rapem.text!
                 sol.Rrnacionalidad = Rnacionalidad.text!
+                sol.Rridnacionalidad = Rridnacionalidad
                 sol.Rrtelefono = Rtelefono.text!
                 
                 sol.R2rnombre = R2nombre.text!
                 sol.R2rapep = R2apep.text!
                 sol.R2rapem = R2apem.text!
                 sol.Rr2nacionalidad = R2nacionalidad.text!
+                sol.Rridnacionalidad2 = Rridnacionalidad2
                 sol.R2rtelefono = R2telefono.text!
                 
                 sol.R3rnombre = R3nombre.text!
                 sol.R3rapep = R3apep.text!
                 sol.R3rapem = R3apem.text!
                 sol.Rr3nacionalidad = R3nacionalidad.text!
+                sol.Rridnacionalidad3 = Rridnacionalidad3
                 sol.R3rtelefono = R3telefono.text!
                 
-                
+                //Documentos
+                sol.bidentificacionf = bidentificacionf
+                sol.bidentificaciont = bidentificaciont
+                sol.bcontrato = bcontrato
+                sol.bcontratop = bcontratop
+                sol.bfirma = bfirma
+
                 sol.deslizar = 1
                 self.navigationController?.pushViewController(sol, animated: false)
             }
@@ -561,12 +1528,15 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate{
                 sol.Grapep = Gapep.text!
                 sol.Grapem = Gapem.text!
                 sol.Grtipo = Gtipo.text!
+                sol.Gridtipo = Gridtipo
                 sol.Gridentificacion = Gidentificacion.text!
                 sol.sexo = sexo
                 sol.Grnacionalidad = Gnacionalidad.text!
+                sol.Gridnacionalidad = Gridnacionalidad
                 sol.Grfecha = Gfecha.text!
                 sol.Grrfc = Grfc.text!
                 sol.Grestcivil = Gestcivil.text!
+                sol.Gridestcivil = Gridestcivil
                 sol.Grnumero = Gnumero.text!
                 
                 //Domicilio
@@ -575,21 +1545,26 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate{
                 sol.Drnumi = Dnumi.text!
                 sol.Drcolonia = Dcolonia.text!
                 sol.Drestado = Destado.text!
+                sol.Dridestado = Dridestado
                 sol.Drdel = Ddel.text!
+                sol.Driddel = Driddel
                 sol.Drcp = Dcp.text!
                 sol.Drtiempo = Dtiempo.text!
                 sol.Drestatus = Destatus.text!
+                sol.Dridestatus = Dridestatus
                 sol.Drmonto = Dmonto.text!
                 sol.Drcorreo = Dcorreo.text!
                 sol.Drtelefono = Dtelefono.text!
                 sol.Drmovil = Dmovil.text!
                 sol.Drcompania = Dcompania.text!
+                sol.Dridcompania = Dridcompania
                 
                 //Datos economicos
                 sol.Drnombre = Dnombre.text!
                 sol.Drgiro = Dgiro.text!
                 sol.Drantiguedad = Dantiguedad.text!
                 sol.Drtipo = Dtipo.text!
+                sol.Dridtipo = Dridtipo
                 sol.Drpuesto = Dpuesto.text!
                 sol.Dringreso = Dingreso.text!
                 sol.Drcasado = Dcasado.text!
@@ -600,7 +1575,9 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate{
                 sol.Drnumi2 = Dnumi2.text!
                 sol.Drcolonia2 = Dcolonia2.text!
                 sol.Drestado2 = Destado2.text!
+                sol.Dridestado2 = Dridestado2
                 sol.Drdel2 = Ddel2.text!
+                sol.Driddel2 = Driddel2
                 sol.Drcp2 = Dcp2.text!
                 sol.Drtelefono2 = Dtelefono2.text!
                 sol.Drextencion = Dextencion.text!
@@ -617,20 +1594,30 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate{
                 sol.Rrapep = Rapep.text!
                 sol.Rrapem = Rapem.text!
                 sol.Rrnacionalidad = Rnacionalidad.text!
+                sol.Rridnacionalidad = Rridnacionalidad
                 sol.Rrtelefono = Rtelefono.text!
                 
                 sol.R2rnombre = R2nombre.text!
                 sol.R2rapep = R2apep.text!
                 sol.R2rapem = R2apem.text!
                 sol.Rr2nacionalidad = R2nacionalidad.text!
+                sol.Rridnacionalidad2 = Rridnacionalidad2
                 sol.R2rtelefono = R2telefono.text!
                 
                 sol.R3rnombre = R3nombre.text!
                 sol.R3rapep = R3apep.text!
                 sol.R3rapem = R3apem.text!
                 sol.Rr3nacionalidad = R3nacionalidad.text!
+                sol.Rridnacionalidad3 = Rridnacionalidad3
                 sol.R3rtelefono = R3telefono.text!
                 
+                //Documentos
+                sol.bidentificacionf = bidentificacionf
+                sol.bidentificaciont = bidentificaciont
+                sol.bcontrato = bcontrato
+                sol.bcontratop = bcontratop
+                sol.bfirma = bfirma
+
                 sol.deslizar = 1
                 self.navigationController?.pushViewController(sol, animated: false)
             }
@@ -650,12 +1637,15 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate{
                 sol.Grapep = Gapep.text!
                 sol.Grapem = Gapem.text!
                 sol.Grtipo = Gtipo.text!
+                sol.Gridtipo = Gridtipo
                 sol.Gridentificacion = Gidentificacion.text!
                 sol.sexo = sexo
                 sol.Grnacionalidad = Gnacionalidad.text!
+                sol.Gridnacionalidad = Gridnacionalidad
                 sol.Grfecha = Gfecha.text!
                 sol.Grrfc = Grfc.text!
                 sol.Grestcivil = Gestcivil.text!
+                sol.Gridestcivil = Gridestcivil
                 sol.Grnumero = Gnumero.text!
                 
                 //Domicilio
@@ -664,21 +1654,26 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate{
                 sol.Drnumi = Dnumi.text!
                 sol.Drcolonia = Dcolonia.text!
                 sol.Drestado = Destado.text!
+                sol.Dridestado = Dridestado
                 sol.Drdel = Ddel.text!
+                sol.Driddel = Driddel
                 sol.Drcp = Dcp.text!
                 sol.Drtiempo = Dtiempo.text!
                 sol.Drestatus = Destatus.text!
+                sol.Dridestatus = Dridestatus
                 sol.Drmonto = Dmonto.text!
                 sol.Drcorreo = Dcorreo.text!
                 sol.Drtelefono = Dtelefono.text!
                 sol.Drmovil = Dmovil.text!
                 sol.Drcompania = Dcompania.text!
+                sol.Dridcompania = Dridcompania
                 
                 //Datos economicos
                 sol.Drnombre = Dnombre.text!
                 sol.Drgiro = Dgiro.text!
                 sol.Drantiguedad = Dantiguedad.text!
                 sol.Drtipo = Dtipo.text!
+                sol.Dridtipo = Dridtipo
                 sol.Drpuesto = Dpuesto.text!
                 sol.Dringreso = Dingreso.text!
                 sol.Drcasado = Dcasado.text!
@@ -689,7 +1684,9 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate{
                 sol.Drnumi2 = Dnumi2.text!
                 sol.Drcolonia2 = Dcolonia2.text!
                 sol.Drestado2 = Destado2.text!
+                sol.Dridestado2 = Dridestado2
                 sol.Drdel2 = Ddel2.text!
+                sol.Driddel2 = Driddel2
                 sol.Drcp2 = Dcp2.text!
                 sol.Drtelefono2 = Dtelefono2.text!
                 sol.Drextencion = Dextencion.text!
@@ -706,19 +1703,30 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate{
                 sol.Rrapep = Rapep.text!
                 sol.Rrapem = Rapem.text!
                 sol.Rrnacionalidad = Rnacionalidad.text!
+                sol.Rridnacionalidad = Rridnacionalidad
                 sol.Rrtelefono = Rtelefono.text!
                 
                 sol.R2rnombre = R2nombre.text!
                 sol.R2rapep = R2apep.text!
                 sol.R2rapem = R2apem.text!
                 sol.Rr2nacionalidad = R2nacionalidad.text!
+                sol.Rridnacionalidad2 = Rridnacionalidad2
                 sol.R2rtelefono = R2telefono.text!
                 
                 sol.R3rnombre = R3nombre.text!
                 sol.R3rapep = R3apep.text!
                 sol.R3rapem = R3apem.text!
                 sol.Rr3nacionalidad = R3nacionalidad.text!
+                sol.Rridnacionalidad3 = Rridnacionalidad3
                 sol.R3rtelefono = R3telefono.text!
+                
+                //Documentos
+                sol.bidentificacionf = bidentificacionf
+                sol.bidentificaciont = bidentificaciont
+                sol.bcontrato = bcontrato
+                sol.bcontratop = bcontratop
+                sol.bfirma = bfirma
+
                 
                 sol.deslizar = 1
                 self.navigationController?.pushViewController(sol, animated: false)
@@ -736,12 +1744,15 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate{
                 sol.Grapep = Gapep.text!
                 sol.Grapem = Gapem.text!
                 sol.Grtipo = Gtipo.text!
+                sol.Gridtipo = Gridtipo
                 sol.Gridentificacion = Gidentificacion.text!
                 sol.sexo = sexo
                 sol.Grnacionalidad = Gnacionalidad.text!
+                sol.Gridnacionalidad = Gridnacionalidad
                 sol.Grfecha = Gfecha.text!
                 sol.Grrfc = Grfc.text!
                 sol.Grestcivil = Gestcivil.text!
+                sol.Gridestcivil = Gridestcivil
                 sol.Grnumero = Gnumero.text!
                 
                 //Domicilio
@@ -750,21 +1761,26 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate{
                 sol.Drnumi = Dnumi.text!
                 sol.Drcolonia = Dcolonia.text!
                 sol.Drestado = Destado.text!
+                sol.Dridestado = Dridestado
                 sol.Drdel = Ddel.text!
+                sol.Driddel = Driddel
                 sol.Drcp = Dcp.text!
                 sol.Drtiempo = Dtiempo.text!
                 sol.Drestatus = Destatus.text!
+                sol.Dridestatus = Dridestatus
                 sol.Drmonto = Dmonto.text!
                 sol.Drcorreo = Dcorreo.text!
                 sol.Drtelefono = Dtelefono.text!
                 sol.Drmovil = Dmovil.text!
                 sol.Drcompania = Dcompania.text!
+                sol.Dridcompania = Dridcompania
                 
                 //Datos economicos
                 sol.Drnombre = Dnombre.text!
                 sol.Drgiro = Dgiro.text!
                 sol.Drantiguedad = Dantiguedad.text!
                 sol.Drtipo = Dtipo.text!
+                sol.Dridtipo = Dridtipo
                 sol.Drpuesto = Dpuesto.text!
                 sol.Dringreso = Dingreso.text!
                 sol.Drcasado = Dcasado.text!
@@ -775,7 +1791,9 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate{
                 sol.Drnumi2 = Dnumi2.text!
                 sol.Drcolonia2 = Dcolonia2.text!
                 sol.Drestado2 = Destado2.text!
+                sol.Dridestado2 = Dridestado2
                 sol.Drdel2 = Ddel2.text!
+                sol.Driddel2 = Driddel2
                 sol.Drcp2 = Dcp2.text!
                 sol.Drtelefono2 = Dtelefono2.text!
                 sol.Drextencion = Dextencion.text!
@@ -792,20 +1810,30 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate{
                 sol.Rrapep = Rapep.text!
                 sol.Rrapem = Rapem.text!
                 sol.Rrnacionalidad = Rnacionalidad.text!
+                sol.Rridnacionalidad = Rridnacionalidad
                 sol.Rrtelefono = Rtelefono.text!
                 
                 sol.R2rnombre = R2nombre.text!
                 sol.R2rapep = R2apep.text!
                 sol.R2rapem = R2apem.text!
                 sol.Rr2nacionalidad = R2nacionalidad.text!
+                sol.Rridnacionalidad2 = Rridnacionalidad2
                 sol.R2rtelefono = R2telefono.text!
                 
                 sol.R3rnombre = R3nombre.text!
                 sol.R3rapep = R3apep.text!
                 sol.R3rapem = R3apem.text!
                 sol.Rr3nacionalidad = R3nacionalidad.text!
+                sol.Rridnacionalidad3 = Rridnacionalidad3
                 sol.R3rtelefono = R3telefono.text!
                 
+                //Documentos
+                sol.bidentificacionf = bidentificacionf
+                sol.bidentificaciont = bidentificaciont
+                sol.bcontrato = bcontrato
+                sol.bcontratop = bcontratop
+                sol.bfirma = bfirma
+
                 sol.deslizar = 1
                 self.navigationController?.pushViewController(sol, animated: false)
             }
@@ -822,12 +1850,15 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate{
                 sol.Grapep = Gapep.text!
                 sol.Grapem = Gapem.text!
                 sol.Grtipo = Gtipo.text!
+                sol.Gridtipo = Gridtipo
                 sol.Gridentificacion = Gidentificacion.text!
                 sol.sexo = sexo
                 sol.Grnacionalidad = Gnacionalidad.text!
+                sol.Gridnacionalidad = Gridnacionalidad
                 sol.Grfecha = Gfecha.text!
                 sol.Grrfc = Grfc.text!
                 sol.Grestcivil = Gestcivil.text!
+                sol.Gridestcivil = Gridestcivil
                 sol.Grnumero = Gnumero.text!
                 
                 //Domicilio
@@ -836,21 +1867,26 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate{
                 sol.Drnumi = Dnumi.text!
                 sol.Drcolonia = Dcolonia.text!
                 sol.Drestado = Destado.text!
+                sol.Dridestado = Dridestado
                 sol.Drdel = Ddel.text!
+                sol.Driddel = Driddel
                 sol.Drcp = Dcp.text!
                 sol.Drtiempo = Dtiempo.text!
                 sol.Drestatus = Destatus.text!
+                sol.Dridestatus = Dridestatus
                 sol.Drmonto = Dmonto.text!
                 sol.Drcorreo = Dcorreo.text!
                 sol.Drtelefono = Dtelefono.text!
                 sol.Drmovil = Dmovil.text!
                 sol.Drcompania = Dcompania.text!
+                sol.Dridcompania = Dridcompania
                 
                 //Datos economicos
                 sol.Drnombre = Dnombre.text!
                 sol.Drgiro = Dgiro.text!
                 sol.Drantiguedad = Dantiguedad.text!
                 sol.Drtipo = Dtipo.text!
+                sol.Dridtipo = Dridtipo
                 sol.Drpuesto = Dpuesto.text!
                 sol.Dringreso = Dingreso.text!
                 sol.Drcasado = Dcasado.text!
@@ -861,7 +1897,9 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate{
                 sol.Drnumi2 = Dnumi2.text!
                 sol.Drcolonia2 = Dcolonia2.text!
                 sol.Drestado2 = Destado2.text!
+                sol.Dridestado2 = Dridestado2
                 sol.Drdel2 = Ddel2.text!
+                sol.Driddel2 = Driddel2
                 sol.Drcp2 = Dcp2.text!
                 sol.Drtelefono2 = Dtelefono2.text!
                 sol.Drextencion = Dextencion.text!
@@ -873,25 +1911,36 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate{
                 sol.Prfuncion2 = Pfuncion2.text!
                 sol.Prparentesco = Pparentesco.text!
                 
-                
                 //Referencias familiares
                 sol.Rrnombre = Rnombre.text!
                 sol.Rrapep = Rapep.text!
                 sol.Rrapem = Rapem.text!
                 sol.Rrnacionalidad = Rnacionalidad.text!
+                sol.Rridnacionalidad = Rridnacionalidad
                 sol.Rrtelefono = Rtelefono.text!
                 
                 sol.R2rnombre = R2nombre.text!
                 sol.R2rapep = R2apep.text!
                 sol.R2rapem = R2apem.text!
                 sol.Rr2nacionalidad = R2nacionalidad.text!
+                sol.Rridnacionalidad2 = Rridnacionalidad2
                 sol.R2rtelefono = R2telefono.text!
                 
                 sol.R3rnombre = R3nombre.text!
                 sol.R3rapep = R3apep.text!
                 sol.R3rapem = R3apem.text!
                 sol.Rr3nacionalidad = R3nacionalidad.text!
+                sol.Rridnacionalidad3 = Rridnacionalidad3
                 sol.R3rtelefono = R3telefono.text!
+                
+                //Documentos
+                sol.bidentificacionf = bidentificacionf
+                sol.bidentificaciont = bidentificaciont
+                sol.bcontrato = bcontrato
+                sol.bcontratop = bcontratop
+                sol.bfirma = bfirma
+
+                
                 
                 sol.deslizar = 1
                 self.navigationController?.pushViewController(sol, animated: false)
@@ -899,6 +1948,17 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate{
         }
         
     }
+    
+    func fetchData () {
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        
+        do {
+            userArray = try context.fetch(USUARIO.fetchRequest())
+        }catch {
+            print(error)
+        }
+    }
+    
     func fetchData2() {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
@@ -952,42 +2012,42 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate{
         repeat{
             //Tipo de identificacion
             if cataloA[num].id_tipo_catalogo == "2" {
-                Tipo.append(cataloA[num].descripcion!)
+                Tipo.append(["Id":String(cataloA[num].id_catalogo),"Desc":cataloA[num].descripcion!])
                 num = num+1
             }else {
                 //Nacionalidad
                 if cataloA[num].id_tipo_catalogo == "9" {
-                    Nacionalidad.append(cataloA[num].descripcion!)
+                    Nacionalidad.append(["Id":String(cataloA[num].id_catalogo),"Desc":cataloA[num].descripcion!])
                     num = num+1
                 }else {
                     //EstadoCivil
                     if cataloA[num].id_tipo_catalogo == "3" {
-                        Estadocivil.append(cataloA[num].descripcion!)
+                        Estadocivil.append(["Id":String(cataloA[num].id_catalogo),"Desc":cataloA[num].descripcion!])
                         num = num+1
                     }else {
                         //Estados
                         if cataloA[num].id_tipo_catalogo == "5" {
-                            Estado.append(cataloA[num].descripcion!)
+                            Estado.append(["Id":String(cataloA[num].id_catalogo),"Desc":cataloA[num].descripcion!])
                             num = num+1
                         }else {
                             //Delegacion
                             if cataloA[num].id_tipo_catalogo == "6" {
-                                Delegacion.append(cataloA[num].descripcion!)
+                                Delegacion.append(["Id":String(cataloA[num].id_catalogo),"Desc":cataloA[num].descripcion!])
                                 num = num+1
                             }else {
                                 //Compania movil
                                 if cataloA[num].id_tipo_catalogo == "1" {
-                                    Compania.append(cataloA[num].descripcion!)
+                                    Compania.append(["Id":String(cataloA[num].id_catalogo),"Desc":cataloA[num].descripcion!])
                                     num = num+1
                                 }else {
                                     //Estatus de residencia
                                     if cataloA[num].id_tipo_catalogo == "4" {
-                                        Estatus.append(cataloA[num].descripcion!)
+                                        Estatus.append(["Id":String(cataloA[num].id_catalogo),"Desc":cataloA[num].descripcion!])
                                         num = num+1
                                     }else {
                                         //Tipo de contrato
                                         if cataloA[num].id_tipo_catalogo == "7" {
-                                            contrato.append(cataloA[num].descripcion!)
+                                            contrato.append(["Id":String(cataloA[num].id_catalogo),"Desc":cataloA[num].descripcion!])
                                             num = num+1
                                         }else {
                                             num = num+1
@@ -1007,42 +2067,42 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate{
         repeat{
             //Tipo de identificacion
             if cataloB[num].id_tipo_catalogo == "2" {
-                Tipo.append(cataloB[num].descripcion!)
+                Tipo.append(["Id":String(cataloB[num].id_catalogo),"Desc":cataloB[num].descripcion!])
                 num = num+1
             }else {
                 //Nacionalidad
                 if cataloB[num].id_tipo_catalogo == "9" {
-                    Nacionalidad.append(cataloB[num].descripcion!)
+                    Nacionalidad.append(["Id":String(cataloB[num].id_catalogo),"Desc":cataloB[num].descripcion!])
                     num = num+1
                 }else {
                     //EstadoCivil
                     if cataloB[num].id_tipo_catalogo == "3" {
-                        Estadocivil.append(cataloB[num].descripcion!)
+                        Estadocivil.append(["Id":String(cataloB[num].id_catalogo),"Desc":cataloB[num].descripcion!])
                         num = num+1
                     }else {
                         //Estados
                         if cataloB[num].id_tipo_catalogo == "5" {
-                            Estado.append(cataloB[num].descripcion!)
+                            Estado.append(["Id":String(cataloB[num].id_catalogo),"Desc":cataloB[num].descripcion!])
                             num = num+1
                         }else {
                             //Delegacion
                             if cataloB[num].id_tipo_catalogo == "6" {
-                                Delegacion.append(cataloB[num].descripcion!)
+                                Delegacion.append(["Id":String(cataloB[num].id_catalogo),"Desc":cataloB[num].descripcion!])
                                 num = num+1
                             }else {
                                 //Compania movil
                                 if cataloB[num].id_tipo_catalogo == "1" {
-                                    Compania.append(cataloB[num].descripcion!)
+                                    Compania.append(["Id":String(cataloB[num].id_catalogo),"Desc":cataloB[num].descripcion!])
                                     num = num+1
                                 }else {
                                     //Estatus de residencia
                                     if cataloB[num].id_tipo_catalogo == "4" {
-                                        Estatus.append(cataloB[num].descripcion!)
+                                        Estatus.append(["Id":String(cataloB[num].id_catalogo),"Desc":cataloB[num].descripcion!])
                                         num = num+1
                                     }else {
                                         //Tipo de contrato
                                         if cataloB[num].id_tipo_catalogo == "7" {
-                                            contrato.append(cataloB[num].descripcion!)
+                                            contrato.append(["Id":String(cataloB[num].id_catalogo),"Desc":cataloB[num].descripcion!])
                                             num = num+1
                                         }else {
                                             num = num+1
@@ -1224,99 +2284,203 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate{
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         var valor = ""
         if pickerView == self.Gptipo {
-            valor = Tipo[row]
+            valor = Tipo[row]["Desc"]!
         }
         if pickerView == self.Gpnacionalidad {
-            valor = Nacionalidad[row]
+            valor = Nacionalidad[row]["Desc"]!
         }
         if pickerView == self.Gpestcivil {
-            valor = Estadocivil[row]
+            valor = Estadocivil[row]["Desc"]!
         }
         if pickerView == self.Dpestado {
-            valor = Estado[row]
+            valor = Estado[row]["Desc"]!
         }
         if pickerView == self.Dpdel {
-            valor = Delegacion[row]
+            valor = Delegacion[row]["Desc"]!
         }
         if pickerView == self.Dpestatus {
-            valor = Estatus[row]
+            valor = Estatus[row]["Desc"]!
         }
         if pickerView == self.Dpcompania {
-            valor = Compania[row]
+            valor = Compania[row]["Desc"]!
         }
         if pickerView == self.Dptipo {
-            valor = contrato[row]
+            valor = contrato[row]["Desc"]!
         }
         if pickerView == self.Dpestado2 {
-            valor = Estado[row]
+            valor = Estado[row]["Desc"]!
         }
         if pickerView == self.Dpdel2 {
-            valor = Delegacion[row]
+            valor = Delegacion[row]["Desc"]!
         }
         if pickerView == self.Rpnacionalidad {
-            valor = Nacionalidad[row]
+            valor = Nacionalidad[row]["Desc"]!
         }
         if pickerView == self.R2pnacionalidad {
-            valor = Nacionalidad[row]
+            valor = Nacionalidad[row]["Desc"]!
         }
         if pickerView == self.R3pnacionalidad {
-            valor = Nacionalidad[row]
+            valor = Nacionalidad[row]["Desc"]!
         }
         return valor
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView == self.Gptipo {
-            self.Gtipo.text = self.Tipo[row]
+            self.Gtipo.text = self.Tipo[row]["Desc"]
+            Gridtipo = self.Tipo[row]["Id"]!
             Gptipo.alpha = 0
         }
         if pickerView == self.Gpnacionalidad {
-           self.Gnacionalidad.text = self.Nacionalidad[row]
+           self.Gnacionalidad.text = self.Nacionalidad[row]["Desc"]!
+            Gridnacionalidad = self.Nacionalidad[row]["Id"]!
             Gpnacionalidad.alpha = 0
         }
         if pickerView == self.Gpestcivil {
-            self.Gestcivil.text = self.Estadocivil[row]
+            self.Gestcivil.text = self.Estadocivil[row]["Desc"]!
+            Gridestcivil =  self.Estadocivil[row]["Id"]!
             Gpestcivil.alpha = 0
         }
         if pickerView == self.Dpestado {
-            self.Destado.text = self.Estado[row]
+            self.Destado.text = self.Estado[row]["Desc"]!
+            Dridestado = self.Estado[row]["Id"]!
             Dpestado.alpha = 0
         }
         if pickerView == self.Dpdel {
-            self.Ddel.text = self.Delegacion[row]
+            self.Ddel.text = self.Delegacion[row]["Desc"]!
+            Driddel = self.Delegacion[row]["Id"]!
             Dpdel.alpha = 0
         }
         if pickerView == self.Dpestatus {
-            self.Destatus.text = self.Estatus[row]
+            self.Destatus.text = self.Estatus[row]["Desc"]!
+            Dridestatus = self.Estatus[row]["Id"]!
             Dpestatus.alpha = 0
         }
         if pickerView == self.Dpcompania {
-            self.Dcompania.text = self.Compania[row]
+            self.Dcompania.text = self.Compania[row]["Desc"]!
+            Dridcompania = self.Compania[row]["Id"]!
             Dpcompania.alpha = 0
         }
         if pickerView == self.Dptipo {
-            self.Dtipo.text = self.contrato[row]
+            self.Dtipo.text = self.contrato[row]["Desc"]!
+            Dridtipo =  self.contrato[row]["Id"]!
             Dptipo.alpha = 0
         }
         if pickerView == self.Dpestado2 {
-            self.Destado2.text = self.Estado[row]
+            self.Destado2.text = self.Estado[row]["Desc"]!
+            Dridestado2 =  self.Estado[row]["Id"]!
             Dpestado2.alpha = 0
         }
         if pickerView == self.Dpdel2 {
-            self.Ddel2.text = self.Delegacion[row]
+            self.Ddel2.text = self.Delegacion[row]["Desc"]!
+            Driddel2 = self.Delegacion[row]["Id"]!
             Dpdel2.alpha = 0
         }
         if pickerView == self.Rpnacionalidad {
-            self.Rnacionalidad.text = self.Nacionalidad[row]
+            self.Rnacionalidad.text = self.Nacionalidad[row]["Desc"]!
+            Rridnacionalidad = self.Nacionalidad[row]["Id"]!
             Rpnacionalidad.alpha = 0
         }
         if pickerView == self.R2pnacionalidad {
-            self.R2nacionalidad.text = self.Nacionalidad[row]
+            self.R2nacionalidad.text = self.Nacionalidad[row]["Desc"]!
+            Rridnacionalidad2 = self.Nacionalidad[row]["Id"]!
             R2pnacionalidad.alpha = 0
         }
         if pickerView == self.R3pnacionalidad {
-            self.R3nacionalidad.text = self.Nacionalidad[row]
+            self.R3nacionalidad.text = self.Nacionalidad[row]["Desc"]!
+            Rridnacionalidad3 = self.Nacionalidad[row]["Id"]!
             R3pnacionalidad.alpha = 0
         }
+    }
+    
+    @IBAction func Guardar(_ sender: UIButton) {
+        
+        //Obtencion de dias y fecha y año de nacimiento
+        let longitud = Grfecha.characters.count
+        var letters = Grfecha.characters.map { String($0) }
+        var num = 0
+        var cont = 0
+        var dia = ""
+        var mes = ""
+        var anio = ""
+        repeat{
+            if letters[num] == "/" {
+                num = num+1
+                cont = cont+1
+            }else {
+                if cont == 0 {
+                    dia = dia+letters[num]
+                    num = num+1
+                }else {
+                    if cont == 1 {
+                        mes = mes+letters[num]
+                        num = num+1
+                    }else {
+                        if cont == 2 {
+                            anio = anio+letters[num]
+                            num = num+1
+                        }
+                    }
+                }
+            }
+        }while num < longitud
+        
+        print("Valor de dia:",dia)
+        print("valor de mes:",mes)
+        print("valor de anio:",anio)
+    
+ 
+        let fecha = Date()
+        let dateformate = DateFormatter()
+        dateformate.dateStyle = .short
+        let fechaa = dateformate.string(from: fecha)
+        
+        let longitud2 = fechaa.characters.count
+        var letters2 = fechaa.characters.map { String($0) }
+        num = 0
+        cont = 0
+        var dia2 = ""
+        var mes2 = ""
+        var anio2 = ""
+        repeat{
+            if letters2[num] == "/" {
+                num = num+1
+                cont = cont+1
+            }else {
+                if cont == 0 {
+                    dia2 = dia2+letters2[num]
+                    num = num+1
+                }else {
+                    if cont == 1 {
+                        mes2 = mes2+letters2[num]
+                        num = num+1
+                    }else {
+                        if cont == 2 {
+                            anio2 = anio2+letters2[num]
+                            num = num+1
+                        }
+                    }
+                }
+            }
+        }while num < longitud2
+        
+        print("Valor de dia:",dia2)
+        print("valor de mes:",mes2)
+        print("valor de anio:",anio2)
+        Usuario()
+        let c = Character(UnicodeScalar(34))
+        let Comd = String(c)
+        let Xml = "<?xml version="+Comd+"1.0"+Comd+" encoding="+Comd+"UTF-8"+Comd+"?> <SolicitudType xmlns:xsi="+Comd+"http://www.w3.org/2001/XMLSchema-instance"+Comd+" xmlns:xsd="+Comd+"http://www.w3.org/2001/XMLSchema"+Comd+"><Lattitude>19.4140762787095</Lattitude><Longuitud>-99.0129281651914</Longuitud><generales><Tpoidentif>"+Gridtipo+"</Tpoidentif> <Noidenficacion>"+Gridentificacion+"</Noidenficacion><Pmrnombre>"+Grnombre+"</Pmrnombre><Sdonombre>"+Grsnombre+"</Sdonombre><Apaterno>"+Grapep+"</Apaterno><Amaterno>"+Grapem+"</Amaterno><Sexo>"+sexo+"</Sexo><Nacionalidad>"+Gridnacionalidad+"</Nacionalidad><Fechanacdia>"+dia+"</Fechanacdia><Rfc>"+Grrfc+"</Rfc><Edocivil>"+Gridestcivil+"</Edocivil><Nodependiente>"+Grnumero+"</Nodependiente><Cveperspol>2</Cveperspol> <FechasnacMes>"+mes+"</FechasnacMes><FechanacAnio>"+anio+"</FechanacAnio></generales><doc><IdentificacionFrentePath>TEC_636395911640643196.jpg</IdentificacionFrentePath> <IdentificacionAtrasPath>TEC_636395912088133899.jpg</IdentificacionAtrasPath><Contrato1Path>TEC_636395912441057948.jpg</Contrato1Path><Contrato2Path>TEC_636395912942097782.jpg</Contrato2Path><Extra1>TEC_636395913267419058.jpg</Extra1><Extra2>..</Extra2><Extra3>..</Extra3><Extra4>..</Extra4><Extra5>..</Extra5><FirmaPath>TEC_636395912150998843.jpg</FirmaPath></doc><domicilio><Calle>"+Drcalle+"</Calle><NoInt>"+Drnumi+"</NoInt><NoExt>"+Drnume+"</NoExt><Cpdom>"+Drcp+"</Cpdom><Estado>"+Dridestado+"</Estado><Delegacion>"+Driddel+"</Delegacion><Colonia>"+Drcolonia+"</Colonia> <TiempoResidencia>"+Drtiempo+"</TiempoResidencia><EstatusResidencia>"+Dridestatus+"</EstatusResidencia><MontoVivienda>"+Drmonto+"</MontoVivienda><Email>"+Drcorreo+"</Email><Telcasa>"+Drtelefono+"</Telcasa><Telmovil>"+Drmovil+"</Telmovil><CompaniaMovil>"+Dridcompania+"</CompaniaMovil></domicilio><Personapolitica><EsPersonaPolitica>"+persona+"</EsPersonaPolitica><TipoParentesco>"+Prparentesco+"</TipoParentesco> <Descfuncion>"+Prfuncion+"</Descfuncion><Descparentesco>"+Prfuncion2+"</Descparentesco><TieneParentesco>"+parentesco+"</TieneParentesco></Personapolitica><Refer><Pmrnombre>"+Rrnombre+"</Pmrnombre> <Sdonombre/><Apaterno>"+Rrapep+"</Apaterno><Amaterno>"+Rrapem+"</Amaterno><Nacionalidad>"+Rridnacionalidad+"</Nacionalidad><TelefonoCasa>"+Rrtelefono+"</TelefonoCasa></Refer><Refer2> <Pmrnombre>"+R2rnombre+"</Pmrnombre><Sdonombre/><Apaterno>"+R2rapep+"</Apaterno><Amaterno>"+R2rapem+"</Amaterno><Nacionalidad>"+Rridnacionalidad2+"</Nacionalidad><TelefonoCasa>"+R2rtelefono+"</TelefonoCasa></Refer2><Refer3> <Pmrnombre>"+R3rnombre+"</Pmrnombre><Sdonombre/><Apaterno>"+R3rapep+"</Apaterno><Amaterno>"+R3rapem+"</Amaterno><Nacionalidad>"+Rridnacionalidad3+"</Nacionalidad><TelefonoCasa>"+R3rtelefono+"</TelefonoCasa></Refer3><Promotor><Compania>"+comp+"</Compania><Usuario>"+usuario+"</Usuario><Contrasenia>"+pass+"</Contrasenia></Promotor><FolioLocal>0</FolioLocal><DiaCreacion>"+dia2+"</DiaCreacion><MesCreacion>"+mes2+"</MesCreacion><AnioCreacion>"+anio2+"</AnioCreacion><Deconominos><TipoContrato>"+Dridtipo+"</TipoContrato><AntiguedadEmpleo>"+Drantiguedad+"</AntiguedadEmpleo><AniosCasada>"+Drcasado+"</AniosCasada><Ingresos>"+Dringreso+"</Ingresos><NombreEmpresa>"+Drnombre+"</NombreEmpresa><GiroEmpresa>"+Drgiro+"</GiroEmpresa><Puesto>"+Drpuesto+"</Puesto><Domicilio><Calle>"+Drcalle2+"</Calle><NoInt>"+Drnumi2+"</NoInt> <NoExt>"+Drnume2+"</NoExt><Cpdom>"+Drcp2+"</Cpdom><Estado>"+Dridestado2+"</Estado><Delegacion>"+Driddel2+"</Delegacion><Colonia>"+Drcolonia2+"</Colonia><TiempoResidencia>0</TiempoResidencia><EstatusResidencia>0</EstatusResidencia><MontoVivienda>0</MontoVivienda><Telcasa>"+Drtelefono2+"</Telcasa><Telmovil/></Domicilio><OtrosIngresos>"+Drotros+"</OtrosIngresos><FuenteOtrosIngresos>"+Drfuente+"</FuenteOtrosIngresos></Deconominos></SolicitudType>"
+        print("valor de XML: ",Xml)
+    }
+    
+    func Usuario() {
+        var num = 0
+        repeat {
+            usuario = userArray[num].user!
+            comp = userArray[num].compania!
+            pass = userArray[num].contrasena!
+            num = num+1
+        }while num < userArray.count
     }
 }
