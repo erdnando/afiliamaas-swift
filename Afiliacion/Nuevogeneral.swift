@@ -398,7 +398,7 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
             if persona == "SI" {
                 Psi.isOn = true
             }
-            if persona == "NO" {   //Aqui me quede
+            if persona == "NO" {   //Aqui me quede !!!!!!!!!!
                 Pno.isOn = true
             }
                
