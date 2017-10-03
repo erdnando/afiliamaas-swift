@@ -18,22 +18,22 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
     //Botones
     
     //Objetos CoreData
-    var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    @objc var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     //Formulario General
+    @IBOutlet weak var Tgeneral: UILabel!
     @IBOutlet weak var Gnombre: UITextField!
     @IBOutlet weak var G2nombre: UITextField!
     @IBOutlet weak var Gapep: UITextField!
     @IBOutlet weak var Gapem: UITextField!
-    
     @IBOutlet weak var Gtipo: UILabel!
     @IBOutlet weak var Gnumero: UITextField!
-    var Sexo = ""
+    @objc var Sexo = ""
     @IBOutlet weak var Hombre: UISwitch!
     @IBOutlet weak var Mujer: UISwitch!
-    var dia = ""
-    var mes = ""
-    var anio = ""
+    @objc var dia = ""
+    @objc var mes = ""
+    @objc var anio = ""
     
     @IBOutlet weak var Gnan: UITextField!
     @IBOutlet weak var Fechanac: UITextField!
@@ -42,6 +42,8 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
     @IBOutlet weak var Gestado: UITextField!
     @IBOutlet weak var Numdependientes: UITextField!
     //Domicilio
+    
+    @IBOutlet weak var Domicilio: UILabel!
     @IBOutlet weak var Gcalle: UITextField!
     @IBOutlet weak var Gnumext: UITextField!
     @IBOutlet weak var Gnumint: UITextField!
@@ -58,6 +60,8 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
     @IBOutlet weak var Dcompania: UITextField!
     
     //Datos economicos
+    
+    @IBOutlet weak var Datos: UILabel!
     @IBOutlet weak var DEmpresa: UITextField!
     @IBOutlet weak var DGiro: UITextField!
     @IBOutlet weak var Dantiguedad: UITextField!
@@ -78,6 +82,8 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
     @IBOutlet weak var Dextencion: UITextField!
     
     //Persona politica
+    
+    @IBOutlet weak var Tpersona: UILabel!
     @IBOutlet weak var Ppoliticasi: UISwitch!
     @IBOutlet weak var Ppoliticano: UISwitch!
     @IBOutlet weak var Pfuncion: UITextField!
@@ -88,6 +94,8 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
     
     
     //Formulario Referencias
+    
+    @IBOutlet weak var Treferencias: UILabel!
     @IBOutlet weak var Rnombre: UITextField!
     @IBOutlet weak var Rapep: UITextField!
     @IBOutlet weak var Rapem: UITextField!
@@ -105,6 +113,7 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
     @IBOutlet weak var R3telefono: UITextField!
     
     //Documentos
+    @IBOutlet weak var Tdocumentos: UILabel!
     @IBOutlet weak var Didentificacionf: UILabel!
     @IBOutlet weak var Didentificaciona: UILabel!
     @IBOutlet weak var Dfirma: UILabel!
@@ -153,20 +162,164 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
     var margeny = 0
     var catalogoA = ""
     
-   fileprivate var lastContentOffset: CGPoint = .zero
-  
-    weak var responder : Miscambios?
+    //fileprivate var lastContentOffset: CGPoint = .zero
     
-    var Imageidentif = ""
-    var Imageidentia = ""
-    var Imagefirm = ""
-    var Imagecont = ""
-    var Imagecontp = ""
+     var Imageidentif = ""
+     var Imageidentia = ""
+     var Imagefirm = ""
+     var Imagecont = ""
+     var Imagecontp = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //Delegado
-       
+        //Etiquetas redondas
+        Tgeneral.layer.masksToBounds = true
+        Tgeneral.layer.cornerRadius = 10
+        Gnombre.layer.cornerRadius = 15
+        Gnombre.layer.borderWidth = 1
+        G2nombre.layer.cornerRadius = 15
+        G2nombre.layer.borderWidth = 1
+        Gapep.layer.cornerRadius = 15
+        Gapep.layer.borderWidth = 1
+        Gapem.layer.cornerRadius = 15
+        Gapem.layer.borderWidth = 1
+        Gtipo.layer.masksToBounds = true
+        Gtipo.layer.cornerRadius = 15
+        Gtipo.layer.borderWidth = 1
+        Gnumero.layer.cornerRadius = 15
+        Gnumero.layer.borderWidth = 1
+        Gnan.layer.cornerRadius = 15
+        Gnan.layer.borderWidth = 1
+        Fechanac.layer.cornerRadius = 15
+        Fechanac.layer.borderWidth = 1
+        Rfc.layer.cornerRadius = 15
+        Rfc.layer.borderWidth = 1
+        Gestado.layer.cornerRadius = 15
+        Gestado.layer.borderWidth = 1
+        Numdependientes.layer.cornerRadius = 15
+        Numdependientes.layer.borderWidth = 1
+        //Domicilio
+        Domicilio.layer.masksToBounds = true
+        Domicilio.layer.cornerRadius = 10
+        Gcalle.layer.cornerRadius = 15
+        Gcalle.layer.borderWidth = 1
+        Gnumext.layer.cornerRadius = 15
+        Gnumext.layer.borderWidth = 1
+        Gnumint.layer.cornerRadius = 15
+        Gnumint.layer.borderWidth = 1
+        Gcolonia.layer.cornerRadius = 15
+        Gcolonia.layer.borderWidth = 1
+        Destado.layer.cornerRadius = 15
+        Destado.layer.borderWidth = 1
+        Dmun.layer.cornerRadius = 15
+        Dmun.layer.borderWidth = 1
+        Ccp.layer.cornerRadius = 15
+        Ccp.layer.borderWidth = 1
+        Gtiemporesidencia.layer.cornerRadius = 15
+        Gtiemporesidencia.layer.borderWidth = 1
+        Gestatusresidencia.layer.cornerRadius = 15
+        Gestatusresidencia.layer.borderWidth = 1
+        Gmontovivienda.layer.cornerRadius = 15
+        Gmontovivienda.layer.borderWidth = 1
+        Dcorreo.layer.cornerRadius = 15
+        Dcorreo.layer.borderWidth = 1
+        Dtelefono.layer.cornerRadius = 15
+        Dtelefono.layer.borderWidth = 1
+        Dcelular.layer.cornerRadius = 15
+        Dcelular.layer.borderWidth = 1
+        Dcompania.layer.cornerRadius = 15
+        Dcompania.layer.borderWidth = 1
+        
+        //Datos economicos
+        Datos.layer.masksToBounds = true
+        Datos.layer.cornerRadius = 10
+        DEmpresa.layer.cornerRadius = 15
+        DEmpresa.layer.borderWidth = 1
+        DGiro.layer.cornerRadius = 15
+        DGiro.layer.borderWidth = 1
+        Dantiguedad.layer.cornerRadius = 15
+        Dantiguedad.layer.borderWidth = 1
+        Dtipo.layer.cornerRadius = 15
+        Dtipo.layer.borderWidth = 1
+        Dpuesto.layer.cornerRadius = 15
+        Dpuesto.layer.borderWidth = 1
+        Dingreso.layer.cornerRadius = 15
+        Dingreso.layer.borderWidth = 1
+        Dcasados.layer.cornerRadius = 15
+        Dcasados.layer.borderWidth = 1
+        Dfuenteingresos.layer.cornerRadius = 15
+        Dfuenteingresos.layer.borderWidth = 1
+        Dotrosingresos.layer.cornerRadius = 15
+        Dotrosingresos.layer.borderWidth = 1
+        Dcalle.layer.cornerRadius = 15
+        Dcalle.layer.borderWidth = 1
+        Dnumext.layer.cornerRadius = 15
+        Dnumext.layer.borderWidth = 1
+        Dnumint.layer.cornerRadius = 15
+        Dnumint.layer.borderWidth = 1
+        DColonia.layer.cornerRadius = 15
+        DColonia.layer.borderWidth = 1
+        Daestado.layer.cornerRadius = 15
+        Daestado.layer.borderWidth = 1
+        Damun.layer.cornerRadius = 15
+        Damun.layer.borderWidth = 1
+        Dcp.layer.cornerRadius = 15
+        Dcp.layer.borderWidth = 1
+        Dtelefonoofic.layer.cornerRadius = 15
+        Dtelefonoofic.layer.borderWidth = 1
+        Dextencion.layer.cornerRadius = 15
+        Dextencion.layer.borderWidth = 1
+        
+        //Persona politica
+        Tpersona.layer.masksToBounds = true
+        Tpersona.layer.cornerRadius = 10
+        Pfuncion.layer.cornerRadius = 15
+        Pfuncion.layer.borderWidth = 1
+        Pfuncion2.layer.cornerRadius = 15
+        Pfuncion2.layer.borderWidth = 1
+        Pfuncion3.layer.cornerRadius = 15
+        Pfuncion3.layer.borderWidth = 1
+        //Referencias
+        Treferencias.layer.masksToBounds = true
+        Treferencias.layer.cornerRadius = 10
+        Rnombre.layer.cornerRadius = 15
+        Rnombre.layer.borderWidth = 1
+        Rapep.layer.cornerRadius = 15
+        Rapep.layer.borderWidth = 1
+        Rapem.layer.cornerRadius = 15
+        Rapem.layer.borderWidth = 1
+        Rnan.layer.masksToBounds = true
+        Rnan.layer.cornerRadius = 10
+        Rnan.layer.borderWidth = 1
+        Rtelefono.layer.cornerRadius = 15
+        Rtelefono.layer.borderWidth = 1
+        
+        R2nombre.layer.cornerRadius = 15
+        R2nombre.layer.borderWidth = 1
+        R2apep.layer.cornerRadius = 15
+        R2apep.layer.borderWidth = 1
+        R2apem.layer.cornerRadius = 15
+        R2apem.layer.borderWidth = 1
+        R2nan.layer.masksToBounds = true
+        R2nan.layer.cornerRadius = 10
+        R2nan.layer.borderWidth = 1
+        R2telefono.layer.cornerRadius = 15
+        R2telefono.layer.borderWidth = 1
+        
+        R3nombre.layer.cornerRadius = 15
+        R3nombre.layer.borderWidth = 1
+        R3apep.layer.cornerRadius = 15
+        R3apep.layer.borderWidth = 1
+        R3apem.layer.cornerRadius = 15
+        R3apem.layer.borderWidth = 1
+        R3nan.layer.masksToBounds = true
+        R3nan.layer.cornerRadius = 10
+        R3nan.layer.borderWidth = 1
+        R3telefono.layer.cornerRadius = 15
+        R3telefono.layer.borderWidth = 1
+        
+        Tdocumentos.layer.masksToBounds = true
+        Tdocumentos.layer.cornerRadius = 10
         self.Scroll.delegate = self
         print("Buzon Activo en General!!!!",Buzon)
         print("Catalogo activo en general!!!!",catalogoA)
@@ -180,6 +333,7 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
         }else{
             verBuzonb()
         }
+        
         print("valor de margen",self.margeny)
         DispatchQueue.main.async
             {
@@ -220,7 +374,8 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
         CargarImagen()
     }
     
-    func CargarImagen() {
+    @objc func CargarImagen() {
+        print("valor de Imagen en base 64",self.Imageidentif)
         //identificacion frente
         let identf : Data = Data(base64Encoded: Imageidentif, options: .ignoreUnknownCharacters)!
         let decodedimagef = UIImage(data: identf)
@@ -248,7 +403,7 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
     }
     
    //funciones para los botones
-    func frente()
+    @objc func frente()
     {
         print("Identificacion frente")
         if  let vista = self.storyboard?.instantiateViewController(withIdentifier: "Visor") as? Visor {
@@ -258,7 +413,7 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
         }
     }
     
-    func atras(){
+    @objc func atras(){
         print("Identificacion atras")
         if  let vista = self.storyboard?.instantiateViewController(withIdentifier: "Visor") as? Visor {
             vista.texto = "Identificacion atras"
@@ -267,7 +422,7 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
         }
     }
     
-    func firma(){
+    @objc func firma(){
         print("firma")
         if  let vista = self.storyboard?.instantiateViewController(withIdentifier: "Visor") as? Visor {
             vista.texto = "firma"
@@ -276,7 +431,7 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
         }
     }
     
-    func cont() {
+    @objc func cont() {
         print("Contrato parte 1")
         if  let vista = self.storyboard?.instantiateViewController(withIdentifier: "Visor") as? Visor {
             vista.texto = "Contrato parte 1"
@@ -285,7 +440,7 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
         }
     }
     
-    func contp() {
+    @objc func contp() {
         print("Contrato parte 2")
         if  let vista = self.storyboard?.instantiateViewController(withIdentifier: "Visor") as? Visor {
             vista.texto = "Contrato parte 2"
@@ -294,7 +449,7 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
         }
     }
     
-    func fetchData5() {
+    @objc func fetchData5() {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
         do {
@@ -304,7 +459,7 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
         }
     }
     
-    func fetchData6() {
+    @objc func fetchData6() {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
         do {
@@ -314,12 +469,12 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
         }
     }
     
-    func hideKeyboardWhenTappedAround() {
+    @objc func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(General.dismissKeyboard))
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
     }
-    func dismissKeyboard() {
+    @objc func dismissKeyboard() {
         view.endEditing(true)
     }
     
@@ -408,12 +563,12 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
         }
         
     }
-    func actionOnFinishedScrolling() {
+    @objc func actionOnFinishedScrolling() {
        
         // do what you need
     }
   
-    func ToastExample(message:String){
+    @objc func ToastExample(message:String){
         let toastLabel =
             UILabel(frame:
                 CGRect(x: self.view.frame.size.width/2 - 150,
@@ -433,7 +588,7 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
         })
     }
     
-    func fetchData3() {
+    @objc func fetchData3() {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
         do {
@@ -443,7 +598,7 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
         }
     }
     
-    func fetchData4() {
+    @objc func fetchData4() {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
         do {
@@ -490,16 +645,18 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
         }
     }
     
-    func verBuzona(){
+    @objc func verBuzona(){
         
         var num = 0
         print("***************XML Buzon Activo A*******************")
         repeat {
             // print(num)
             if buzonA[num].id_solicitud == Int32(Solicitud){
-                //print(buzonA[num].solicitud_xml!)
-                beginParsing(xml: buzonA[num].solicitud_xml!)
+                print(buzonA[num].solicitud_xml!)
+                //beginParsing(xml: buzonA[num].solicitud_xml!)
+        
                 self.Imageidentif = buzonA[num].doc_if!
+                print("*****BASE 64*****",buzonA[num].doc_if!)
                 self.Imageidentia = buzonA[num].doc_ia!
                 self.Imagefirm = buzonA[num].fi!
                 self.Imagecont = buzonA[num].doc_c1!
@@ -515,19 +672,21 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
         verDatos()
     }
     
-    func verBuzonb(){
+    @objc func verBuzonb(){
         
         var num = 0
         print("***************XML Buzon Activo B*******************")
         repeat {
             if buzonB[num].id_solicitud_b == Int32(Solicitud){
-                //print(buzonA[num].solicitud_xml!)
-                beginParsing(xml: buzonB[num].solicitud_xml_b!)
+                print(buzonA[num].solicitud_xml!)
+              //  beginParsing(xml: buzonB[num].solicitud_xml_b!)
+            
                 self.Imageidentif = buzonB[num].doc_if!
                 self.Imageidentia = buzonB[num].doc_ia!
                 self.Imagefirm = buzonB[num].fi!
                 self.Imagecont = buzonB[num].doc_c1!
                 self.Imagecontp = buzonB[num].doc_c2!
+        
                 break
             }
             else {
@@ -537,29 +696,29 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
         verDatos()
       }
     
-    func verDatos(){
+    @objc func verDatos(){
         var num = 0
         if Nombre.count != 0 {
             //Nombre
             repeat {
                 if num == 0 {
-                    //print("Nombre",Nombre[num],num)
-                    Gnombre.text = Nombre[num]
+                    print("Nombre",Nombre[num],num)
+                  //  Gnombre.text = Nombre[num]
                     num = num + 1
                 }else {
                     if num == 1 {
                         //print("Nombre",Nombre[num],num)
-                        Rnombre.text = Nombre[num]
+                    //    Rnombre.text = Nombre[num]
                         num = num + 1
                     }else {
                         if num == 2 {
                             //print("Nombre",Nombre[num],num)
-                            R2nombre.text = Nombre[num]
+                      //      R2nombre.text = Nombre[num]
                             num = num + 1
                         }else {
                             if num == 3{
                                 //print("Nombre",Nombre[num],num)
-                                R3nombre.text = Nombre[num]
+                        //        R3nombre.text = Nombre[num]
                                 num = num + 1
                             }
                         }
@@ -568,7 +727,7 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
                 }
             }while num < Nombre.count
         }
-       
+       /*
         if Apep.count != 0 {
             //Apellido Paterno
             num = 0
@@ -848,9 +1007,10 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
                 }
             }while num < Telefono.count
         }
+         */
     }
     
-    func residencia(registro:String) {
+    @objc func residencia(registro:String) {
       var num = 0
         if catalogoA == "A" {
             repeat {
@@ -875,7 +1035,7 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
         }
     }
     
-    func Nacionalidad(registro:String,indice:Int) {
+    @objc func Nacionalidad(registro:String,indice:Int) {
         var num = 0
         if indice == 0 {
             /*************************General***********************/
@@ -982,7 +1142,7 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
         }
     }
     
-    func Estado(registro:String,indice:Int){
+    @objc func Estado(registro:String,indice:Int){
      var num = 0
         if indice == 0 {
            if catalogoA == "A" {
@@ -1031,7 +1191,7 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
         }
     }
     
-    func Municipio(registro:String,indice:Int) {
+    @objc func Municipio(registro:String,indice:Int) {
         var num = 0
         if indice == 0 {
             if catalogoA == "A" {
@@ -1080,7 +1240,7 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
         }
     }
     
-    func beginParsing(xml:String)
+    @objc func beginParsing(xml:String)
     {
         let dato = xml.data(using: .utf8)
         parser = XMLParser(data: dato!)
@@ -1348,8 +1508,7 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
     }
     //listas desplegables
     @IBAction func Identificacion(_ sender: UIButton) {
-        print("Hola mundo")
-        responder?.cambio()
+      
     }
     
 }

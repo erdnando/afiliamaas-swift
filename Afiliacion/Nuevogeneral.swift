@@ -13,217 +13,264 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
     @IBOutlet weak var myscroll: UIScrollView!
    
     //General
+    @IBOutlet weak var General: UILabel!
     @IBOutlet weak var Gnombre: UITextField!
-    var Grnombre = ""
+    @objc var Grnombre = ""
     @IBOutlet weak var Gsnombre: UITextField!
-    var Grsnombre = ""
+    @objc var Grsnombre = ""
     @IBOutlet weak var Gapep: UITextField!
-    var Grapep = ""
+    @objc var Grapep = ""
     @IBOutlet weak var Gapem: UITextField!
-    var Grapem = ""
+    @objc var Grapem = ""
     @IBOutlet weak var Gidentificacion: UITextField!
-    var Gridentificacion = ""
+    @objc var Gridentificacion = ""
     @IBOutlet weak var Grfc: UITextField!
-    var Grrfc = ""
+    @objc var Grrfc = ""
     @IBOutlet weak var Gnumero: UITextField!
-    var Grnumero = ""
+    @objc var Grnumero = ""
+    @IBOutlet weak var GBttipo: UIButton!
     @IBOutlet weak var Gtipo: UILabel!
-    var Grtipo = ""
-    var Gridtipo = "" //id
+    @objc var Grtipo = ""
+    @objc var Gridtipo = "" //id
     @IBOutlet weak var Gptipo: UIPickerView!
     @IBOutlet weak var Gh: UISwitch!
     @IBOutlet weak var Gm: UISwitch!
-    var sexo = ""
+    @objc var sexo = ""
+   
+    @IBOutlet weak var GBtnacionalidad: UIButton!
     @IBOutlet weak var Gnacionalidad: UILabel!
-    var Grnacionalidad = ""
-    var Gridnacionalidad = "" //id
+    @objc var Grnacionalidad = ""
+    @objc var Gridnacionalidad = "" //id
     @IBOutlet weak var Gpnacionalidad: UIPickerView!
+    
+    @IBOutlet weak var GBtfecha: UIButton!
     @IBOutlet weak var Gfecha: UILabel!
-    var Grfecha = ""
+    @objc var Grfecha = ""
     @IBOutlet weak var Gpfecha: UIDatePicker!
+    
+    @IBOutlet weak var GBtestcivil: UIButton!
     @IBOutlet weak var Gestcivil: UILabel!
-    var Grestcivil = ""
-    var Gridestcivil = "" //id
+    @objc var Grestcivil = ""
+    @objc var Gridestcivil = "" //id
     @IBOutlet weak var Gpestcivil: UIPickerView!
     
     
     
     //Domicilio
+    
+    @IBOutlet weak var Domicilio: UILabel!
     @IBOutlet weak var Dcalle: UITextField!
-    var Drcalle = ""
+    @objc var Drcalle = ""
     @IBOutlet weak var Dnume: UITextField!
-    var Drnume = ""
+    @objc var Drnume = ""
     @IBOutlet weak var Dnumi: UITextField!
-    var Drnumi = ""
+    @objc var Drnumi = ""
     @IBOutlet weak var Dcolonia: UITextField!
-    var Drcolonia = ""
+    @objc var Drcolonia = ""
+   
+    @IBOutlet weak var DBtestado: UIButton!
     @IBOutlet weak var Destado: UILabel!
-    var Drestado = ""
-    var Dridestado = ""
+    @objc var Drestado = ""
+    @objc var Dridestado = ""
     @IBOutlet weak var Dpestado: UIPickerView!
+    @IBOutlet weak var DBtdel: UIButton!
     @IBOutlet weak var Ddel: UILabel!
-    var Drdel = ""
-    var Driddel = ""
+    @objc var Drdel = ""
+    @objc var Driddel = ""
     @IBOutlet weak var Dpdel: UIPickerView!
     @IBOutlet weak var Dcp: UITextField!
-    var Drcp = ""
+    @objc var Drcp = ""
     @IBOutlet weak var Dtiempo: UITextField!
-    var Drtiempo = ""
+    @objc var Drtiempo = ""
+    
+    @IBOutlet weak var DBtestatus: UIButton!
     @IBOutlet weak var Destatus: UILabel!
-    var Drestatus = ""
-    var Dridestatus = ""
+    @objc var Drestatus = ""
+    @objc var Dridestatus = ""
     @IBOutlet weak var Dpestatus: UIPickerView!
     @IBOutlet weak var Dmonto: UITextField!
-    var Drmonto = ""
+    @objc var Drmonto = ""
     @IBOutlet weak var Dcorreo: UITextField!
-    var Drcorreo = ""
+    @objc var Drcorreo = ""
     @IBOutlet weak var Dtelefono: UITextField!
-    var Drtelefono = ""
+    @objc var Drtelefono = ""
     @IBOutlet weak var Dmovil: UITextField!
-    var Drmovil = ""
+    @objc var Drmovil = ""
+    
+    @IBOutlet weak var DBtcompania: UIButton!
     @IBOutlet weak var Dcompania: UILabel!
-    var Drcompania = ""
-    var Dridcompania = ""
+    @objc var Drcompania = ""
+    @objc var Dridcompania = ""
     @IBOutlet weak var Dpcompania: UIPickerView!
     
     //Datos econmicos
     
+    @IBOutlet weak var Datos: UILabel!
     @IBOutlet weak var Dnombre: UITextField!
-    var Drnombre = ""
+    @objc var Drnombre = ""
     @IBOutlet weak var Dgiro: UITextField!
-    var Drgiro = ""
+    @objc var Drgiro = ""
     @IBOutlet weak var Dantiguedad: UITextField!
-    var Drantiguedad = ""
+    @objc var Drantiguedad = ""
+    
+    @IBOutlet weak var DBttipo: UIButton!
     @IBOutlet weak var Dtipo: UILabel!
-    var Drtipo = ""
-    var Dridtipo = ""
+    @objc var Drtipo = ""
+    @objc var Dridtipo = ""
     @IBOutlet weak var Dptipo: UIPickerView!
     @IBOutlet weak var Dpuesto: UITextField!
-    var Drpuesto = ""
+    @objc var Drpuesto = ""
     @IBOutlet weak var Dingreso: UITextField!
-    var Dringreso = ""
+    @objc var Dringreso = ""
     @IBOutlet weak var Dcasado: UITextField!
-    var Drcasado = ""
+    @objc var Drcasado = ""
     @IBOutlet weak var Dfuente: UITextField!
-    var Drfuente = ""
+    @objc var Drfuente = ""
     @IBOutlet weak var Dotros: UITextField!
-    var Drotros = ""
+    @objc var Drotros = ""
     @IBOutlet weak var Dcalle2: UITextField!
-    var Drcalle2 = ""
+    @objc var Drcalle2 = ""
     @IBOutlet weak var Dnume2: UITextField!
-    var Drnume2 = ""
+    @objc var Drnume2 = ""
     @IBOutlet weak var Dnumi2: UITextField!
-    var Drnumi2 = ""
+    @objc var Drnumi2 = ""
     @IBOutlet weak var Dcolonia2: UITextField!
-    var Drcolonia2 = ""
+    @objc var Drcolonia2 = ""
+    
+    @IBOutlet weak var DBtestado2: UIButton!
     @IBOutlet weak var Destado2: UILabel!
-    var Drestado2 = ""
-    var Dridestado2 = ""
+    @objc var Drestado2 = ""
+    @objc var Dridestado2 = ""
     @IBOutlet weak var Dpestado2: UIPickerView!
+    
+    @IBOutlet weak var DBtdel2: UIButton!
     @IBOutlet weak var Ddel2: UILabel!
-    var Drdel2 = ""
-    var Driddel2 = ""
+    @objc var Drdel2 = ""
+    @objc var Driddel2 = ""
     @IBOutlet weak var Dpdel2: UIPickerView!
     @IBOutlet weak var Dcp2: UITextField!
-    var Drcp2 = ""
+    @objc var Drcp2 = ""
     @IBOutlet weak var Dtelefono2: UITextField!
-    var Drtelefono2 = ""
+    @objc var Drtelefono2 = ""
     @IBOutlet weak var Dextencion: UITextField!
-    var Drextencion = ""
+    @objc var Drextencion = ""
     
     //Persona politica
+    
+    @IBOutlet weak var Personapolitica: UILabel!
     @IBOutlet weak var Psi: UISwitch!
     @IBOutlet weak var Pno: UISwitch!
-    var persona = ""
+    @objc var persona = ""
     @IBOutlet weak var Pfuncion: UITextField!
-    var Prfuncion = ""
+    @objc var Prfuncion = ""
     @IBOutlet weak var Psi2: UISwitch!
     @IBOutlet weak var Pno2: UISwitch!
-    var parentesco = ""
+    @objc var parentesco = ""
     @IBOutlet weak var Pfuncion2: UITextField!
-    var Prfuncion2 = ""
+    @objc var Prfuncion2 = ""
     @IBOutlet weak var Pparentesco: UITextField!
-    var Prparentesco = ""
+    @objc var Prparentesco = ""
     
     //Referencias Familiares
+    @IBOutlet weak var Referencias: UILabel!
     
     @IBOutlet weak var Rnombre: UITextField!
-    var Rrnombre = ""
+    @objc var Rrnombre = ""
     @IBOutlet weak var Rapep: UITextField!
-    var Rrapep = ""
+    @objc var Rrapep = ""
     @IBOutlet weak var Rapem: UITextField!
-    var Rrapem = ""
+    @objc var Rrapem = ""
+    
+    @IBOutlet weak var RBtnacionalidad: UIButton!
     @IBOutlet weak var Rnacionalidad: UILabel!
-    var Rrnacionalidad = ""
-    var Rridnacionalidad = ""
+    @objc var Rrnacionalidad = ""
+    @objc var Rridnacionalidad = ""
     @IBOutlet weak var Rpnacionalidad: UIPickerView!
     @IBOutlet weak var Rtelefono: UITextField!
-    var Rrtelefono = ""
+    @objc var Rrtelefono = ""
     
     @IBOutlet weak var R2nombre: UITextField!
-    var R2rnombre = ""
+    @objc var R2rnombre = ""
     @IBOutlet weak var R2apep: UITextField!
-    var R2rapep = ""
+    @objc var R2rapep = ""
     @IBOutlet weak var R2apem: UITextField!
-    var R2rapem = ""
+    @objc var R2rapem = ""
+    
+    @IBOutlet weak var R2Btnacionalidad: UIButton!
     @IBOutlet weak var R2nacionalidad: UILabel!
-    var R2rnacionalidad = ""
-    var Rridnacionalidad2 = ""
+    @objc var R2rnacionalidad = ""
+    @objc var Rridnacionalidad2 = ""
     @IBOutlet weak var R2pnacionalidad: UIPickerView!
     @IBOutlet weak var R2telefono: UITextField!
-    var R2rtelefono = ""
+    @objc var R2rtelefono = ""
     
     @IBOutlet weak var R3nombre: UITextField!
-    var R3rnombre = ""
+    @objc var R3rnombre = ""
     @IBOutlet weak var R3apep: UITextField!
-    var R3rapep = ""
+    @objc var R3rapep = ""
     @IBOutlet weak var R3apem: UITextField!
-    var R3rapem = ""
+    @objc var R3rapem = ""
+    
+    @IBOutlet weak var R3Btnacionalidad: UIButton!
     @IBOutlet weak var R3nacionalidad: UILabel!
-    var Rr3nacionalidad = ""
-    var Rridnacionalidad3 = ""
+    @objc var Rr3nacionalidad = ""
+    @objc var Rridnacionalidad3 = ""
     @IBOutlet weak var R3pnacionalidad: UIPickerView!
     @IBOutlet weak var R3telefono: UITextField!
-    var R3rtelefono = ""
+    @objc var R3rtelefono = ""
     
     //Documentos
+    
+    @IBOutlet weak var Documentos: UILabel!
     @IBOutlet weak var Iidenntificacionf: UIImageView!
-    var bidentificacionf = ""
+    @objc var bidentificacionf = ""
     @IBOutlet weak var Iidentificaciont: UIImageView!
-    var bidentificaciont = ""
-    @IBOutlet weak var Icontrato: UIImageView!
-    var bcontrato = ""
-    @IBOutlet weak var Icontratop: UIImageView!
-    var bcontratop = ""
+    @objc var bidentificaciont = ""
     @IBOutlet weak var Ifirma: UIImageView!
-    var bfirma = ""
+    @objc var bfirma = ""
+    
+    @IBOutlet weak var Iextra1: UIImageView!
+    @IBOutlet weak var Btextra1: UIButton!
+    @IBOutlet weak var Eextra1: UILabel!
+    
+    @IBOutlet weak var Iextra2: UIImageView!
+    @IBOutlet weak var Btextra2: UIButton!
+    @IBOutlet weak var Eextra2: UILabel!
+    
+    @IBOutlet weak var Iextra3: UIImageView!
+    @IBOutlet weak var Btextra3: UIButton!
+    @IBOutlet weak var Eextra3: UILabel!
+    
+    
+    @IBOutlet weak var Iextra4: UIImageView!
+    @IBOutlet weak var Btextra4: UIButton!
+    @IBOutlet weak var Eextra4: UILabel!
+    
+    @IBOutlet weak var Iextra5: UIImageView!
+    @IBOutlet weak var Btextra5: UIButton!
+    @IBOutlet weak var Eextra5: UILabel!
+    var Imagen = 0
     //Base de datos
-    var userArray:[USUARIO] = []
-    var paramArray:[PARAMETRO] = []
-    var cataloA:[CATALOGO_A] = []
-    var cataloB:[Rcatalogo] = []
-    
-    
-    //Datos de promotor
-    var usuario = ""
-    var pass = ""
-    var comp = ""
+   
+    @objc var paramArray:[PARAMETRO] = []
+    @objc var cataloA:[CATALOGO_A] = []
+    @objc var cataloB:[Rcatalogo] = []
     
     //Arreglo de Spinner
-    var Tipo = [Dictionary<String,String>]()
-    var Nacionalidad = [Dictionary<String,String>]()
-    var Estadocivil = [Dictionary<String,String>]()
-    var Estado = [Dictionary<String,String>]()
-    var Delegacion = [Dictionary<String,String>]()
-    var Compania = [Dictionary<String,String>]()
-    var Estatus = [Dictionary<String,String>]()
-    var contrato = [Dictionary<String,String>]()
+    @objc var Tipo = [Dictionary<String,String>]()
+    @objc var Nacionalidad = [Dictionary<String,String>]()
+    @objc var Estadocivil = [Dictionary<String,String>]()
+    @objc var Estado = [Dictionary<String,String>]()
+    @objc var Delegacion = [Dictionary<String,String>]()
+    @objc var Compania = [Dictionary<String,String>]()
+    @objc var Estatus = [Dictionary<String,String>]()
+    @objc var contrato = [Dictionary<String,String>]()
     
     //catalogo activo
-    var Catalogoactivo = ""
-    var visibilidad = false
-    var deslizar = 0
-    var margeny = 0
+    @objc var Catalogoactivo = ""
+    @objc var visibilidad = false
+    @objc var deslizar = 0
+    @objc var margeny = 0
    
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -231,7 +278,7 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
         //funcion que oculta el teclado
         self.hideKeyboardWhenTappedAround()
         myscroll.delegate = self
-        fetchData()
+        
         fetchData2()
         fetchData5()
         fetchData6()
@@ -244,59 +291,204 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
         }
         //Delegate de etiquetas
         //General
+        General.layer.masksToBounds = true
+        General.layer.cornerRadius = 10
+        General.layer.borderWidth = 1
         Gnombre.delegate = self
+        Gnombre.layer.cornerRadius = 15
+        Gnombre.layer.borderWidth = 1
         Gsnombre.delegate = self
+        Gsnombre.layer.cornerRadius = 15
+        Gsnombre.layer.borderWidth = 1
         Gapep.delegate = self
+        Gapep.layer.cornerRadius = 15
+        Gapep.layer.borderWidth = 1
         Gapem.delegate = self
+        Gapem.layer.cornerRadius = 15
+        Gapem.layer.borderWidth = 1
+        GBttipo.layer.cornerRadius = 15
+        GBttipo.layer.borderWidth = 1
         Gidentificacion.delegate = self
+        Gidentificacion.layer.cornerRadius = 15
+        Gidentificacion.layer.borderWidth = 1
+        GBtnacionalidad.layer.cornerRadius = 15
+        GBtnacionalidad.layer.borderWidth = 1
+        GBtfecha.layer.cornerRadius = 15
+        GBtfecha.layer.borderWidth = 1
         Grfc.delegate = self
+        Grfc.layer.cornerRadius = 15
+        Grfc.layer.borderWidth = 1
+        GBtestcivil.layer.cornerRadius = 15
+        GBtestcivil.layer.borderWidth = 1
         Gnumero.delegate = self
+        Gnumero.layer.cornerRadius = 15
+        Gnumero.layer.borderWidth = 1
+        
         //Domicilio
+        Domicilio.layer.masksToBounds = true
+        Domicilio.layer.cornerRadius = 10
+        Domicilio.layer.borderWidth = 1
         Dcalle.delegate = self
+        Dcalle.layer.cornerRadius = 15
+        Dcalle.layer.borderWidth = 1
         Dnume.delegate = self
+        Dnume.layer.cornerRadius = 15
+        Dnume.layer.borderWidth = 1
         Dnumi.delegate = self
+        Dnumi.layer.cornerRadius = 15
+        Dnumi.layer.borderWidth = 1
         Dcolonia.delegate = self
+        Dcolonia.layer.cornerRadius = 15
+        Dcolonia.layer.borderWidth = 1
+        DBtestado.layer.cornerRadius = 15
+        DBtestado.layer.borderWidth = 1
+        DBtdel.layer.cornerRadius = 15
+        DBtdel.layer.borderWidth = 1
         Dcp.delegate = self
+        Dcp.layer.cornerRadius = 15
+        Dcp.layer.borderWidth = 1
         Dtiempo.delegate = self
+        Dtiempo.layer.cornerRadius = 15
+        Dtiempo.layer.borderWidth = 1
+        DBtestatus.layer.cornerRadius = 15
+        DBtestatus.layer.borderWidth = 1
         Dmonto.delegate = self
+        Dmonto.layer.cornerRadius = 15
+        Dmonto.layer.borderWidth = 1
+        Dcorreo.layer.cornerRadius = 15
+        Dcorreo.layer.borderWidth = 1
         Dtelefono.delegate = self
+        Dtelefono.layer.cornerRadius = 15
+        Dtelefono.layer.borderWidth = 1
         Dmovil.delegate = self
+        Dmovil.layer.cornerRadius = 15
+        Dmovil.layer.borderWidth = 1
+        DBtcompania.layer.cornerRadius = 15
+        DBtcompania.layer.borderWidth = 1
+        
         //Datos economicos
+        Datos.layer.masksToBounds = true
+        Datos.layer.cornerRadius = 10
+        Datos.layer.borderWidth = 1
         Dnombre.delegate = self
+        Dnombre.layer.cornerRadius = 15
+        Dnombre.layer.borderWidth = 1
         Dgiro.delegate = self
+        Dgiro.layer.cornerRadius = 15
+        Dgiro.layer.borderWidth = 1
         Dantiguedad.delegate = self
+        Dantiguedad.layer.cornerRadius = 15
+        Dantiguedad.layer.borderWidth = 1
+        DBttipo.layer.cornerRadius = 15
+        DBttipo.layer.borderWidth = 1
         Dpuesto.delegate = self
+        Dpuesto.layer.cornerRadius = 15
+        Dpuesto.layer.borderWidth = 1
         Dingreso.delegate = self
+        Dingreso.layer.cornerRadius = 15
+        Dingreso.layer.borderWidth = 1
         Dcasado.delegate = self
+        Dcasado.layer.cornerRadius = 15
+        Dcasado.layer.borderWidth = 1
         Dfuente.delegate = self
+        Dfuente.layer.cornerRadius = 15
+        Dfuente.layer.borderWidth = 1
         Dotros.delegate = self
+        Dotros.layer.cornerRadius = 15
+        Dotros.layer.borderWidth = 1
         Dcalle2.delegate = self
+        Dcalle2.layer.cornerRadius = 15
+        Dcalle2.layer.borderWidth = 1
         Dnume2.delegate = self
+        Dnume2.layer.cornerRadius = 15
+        Dnume2.layer.borderWidth = 1
         Dnumi2.delegate = self
+        Dnumi2.layer.cornerRadius = 15
+        Dnumi2.layer.borderWidth = 1
         Dcolonia2.delegate = self
+        Dcolonia2.layer.cornerRadius = 15
+        Dcolonia2.layer.borderWidth = 1
+        DBtestado2.layer.cornerRadius = 15
+        DBtestado2.layer.borderWidth = 1
+        DBtdel2.layer.cornerRadius = 15
+        DBtdel2.layer.borderWidth = 1
         Dcp2.delegate = self
+        Dcp2.layer.cornerRadius = 15
+        Dcp2.layer.borderWidth = 1
         Dtelefono2.delegate = self
+        Dtelefono2.layer.cornerRadius = 15
+        Dtelefono2.layer.borderWidth = 1
         Dextencion.delegate = self
+        Dextencion.layer.cornerRadius = 15
+        Dextencion.layer.borderWidth = 1
+        
         //Persona politica
+        Personapolitica.layer.masksToBounds = true
+        Personapolitica.layer.cornerRadius = 10
+        Personapolitica.layer.borderWidth = 1
         Pfuncion.delegate = self
+        Pfuncion.layer.cornerRadius = 15
+        Pfuncion.layer.borderWidth = 1
         Pfuncion2.delegate = self
+        Pfuncion2.layer.cornerRadius = 15
+        Pfuncion2.layer.borderWidth = 1
         Pparentesco.delegate = self
+        Pparentesco.layer.cornerRadius = 15
+        Pparentesco.layer.borderWidth = 1
         
         //Referencias familiares
+        Referencias.layer.masksToBounds = true
+        Referencias.layer.cornerRadius = 10
+        Referencias.layer.borderWidth = 1
         Rnombre.delegate = self
+        Rnombre.layer.cornerRadius = 15
+        Rnombre.layer.borderWidth = 1
         Rapep.delegate = self
+        Rapep.layer.cornerRadius = 15
+        Rapep.layer.borderWidth = 1
         Rapem.delegate = self
+        Rapem.layer.cornerRadius = 15
+        Rapem.layer.borderWidth = 1
+        RBtnacionalidad.layer.cornerRadius = 15
+        RBtnacionalidad.layer.borderWidth = 1
         Rtelefono.delegate = self
+        Rtelefono.layer.cornerRadius = 15
+        Rtelefono.layer.borderWidth = 1
         
         R2nombre.delegate = self
+        R2nombre.layer.cornerRadius = 15
+        R2nombre.layer.borderWidth = 1
         R2apep.delegate = self
+        R2apep.layer.cornerRadius = 15
+        R2apep.layer.borderWidth = 1
         R2apem.delegate = self
+        R2apem.layer.cornerRadius = 15
+        R2apem.layer.borderWidth = 1
+        R2Btnacionalidad.layer.cornerRadius = 15
+        R2Btnacionalidad.layer.borderWidth = 1
         R2telefono.delegate = self
+        R2telefono.layer.cornerRadius = 15
+        R2telefono.layer.borderWidth = 1
         
         R3nombre.delegate = self
+        R3nombre.layer.cornerRadius = 15
+        R3nombre.layer.borderWidth = 1
         R3apep.delegate = self
+        R3apep.layer.cornerRadius = 15
+        R3apep.layer.borderWidth = 1
         R3apem.delegate = self
+        R3apem.layer.cornerRadius = 15
+        R3apem.layer.borderWidth = 1
+        R3Btnacionalidad.layer.cornerRadius = 15
+        R3Btnacionalidad.layer.borderWidth = 1
         R3telefono.delegate = self
+        R3telefono.layer.cornerRadius = 15
+        R3telefono.layer.borderWidth = 1
+        
+        //Documentacion
+         Documentos.layer.masksToBounds = true
+        Documentos.layer.cornerRadius = 10
+        Documentos.layer.borderWidth = 1
         
         //Delgate de picker view
         Gptipo.delegate = self
@@ -432,7 +624,66 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
             R3apem.text = R3rapem
             R3nacionalidad.text = Rr3nacionalidad
             R3telefono.text = R3rtelefono
-        
+            // Documentacion
+            if Imagen == 1 {
+                Iextra1.alpha = 1
+                Btextra1.alpha = 0
+                Eextra1.alpha = 1
+                Btextra2.alpha = 1
+            }
+            if Imagen == 2 {
+                Iextra1.alpha = 1
+                Btextra1.alpha = 0
+                Eextra1.alpha = 1
+                Iextra2.alpha = 1
+                Btextra2.alpha = 0
+                Eextra2.alpha = 1
+                Btextra3.alpha = 1
+            }
+            if Imagen == 3 {
+                Iextra1.alpha = 1
+                Btextra1.alpha = 0
+                Eextra1.alpha = 1
+                Iextra2.alpha = 1
+                Btextra2.alpha = 0
+                Eextra2.alpha = 1
+                Iextra3.alpha = 1
+                Btextra3.alpha = 0
+                Eextra3.alpha = 1
+                Btextra4.alpha = 1
+            }
+            if Imagen == 4 {
+                Iextra1.alpha = 1
+                Btextra1.alpha = 0
+                Eextra1.alpha = 1
+                Iextra2.alpha = 1
+                Btextra2.alpha = 0
+                Eextra2.alpha = 1
+                Iextra3.alpha = 1
+                Btextra3.alpha = 0
+                Eextra3.alpha = 1
+                Iextra4.alpha = 1
+                Btextra4.alpha = 0
+                Eextra4.alpha = 1
+                Btextra5.alpha = 1
+            }
+            if Imagen == 5 {
+                Iextra1.alpha = 1
+                Btextra1.alpha = 0
+                Eextra1.alpha = 1
+                Iextra2.alpha = 1
+                Btextra2.alpha = 0
+                Eextra2.alpha = 1
+                Iextra3.alpha = 1
+                Btextra3.alpha = 0
+                Eextra3.alpha = 1
+                Iextra4.alpha = 1
+                Btextra4.alpha = 0
+                Eextra4.alpha = 1
+                Iextra5.alpha = 1
+                Btextra5.alpha = 0
+                Eextra5.alpha = 1
+            }
         }else {
             //General
             Gtipo.text = Grtipo
@@ -475,19 +726,7 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
         let firm = UITapGestureRecognizer(target: self, action: #selector(Nuevogeneral.firma))
         Ifirma.addGestureRecognizer(firm)
         Ifirma.isUserInteractionEnabled = true
-      
-        
-        //Contrato pt1
-        let cont = UITapGestureRecognizer(target: self, action: #selector(Nuevogeneral.cont))
-        Icontrato.addGestureRecognizer(cont)
-        Icontrato.isUserInteractionEnabled = true
-      
-        
-        //Contrato pt2
-        let cont2 = UITapGestureRecognizer(target: self, action: #selector(Nuevogeneral.contp))
-        Icontratop.addGestureRecognizer(cont2)
-        Icontratop.isUserInteractionEnabled = true
-        
+ 
         //funcion para cargar imagen en imageview
         CargarImagen()
         //recuperar valor de margen
@@ -497,7 +736,7 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
             }
     }
     
-    func CargarImagen() {
+    @objc func CargarImagen() {
         //identificacion frente
         let identf : Data = Data(base64Encoded: bidentificacionf, options: .ignoreUnknownCharacters)!
         let decodedimagef = UIImage(data: identf)
@@ -513,18 +752,10 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
         let decodedimagefir = UIImage(data: fir)
         Ifirma.image = decodedimagefir
         
-        //contrato
-        let cont : Data = Data(base64Encoded: bcontrato, options: .ignoreUnknownCharacters)!
-        let decodedimagecont = UIImage(data: cont)
-        Icontrato.image = decodedimagecont
-        
-        //contrato parte 2
-        let contp : Data = Data(base64Encoded: bcontratop, options: .ignoreUnknownCharacters)!
-        let decodedimagecontp = UIImage(data: contp)
-        Icontratop.image = decodedimagecontp
+       
     }
     
-    func frente() {
+    @objc func frente() {
         if  let sol = self.storyboard?.instantiateViewController(withIdentifier: "Identificacionf") as? Identificacionf {
             sol.margen = Int(myscroll.contentOffset.y)
             //General
@@ -619,18 +850,17 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
             //Documentos
             sol.bidentificacionf = bidentificacionf
             sol.bidentificaciont = bidentificaciont
-            sol.bcontrato = bcontrato
-            sol.bcontratop = bcontratop
+           
             sol.bfirma = bfirma
             
             sol.deslizar = 1
             self.navigationController?.pushViewController(sol, animated: false)
         }
     }
-    func atras() {
+    @objc func atras() {
         
     }
-    func firma(){
+    @objc func firma(){
         if  let sol = self.storyboard?.instantiateViewController(withIdentifier: "Firma") as? Firma {
             sol.margen = Int(myscroll.contentOffset.y)
             //General
@@ -725,19 +955,51 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
             //Documentos
             sol.bidentificacionf = bidentificacionf
             sol.bidentificaciont = bidentificaciont
-            sol.bcontrato = bcontrato
-            sol.bcontratop = bcontratop
+           
             sol.bfirma = bfirma
             
             sol.deslizar = 1
             self.navigationController?.pushViewController(sol, animated: false)
         }
     }
-    func cont() {
-        
+    
+    @IBAction func Addextra1(_ sender: UIButton) {
+        Iextra1.alpha = 1
+        Btextra1.alpha = 0
+        Eextra1.alpha = 1
+        Btextra2.alpha = 1
+        Imagen = 1
     }
-    func contp() {
-        
+    
+    @IBAction func Addextra2(_ sender: UIButton) {
+        Iextra2.alpha = 1
+        Btextra2.alpha = 0
+        Eextra2.alpha = 1
+        Btextra3.alpha = 1
+        Imagen = 2
+    }
+    
+    @IBAction func Addextra3(_ sender: UIButton) {
+        Iextra3.alpha = 1
+        Btextra3.alpha = 0
+        Eextra3.alpha = 1
+        Btextra4.alpha = 1
+        Imagen = 3
+    }
+    
+    @IBAction func Addextra4(_ sender: UIButton) {
+        Iextra4.alpha = 1
+        Btextra4.alpha = 0
+        Eextra4.alpha = 1
+        Btextra5.alpha = 1
+        Imagen = 4
+    }
+    
+    @IBAction func Addextra5(_ sender: UIButton) {
+        Iextra5.alpha = 1
+        Btextra5.alpha = 0
+        Eextra5.alpha = 1
+        Imagen = 5
     }
     //Funcion Delegate de  numero de caracteres y eliminar ingreso de caracteres especiales
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -1280,21 +1542,14 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
         return false
     }
     
-    //Funcion para validar correo electronico
-    func validateEmail(enteredEmail:String) -> Bool {
-        
-        let emailFormat = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-        let emailPredicate = NSPredicate(format:"SELF MATCHES %@", emailFormat)
-        return emailPredicate.evaluate(with: enteredEmail)
-        
-    }
+    
     //Ocultar Teclado
-    func hideKeyboardWhenTappedAround() {
+    @objc func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(Nuevogeneral.dismissKeyboard))
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
     }
-    func dismissKeyboard() {
+    @objc func dismissKeyboard() {
         view.endEditing(true)
     }
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
@@ -1397,10 +1652,8 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
                 //Documentos
                 sol.bidentificacionf = bidentificacionf
                 sol.bidentificaciont = bidentificaciont
-                sol.bcontrato = bcontrato
-                sol.bcontratop = bcontratop
                 sol.bfirma = bfirma
-
+                sol.marco = Imagen
                 
                 sol.deslizar = 1
                 self.navigationController?.pushViewController(sol, animated: false)
@@ -1506,10 +1759,9 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
                 //Documentos
                 sol.bidentificacionf = bidentificacionf
                 sol.bidentificaciont = bidentificaciont
-                sol.bcontrato = bcontrato
-                sol.bcontratop = bcontratop
                 sol.bfirma = bfirma
-
+                sol.marco = Imagen
+                
                 sol.deslizar = 1
                 self.navigationController?.pushViewController(sol, animated: false)
             }
@@ -1614,10 +1866,9 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
                 //Documentos
                 sol.bidentificacionf = bidentificacionf
                 sol.bidentificaciont = bidentificaciont
-                sol.bcontrato = bcontrato
-                sol.bcontratop = bcontratop
                 sol.bfirma = bfirma
-
+                sol.marco = Imagen
+                
                 sol.deslizar = 1
                 self.navigationController?.pushViewController(sol, animated: false)
             }
@@ -1723,9 +1974,8 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
                 //Documentos
                 sol.bidentificacionf = bidentificacionf
                 sol.bidentificaciont = bidentificaciont
-                sol.bcontrato = bcontrato
-                sol.bcontratop = bcontratop
                 sol.bfirma = bfirma
+                sol.marco = Imagen
 
                 
                 sol.deslizar = 1
@@ -1830,10 +2080,9 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
                 //Documentos
                 sol.bidentificacionf = bidentificacionf
                 sol.bidentificaciont = bidentificaciont
-                sol.bcontrato = bcontrato
-                sol.bcontratop = bcontratop
                 sol.bfirma = bfirma
-
+                sol.marco = Imagen
+                
                 sol.deslizar = 1
                 self.navigationController?.pushViewController(sol, animated: false)
             }
@@ -1936,10 +2185,8 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
                 //Documentos
                 sol.bidentificacionf = bidentificacionf
                 sol.bidentificaciont = bidentificaciont
-                sol.bcontrato = bcontrato
-                sol.bcontratop = bcontratop
                 sol.bfirma = bfirma
-
+                sol.marco = Imagen
                 
                 
                 sol.deslizar = 1
@@ -1949,17 +2196,7 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
         
     }
     
-    func fetchData () {
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        
-        do {
-            userArray = try context.fetch(USUARIO.fetchRequest())
-        }catch {
-            print(error)
-        }
-    }
-    
-    func fetchData2() {
+   @objc func fetchData2() {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
         do {
@@ -1968,7 +2205,7 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
             print(error)
         }
     }
-    func fetchData5() {
+    @objc func fetchData5() {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
         do {
@@ -1978,7 +2215,7 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
         }
     }
     
-    func fetchData6() {
+    @objc func fetchData6() {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
         do {
@@ -1989,7 +2226,7 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
     }
     
     //Buscar Catalogo Activo
-    func Buscarparamca() {
+    @objc func Buscarparamca() {
         var num = 0
         repeat{
             if paramArray[num].parametro == "CATALOGO_ACTIVO" {
@@ -2007,7 +2244,7 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
         
     }
     //Catalogo A
-    func CatalogoA(){
+    @objc func CatalogoA(){
        var num = 0
         repeat{
             //Tipo de identificacion
@@ -2062,7 +2299,7 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
         }while num < cataloA.count
     }
     //Catalogo B
-    func CatalogoB() {
+    @objc func CatalogoB() {
         var num = 0
         repeat{
             //Tipo de identificacion
@@ -2233,11 +2470,11 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
     @IBAction func Nacionalidad4(_ sender: UIButton) {
         R3pnacionalidad.alpha = 1
     }
-    public func numberOfComponents(in pickerView: UIPickerView) -> Int{
+    @objc public func numberOfComponents(in pickerView: UIPickerView) -> Int{
         return 1
     }
     
-    public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
+    @objc public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
         var count = 0
         if pickerView == self.Gptipo {
             count = Tipo.count
@@ -2391,96 +2628,5 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
             Rridnacionalidad3 = self.Nacionalidad[row]["Id"]!
             R3pnacionalidad.alpha = 0
         }
-    }
-    
-    @IBAction func Guardar(_ sender: UIButton) {
-        
-        //Obtencion de dias y fecha y año de nacimiento
-        let longitud = Grfecha.characters.count
-        var letters = Grfecha.characters.map { String($0) }
-        var num = 0
-        var cont = 0
-        var dia = ""
-        var mes = ""
-        var anio = ""
-        repeat{
-            if letters[num] == "/" {
-                num = num+1
-                cont = cont+1
-            }else {
-                if cont == 0 {
-                    dia = dia+letters[num]
-                    num = num+1
-                }else {
-                    if cont == 1 {
-                        mes = mes+letters[num]
-                        num = num+1
-                    }else {
-                        if cont == 2 {
-                            anio = anio+letters[num]
-                            num = num+1
-                        }
-                    }
-                }
-            }
-        }while num < longitud
-        
-        print("Valor de dia:",dia)
-        print("valor de mes:",mes)
-        print("valor de anio:",anio)
-    
- 
-        let fecha = Date()
-        let dateformate = DateFormatter()
-        dateformate.dateStyle = .short
-        let fechaa = dateformate.string(from: fecha)
-        
-        let longitud2 = fechaa.characters.count
-        var letters2 = fechaa.characters.map { String($0) }
-        num = 0
-        cont = 0
-        var dia2 = ""
-        var mes2 = ""
-        var anio2 = ""
-        repeat{
-            if letters2[num] == "/" {
-                num = num+1
-                cont = cont+1
-            }else {
-                if cont == 0 {
-                    dia2 = dia2+letters2[num]
-                    num = num+1
-                }else {
-                    if cont == 1 {
-                        mes2 = mes2+letters2[num]
-                        num = num+1
-                    }else {
-                        if cont == 2 {
-                            anio2 = anio2+letters2[num]
-                            num = num+1
-                        }
-                    }
-                }
-            }
-        }while num < longitud2
-        
-        print("Valor de dia:",dia2)
-        print("valor de mes:",mes2)
-        print("valor de anio:",anio2)
-        Usuario()
-        let c = Character(UnicodeScalar(34))
-        let Comd = String(c)
-        let Xml = "<?xml version="+Comd+"1.0"+Comd+" encoding="+Comd+"UTF-8"+Comd+"?> <SolicitudType xmlns:xsi="+Comd+"http://www.w3.org/2001/XMLSchema-instance"+Comd+" xmlns:xsd="+Comd+"http://www.w3.org/2001/XMLSchema"+Comd+"><Lattitude>19.4140762787095</Lattitude><Longuitud>-99.0129281651914</Longuitud><generales><Tpoidentif>"+Gridtipo+"</Tpoidentif> <Noidenficacion>"+Gridentificacion+"</Noidenficacion><Pmrnombre>"+Grnombre+"</Pmrnombre><Sdonombre>"+Grsnombre+"</Sdonombre><Apaterno>"+Grapep+"</Apaterno><Amaterno>"+Grapem+"</Amaterno><Sexo>"+sexo+"</Sexo><Nacionalidad>"+Gridnacionalidad+"</Nacionalidad><Fechanacdia>"+dia+"</Fechanacdia><Rfc>"+Grrfc+"</Rfc><Edocivil>"+Gridestcivil+"</Edocivil><Nodependiente>"+Grnumero+"</Nodependiente><Cveperspol>2</Cveperspol> <FechasnacMes>"+mes+"</FechasnacMes><FechanacAnio>"+anio+"</FechanacAnio></generales><doc><IdentificacionFrentePath>TEC_636395911640643196.jpg</IdentificacionFrentePath> <IdentificacionAtrasPath>TEC_636395912088133899.jpg</IdentificacionAtrasPath><Contrato1Path>TEC_636395912441057948.jpg</Contrato1Path><Contrato2Path>TEC_636395912942097782.jpg</Contrato2Path><Extra1>TEC_636395913267419058.jpg</Extra1><Extra2>..</Extra2><Extra3>..</Extra3><Extra4>..</Extra4><Extra5>..</Extra5><FirmaPath>TEC_636395912150998843.jpg</FirmaPath></doc><domicilio><Calle>"+Drcalle+"</Calle><NoInt>"+Drnumi+"</NoInt><NoExt>"+Drnume+"</NoExt><Cpdom>"+Drcp+"</Cpdom><Estado>"+Dridestado+"</Estado><Delegacion>"+Driddel+"</Delegacion><Colonia>"+Drcolonia+"</Colonia> <TiempoResidencia>"+Drtiempo+"</TiempoResidencia><EstatusResidencia>"+Dridestatus+"</EstatusResidencia><MontoVivienda>"+Drmonto+"</MontoVivienda><Email>"+Drcorreo+"</Email><Telcasa>"+Drtelefono+"</Telcasa><Telmovil>"+Drmovil+"</Telmovil><CompaniaMovil>"+Dridcompania+"</CompaniaMovil></domicilio><Personapolitica><EsPersonaPolitica>"+persona+"</EsPersonaPolitica><TipoParentesco>"+Prparentesco+"</TipoParentesco> <Descfuncion>"+Prfuncion+"</Descfuncion><Descparentesco>"+Prfuncion2+"</Descparentesco><TieneParentesco>"+parentesco+"</TieneParentesco></Personapolitica><Refer><Pmrnombre>"+Rrnombre+"</Pmrnombre> <Sdonombre/><Apaterno>"+Rrapep+"</Apaterno><Amaterno>"+Rrapem+"</Amaterno><Nacionalidad>"+Rridnacionalidad+"</Nacionalidad><TelefonoCasa>"+Rrtelefono+"</TelefonoCasa></Refer><Refer2> <Pmrnombre>"+R2rnombre+"</Pmrnombre><Sdonombre/><Apaterno>"+R2rapep+"</Apaterno><Amaterno>"+R2rapem+"</Amaterno><Nacionalidad>"+Rridnacionalidad2+"</Nacionalidad><TelefonoCasa>"+R2rtelefono+"</TelefonoCasa></Refer2><Refer3> <Pmrnombre>"+R3rnombre+"</Pmrnombre><Sdonombre/><Apaterno>"+R3rapep+"</Apaterno><Amaterno>"+R3rapem+"</Amaterno><Nacionalidad>"+Rridnacionalidad3+"</Nacionalidad><TelefonoCasa>"+R3rtelefono+"</TelefonoCasa></Refer3><Promotor><Compania>"+comp+"</Compania><Usuario>"+usuario+"</Usuario><Contrasenia>"+pass+"</Contrasenia></Promotor><FolioLocal>0</FolioLocal><DiaCreacion>"+dia2+"</DiaCreacion><MesCreacion>"+mes2+"</MesCreacion><AnioCreacion>"+anio2+"</AnioCreacion><Deconominos><TipoContrato>"+Dridtipo+"</TipoContrato><AntiguedadEmpleo>"+Drantiguedad+"</AntiguedadEmpleo><AniosCasada>"+Drcasado+"</AniosCasada><Ingresos>"+Dringreso+"</Ingresos><NombreEmpresa>"+Drnombre+"</NombreEmpresa><GiroEmpresa>"+Drgiro+"</GiroEmpresa><Puesto>"+Drpuesto+"</Puesto><Domicilio><Calle>"+Drcalle2+"</Calle><NoInt>"+Drnumi2+"</NoInt> <NoExt>"+Drnume2+"</NoExt><Cpdom>"+Drcp2+"</Cpdom><Estado>"+Dridestado2+"</Estado><Delegacion>"+Driddel2+"</Delegacion><Colonia>"+Drcolonia2+"</Colonia><TiempoResidencia>0</TiempoResidencia><EstatusResidencia>0</EstatusResidencia><MontoVivienda>0</MontoVivienda><Telcasa>"+Drtelefono2+"</Telcasa><Telmovil/></Domicilio><OtrosIngresos>"+Drotros+"</OtrosIngresos><FuenteOtrosIngresos>"+Drfuente+"</FuenteOtrosIngresos></Deconominos></SolicitudType>"
-        print("valor de XML: ",Xml)
-    }
-    
-    func Usuario() {
-        var num = 0
-        repeat {
-            usuario = userArray[num].user!
-            comp = userArray[num].compania!
-            pass = userArray[num].contrasena!
-            num = num+1
-        }while num < userArray.count
     }
 }

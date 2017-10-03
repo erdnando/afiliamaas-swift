@@ -7,132 +7,131 @@
 //
 
 import UIKit
-import AVFoundation
-class Identificacionf: BaseViewController,AVCaptureVideoDataOutputSampleBufferDelegate {
+//import AVFoundation
+class Identificacionf: BaseViewController {
 
-    
     //General
-    var Grnombre = ""
-    var Grsnombre = ""
-    var Grapep = ""
-    var Grapem = ""
-    var Grtipo = "Tipo de identificacion"
-    var Gridtipo = ""
-    var Gridentificacion = ""
-    var sexo = ""
-    var Grnacionalidad = "Nacionalidad"
-    var Gridnacionalidad = ""
-    var Grfecha = "Fecha de nacimiento"
-    var Grrfc = ""
-    var Grestcivil = "Estado civil"
-    var Gridestcivil = ""
-    var Grnumero = ""
+    @objc var Grnombre = ""
+    @objc var Grsnombre = ""
+    @objc var Grapep = ""
+    @objc var Grapem = ""
+    @objc var Grtipo = "Tipo de identificacion"
+    @objc var Gridtipo = ""
+    @objc var Gridentificacion = ""
+    @objc var sexo = ""
+    @objc var Grnacionalidad = "Nacionalidad"
+    @objc var Gridnacionalidad = ""
+    @objc var Grfecha = "Fecha de nacimiento"
+    @objc var Grrfc = ""
+    @objc var Grestcivil = "Estado civil"
+    @objc var Gridestcivil = ""
+    @objc var Grnumero = ""
     
     //Domicilio
-    var Drcalle = ""
-    var Drnume = ""
-    var Drnumi = ""
-    var Drcolonia = ""
-    var Drestado = "Estado"
-    var Dridestado = ""
-    var Drdel = "Delegación/Municipio"
-    var Driddel = ""
-    var Drcp = ""
-    var Drtiempo = ""
-    var Drestatus = "Estatus de residencia"
-    var Dridestatus = ""
-    var Drmonto = ""
-    var Drcorreo = ""
-    var Drtelefono = ""
-    var Drmovil = ""
-    var Drcompania = "Compañia movil"
-    var Dridcompania = ""
+    @objc var Drcalle = ""
+    @objc var Drnume = ""
+    @objc var Drnumi = ""
+    @objc var Drcolonia = ""
+    @objc var Drestado = "Estado"
+    @objc var Dridestado = ""
+    @objc var Drdel = "Delegación/Municipio"
+    @objc var Driddel = ""
+    @objc var Drcp = ""
+    @objc var Drtiempo = ""
+    @objc var Drestatus = "Estatus de residencia"
+    @objc var Dridestatus = ""
+    @objc var Drmonto = ""
+    @objc var Drcorreo = ""
+    @objc var Drtelefono = ""
+    @objc var Drmovil = ""
+    @objc var Drcompania = "Compañia movil"
+    @objc var Dridcompania = ""
     
     //Datos economicos
-    var Drnombre = ""
-    var Drgiro = ""
-    var Drantiguedad = ""
-    var Drtipo = "Tipo de contrato"
-    var Dridtipo = ""
-    var Drpuesto = ""
-    var Dringreso = ""
-    var Drcasado = ""
-    var Drfuente = ""
-    var Drotros = ""
-    var Drcalle2 = ""
-    var Drnume2 = ""
-    var Drnumi2 = ""
-    var Drcolonia2 = ""
-    var Drestado2 = "Estado"
-    var Dridestado2 = ""
-    var Drdel2 = "Delegación/Municipio"
-    var Driddel2 = ""
-    var Drcp2 = ""
-    var Drtelefono2 = ""
-    var Drextencion = ""
+    @objc var Drnombre = ""
+    @objc var Drgiro = ""
+    @objc var Drantiguedad = ""
+    @objc var Drtipo = "Tipo de contrato"
+    @objc var Dridtipo = ""
+    @objc var Drpuesto = ""
+    @objc var Dringreso = ""
+    @objc var Drcasado = ""
+    @objc var Drfuente = ""
+    @objc var Drotros = ""
+    @objc var Drcalle2 = ""
+    @objc var Drnume2 = ""
+    @objc var Drnumi2 = ""
+    @objc var Drcolonia2 = ""
+    @objc var Drestado2 = "Estado"
+    @objc var Dridestado2 = ""
+    @objc var Drdel2 = "Delegación/Municipio"
+    @objc var Driddel2 = ""
+    @objc var Drcp2 = ""
+    @objc var Drtelefono2 = ""
+    @objc var Drextencion = ""
     
     //Persona politica
-    var person = ""
-    var Prfuncion = ""
-    var parentesco = ""
-    var Prfuncion2 = ""
-    var Prparentesco = ""
+    @objc var person = ""
+    @objc var Prfuncion = ""
+    @objc var parentesco = ""
+    @objc var Prfuncion2 = ""
+    @objc var Prparentesco = ""
     
     //Referecias familiares
-    var Rrnombre = ""
-    var Rrapep = ""
-    var Rrapem = ""
-    var Rrnacionalidad = "Nacionalidad"
-    var Rridnacionalidad = ""
-    var Rrtelefono = ""
+    @objc var Rrnombre = ""
+    @objc var Rrapep = ""
+    @objc var Rrapem = ""
+    @objc var Rrnacionalidad = "Nacionalidad"
+    @objc var Rridnacionalidad = ""
+    @objc var Rrtelefono = ""
     
-    var R2rnombre = ""
-    var R2rapep = ""
-    var R2rapem = ""
-    var Rr2nacionalidad = "Nacionalidad"
-    var Rridnacionalidad2 = ""
-    var R2rtelefono = ""
+    @objc var R2rnombre = ""
+    @objc var R2rapep = ""
+    @objc var R2rapem = ""
+    @objc var Rr2nacionalidad = "Nacionalidad"
+    @objc var Rridnacionalidad2 = ""
+    @objc var R2rtelefono = ""
     
-    var R3rnombre = ""
-    var R3rapep = ""
-    var R3rapem = ""
-    var Rr3nacionalidad = "Nacionalidad"
-    var Rridnacionalidad3 = ""
-    var R3rtelefono = ""
+    @objc var R3rnombre = ""
+    @objc var R3rapep = ""
+    @objc var R3rapem = ""
+    @objc var Rr3nacionalidad = "Nacionalidad"
+    @objc var Rridnacionalidad3 = ""
+    @objc var R3rtelefono = ""
     //Documentos
-    var bidentificacionf = ""
-    var bidentificaciont = ""
-    var bcontrato = ""
-    var bcontratop = ""
-    var bfirma = ""
-    
+    @objc var bidentificacionf = ""
+    @objc var bidentificaciont = ""
+    @objc var bcontrato = ""
+    @objc var bcontratop = ""
+    @objc var bfirma = ""
+/*
     //Variables de Avfoundation
-    let captureSession = AVCaptureSession()
-    var previewLayer:CALayer!
-    var capturedevice:AVCaptureDevice!
-    var takePhoto = false
-
-var margen = 0
-    var deslizar = 0
+    @objc let captureSession = AVCaptureSession()
+    @objc var previewLayer:CALayer!
+    @objc var capturedevice:AVCaptureDevice!
+    @objc var takePhoto = false
+*/
+@objc var margen = 0
+    @objc var deslizar = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         addSlideMenuButton()
     }
-
+/*
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         prepareCamera()
     }
     
-    func prepareCamera(){
-        captureSession.sessionPreset = AVCaptureSessionPresetPhoto
-        if let availabledevices = AVCaptureDeviceDiscoverySession(deviceTypes: [.builtInWideAngleCamera], mediaType: AVMediaTypeVideo, position: .back).devices {
+    @objc func prepareCamera(){
+        captureSession.sessionPreset = AVCaptureSession.Preset.photo
+        if let availabledevices = AVCaptureDevice.DiscoverySession(deviceTypes: [AVCaptureDevice.DeviceType.builtInWideAngleCamera], mediaType: AVMediaType.video, position: .back).devices {
             capturedevice = availabledevices.first
             beginnSession()
         }
     }
-    func beginnSession () {
+    @objc func beginnSession () {
         do {
             let captureDeviceInput = try AVCaptureDeviceInput(device: capturedevice)
             captureSession.addInput(captureDeviceInput)
@@ -146,7 +145,7 @@ var margen = 0
             self.previewLayer.frame = self.view.layer.frame
             captureSession.startRunning()
             let dataOutput = AVCaptureVideoDataOutput()
-            dataOutput.videoSettings = [(kCVPixelBufferPixelFormatTypeKey as NSString):NSNumber(value: kCVPixelFormatType_32BGRA )]
+            dataOutput.videoSettings = [((kCVPixelBufferPixelFormatTypeKey as NSString) as String):NSNumber(value: kCVPixelFormatType_32BGRA )]
             dataOutput.alwaysDiscardsLateVideoFrames = true
             
             if captureSession.canAddOutput(dataOutput) {
@@ -160,13 +159,13 @@ var margen = 0
         }
     }
     
-    
+    */
     
     @IBAction func Tomarfoto(_ sender: UIBarButtonItem) {
-        takePhoto = true
+        //takePhoto = true
     }
-    
-    func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) {
+    /*
+    @objc func captureOutput(captureOutput: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         if takePhoto {
             takePhoto = false
             if let image = self.getImageFromSampleBuffer(buffer: sampleBuffer) {
@@ -274,7 +273,7 @@ var margen = 0
         }
     }
     
-    func getImageFromSampleBuffer(buffer:CMSampleBuffer) -> UIImage?{
+    @objc func getImageFromSampleBuffer(buffer:CMSampleBuffer) -> UIImage?{
         if let pixelbuffer = CMSampleBufferGetImageBuffer(buffer) {
             let ciImage = CIImage(cvPixelBuffer: pixelbuffer)
             let context = CIContext()
@@ -286,7 +285,7 @@ var margen = 0
         return nil
     }
     
-    func stopCaptureSession(){
+    @objc func stopCaptureSession(){
         self.captureSession.stopRunning()
         if let inputs = captureSession.inputs as? [AVCaptureDeviceInput] {
             for input in inputs {
@@ -294,6 +293,6 @@ var margen = 0
             }
         }
     }
-
+   */
 
 }

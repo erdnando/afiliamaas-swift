@@ -20,31 +20,31 @@ class ViewController: UIViewController {
     @IBOutlet weak var Btacceder: UIButton!
     
     //Unique Device Id
-    var Uniqueid = UIDevice.current.identifierForVendor!.uuidString
-    var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    @objc var Uniqueid = UIDevice.current.identifierForVendor!.uuidString
+    @objc var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     //Arreglo de entidad usuarios
     
-    var userArray:[USUARIO] = []
-    var paramArray:[PARAMETRO] = []
+    @objc var userArray:[USUARIO] = []
+    @objc var paramArray:[PARAMETRO] = []
     
-    var buzonA:[Rbuzon] = []
-    var buzonB:[BUZON_A] = []
+    @objc var buzonA:[Rbuzon] = []
+    @objc var buzonB:[BUZON_A] = []
     
-    var cataloA:[CATALOGO_A] = []
-    var cataloB:[Rcatalogo] = []
+    @objc var cataloA:[CATALOGO_A] = []
+    @objc var cataloB:[Rcatalogo] = []
     
-    var prodA:[ProductoA] = []
-    var prodB:[Producto] = []
+    @objc var prodA:[ProductoA] = []
+    @objc var prodB:[Producto] = []
     
     //Activos
-    var Buzoninsert = ""
-    var Catalogoinsert = ""
-    var productinsert = ""
-    var agendinsert = ""
+    @objc var Buzoninsert = ""
+    @objc var Catalogoinsert = ""
+    @objc var productinsert = ""
+    @objc var agendinsert = ""
     
     //Datos usuario
-    var Idusuario = 0
-    var Token = ""
+    @objc var Idusuario = 0
+    @objc var Token = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         //Quitar Opcion de Regresar
@@ -57,6 +57,13 @@ class ViewController: UIViewController {
         Btacceder.layer.borderWidth = 1
         Btacceder.layer.borderColor = UIColor(red:0.83, green:0.83, blue:0.83, alpha:1.0).cgColor
         Btacceder.backgroundColor = UIColor(red:0.11, green:0.74, blue:0.92, alpha:1.0)
+        
+        User.layer.cornerRadius = 25
+        User.layer.borderWidth = 1
+        Pass.layer.cornerRadius = 25
+        Pass.layer.borderWidth = 1
+        Empresa.layer.cornerRadius = 25
+        Empresa.layer.borderWidth = 1
         
         User.text = "jaimea"
         Pass.text = "12345678"
@@ -82,10 +89,10 @@ class ViewController: UIViewController {
         }
        
     }
-    func dismissKeyboard() {
+    @objc func dismissKeyboard() {
         view.endEditing(true)
     }
-    func fetchData () {
+    @objc func fetchData () {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
         do {
@@ -95,7 +102,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func fetchData2() {
+    @objc func fetchData2() {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
         do {
@@ -105,7 +112,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func fetchData3() {
+    @objc func fetchData3() {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
         do {
@@ -115,7 +122,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func fetchData4() {
+    @objc func fetchData4() {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
         do {
@@ -125,7 +132,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func fetchData5() {
+    @objc func fetchData5() {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
         do {
@@ -135,7 +142,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func fetchData6() {
+    @objc func fetchData6() {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
         do {
@@ -145,7 +152,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func fetchData7() {
+    @objc func fetchData7() {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
         do {
@@ -155,7 +162,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func fetchData8() {
+    @objc func fetchData8() {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
         do {
@@ -165,7 +172,7 @@ class ViewController: UIViewController {
         }
     }
     //si se usa
-    func Parametros() {
+    @objc func Parametros() {
         
         let newp = NSEntityDescription.insertNewObject(forEntityName: "PARAMETRO", into: context)
         newp.setValue(1, forKey: "id_parametro")
@@ -218,14 +225,15 @@ class ViewController: UIViewController {
         
         do {
             try context.save()
-            print("Parametros insertados")
+            self.ToastExample(message: "Parametros insertados")
             
         }catch {
             print(error)
         }
+        Verparam()
     }
     
-    func hideKeyboardWhenTappedAround() {
+    @objc func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewController.dismissKeyboard))
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
@@ -255,6 +263,7 @@ class ViewController: UIViewController {
             
             if  Perfil.isOn {
                  Wslogin()
+                ToastExample(message: "Iniciando Sincronizacion")
             }else {
                 if userArray.count == 0 {
                     let alert = UIAlertController(title: "AVISO!", message: "¡Login Incorrecto!" , preferredStyle: UIAlertControllerStyle.alert)
@@ -272,14 +281,14 @@ class ViewController: UIViewController {
             verBuzon()
            // verCatalogos()
             */
-            
+           
             
             
            
         }
     }
     
-    func ToastExample(message:String){
+    @objc func ToastExample(message:String){
         let toastLabel =
                 UILabel(frame:
                 CGRect(x: self.view.frame.size.width/2 - 150,
@@ -300,7 +309,7 @@ class ViewController: UIViewController {
     }
     
     
-    func Updatebuzona(){
+    @objc func Updatebuzona(){
         let request = NSFetchRequest<Rbuzon>(entityName: "Rbuzon")
         do {
             let searchResults = try context.fetch(request)
@@ -317,7 +326,7 @@ class ViewController: UIViewController {
     }
     
     //si se usa
-    func Buscarusuario(){
+    @objc func Buscarusuario(){
         var num = 0
         var bandera = true
         repeat {
@@ -345,7 +354,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func Verparam(){
+    @objc func Verparam(){
         var num = 0
         repeat {
             print("indice:",num,"Id:",paramArray[num].id_parametro,"parametro:",paramArray[num].parametro!,"valor",paramArray[num].valor!)
@@ -353,7 +362,7 @@ class ViewController: UIViewController {
             num = num+1
         }while num < paramArray.count
     }
-    func verBuzon(){
+    @objc func verBuzon(){
         print("Registros del Buzon activo")
         var num = 0
         repeat {
@@ -362,7 +371,7 @@ class ViewController: UIViewController {
             num = num+1
         }while num < buzonA.count
     }
-    func verCatalogos(){
+    @objc func verCatalogos(){
         print("Registros del catalogo Activo")
         var num = 0
         repeat {
@@ -372,7 +381,7 @@ class ViewController: UIViewController {
         }while num < cataloA.count
     }
     
-    func Wslogin() {
+    @objc func Wslogin() {
         let json: [String: Any] = [ "Promotoria":"",
                                     "RegPromotor":"",
                                     "Compania":Empresa.text!,
@@ -428,7 +437,7 @@ class ViewController: UIViewController {
         task.resume()
     }
     //Buscar buzon activo
-    func Buscarparamba(){
+    @objc func Buscarparamba(){
         ToastExample(message: "Obteniendo Buzon Activo.....")
         var num = 0
         repeat{
@@ -470,9 +479,9 @@ class ViewController: UIViewController {
     }
     
     //Buscar estatus 6 y 7
-    func Buscarbuzon(Arreglo:String){
+    @objc func Buscarbuzon(Arreglo:String){
         //BuzonA = Rbuzon  BuzonB = Buzon
-        ToastExample(message: "Obteniendo Estatus pendientes")
+        ToastExample(message: "Obteniendo Solicitudes pendientes")
         var num = 0
         var bandera = true
         if Arreglo == "A" {
@@ -547,7 +556,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func Eliminarbuzon(Arreglo:String){
+    @objc func Eliminarbuzon(Arreglo:String){
         
         if Arreglo == "A" {
             var id = buzonA.count-1
@@ -572,6 +581,7 @@ class ViewController: UIViewController {
                 do {
                     buzonA = try managedContext.fetch(fetchRequest) as! [Rbuzon]
                     print("Registro borrado A")
+                    self.ToastExample(message: "Eliminando Solicitudes.....")
                     id = id-1
                 } catch let error as NSError {
                     print("Error While Fetching Data From DB: \(error.userInfo)")
@@ -601,6 +611,7 @@ class ViewController: UIViewController {
                 do {
                     buzonB = try managedContext.fetch(fetchRequest) as! [BUZON_A]
                     print("Registro borrado B")
+                    self.ToastExample(message: "Eliminando Solicitudes.....")
                     id = id-1
                 } catch let error as NSError {
                     print("Error While Fetching Data From DB: \(error.userInfo)")
@@ -611,8 +622,8 @@ class ViewController: UIViewController {
          self.Buscarparamca()
     }
     //Buscar Catalogo Activo
-    func Buscarparamca() {
-         self.ToastExample(message: "Obteniendo catalogo activo")
+    @objc func Buscarparamca() {
+        self.ToastExample(message: "Obteniendo catalogo activo")
         var num = 0
         repeat{
             if paramArray[num].parametro == "CATALOGO_ACTIVO" {
@@ -638,7 +649,7 @@ class ViewController: UIViewController {
          self.Buscarparampa()
     }
     
-    func Eliminarcatalogo(Arreglo:String){
+    @objc func Eliminarcatalogo(Arreglo:String){
         
         if Arreglo == "A" {
             var id = cataloA.count-1
@@ -653,6 +664,7 @@ class ViewController: UIViewController {
                 managedContext.delete(note)
                 do {
                     try managedContext.save()
+                    
                 } catch let error as NSError {
                     print("Error While Deleting Note: \(error.userInfo)")
                 }
@@ -663,6 +675,9 @@ class ViewController: UIViewController {
                 do {
                     cataloA = try managedContext.fetch(fetchRequest) as! [CATALOGO_A]
                     print("Registro Cat",id,"Borrado")
+                    
+                    self.ToastExample(message: "Eliminando Catalogos.....")
+                    
                     id = id-1
                 } catch let error as NSError {
                     print("Error While Fetching Data From DB: \(error.userInfo)")
@@ -692,6 +707,9 @@ class ViewController: UIViewController {
                 do {
                     cataloB = try managedContext.fetch(fetchRequest) as! [Rcatalogo]
                     print("Registro Cat",id,"Borrado")
+                    
+                    self.ToastExample(message: "Eliminando Catalogos.....")
+                    
                     id = id-1
                 } catch let error as NSError {
                     print("Error While Fetching Data From DB: \(error.userInfo)")
@@ -703,7 +721,7 @@ class ViewController: UIViewController {
     }
     
     //Buscar Producto Activo
-    func Buscarparampa() {
+    @objc func Buscarparampa() {
          self.ToastExample(message: "Obteniendo producto activo")
         var num = 0
         repeat{
@@ -730,7 +748,7 @@ class ViewController: UIViewController {
          self.Buscarparamaa()
     }
     
-    func Eliminarproducto(Arreglo:String){
+    @objc func Eliminarproducto(Arreglo:String){
         
         if Arreglo == "A" {
             var id = prodA.count-1
@@ -755,6 +773,7 @@ class ViewController: UIViewController {
                 do {
                     prodA = try managedContext.fetch(fetchRequest) as! [ProductoA]
                     print("Registro borrado")
+                     ToastExample(message: "Eliminando Productos")
                     id = id-1
                 } catch let error as NSError {
                     print("Error While Fetching Data From DB: \(error.userInfo)")
@@ -784,6 +803,7 @@ class ViewController: UIViewController {
                 do {
                     prodB = try managedContext.fetch(fetchRequest) as! [Producto]
                     print("Registro borrado")
+                     ToastExample(message: "Eliminando Productos")
                     id = id-1
                 } catch let error as NSError {
                     print("Error While Fetching Data From DB: \(error.userInfo)")
@@ -794,7 +814,7 @@ class ViewController: UIViewController {
         
     }
     //Buscar Agenda Activa
-    func Buscarparamaa() {
+    @objc func Buscarparamaa() {
          self.ToastExample(message: "Obteniendo agenda activa")
         var num = 0
         repeat{
@@ -822,13 +842,11 @@ class ViewController: UIViewController {
     
     
     
-    func Wsuuid(){
-        
-        
+    @objc func Wsuuid(){
+      
         let json: [String: Any] = ["idUsuario": String(Idusuario),
                                    "UUID": Uniqueid,
-                                   "llave":["Usuario": User.text!,
-                                            "Compania":Empresa.text!,
+                                   "llave":["idUsuario":String(Idusuario),
                                             "Token":self.Token]]
         
         let jsonData = try? JSONSerialization.data(withJSONObject: json)
@@ -873,6 +891,7 @@ class ViewController: UIViewController {
                     if validador == "true" {
                         
                         print("usuario ligado a este dispositivo")
+                        self.ToastExample(message: "Usuario ligado a este dispositivo")
                         print("El Buzon a insertar es:",self.Buzoninsert)
                         print("El Catalogo a insertar es:",self.Catalogoinsert)
                         print("El producto a insertar es:",self.productinsert)
@@ -890,14 +909,12 @@ class ViewController: UIViewController {
             }else{
                 print(" no Respuesta Json")
             }
-          
-        }
-        
-        task.resume()
+      }
+          task.resume()
     }
     
-    func WsGetBuzon(){
-      print("entro al ws get buzon")
+    @objc func WsGetBuzon(){
+      
         let json: [String: Any] = [
             "objPromotor": [
                 "Promotoria":"",
@@ -910,8 +927,7 @@ class ViewController: UIViewController {
                 "Gerente":["ClaveG":"","NombreG":""],
                 "TipoUsuario":"4"
             ],
-            "llave":["Usuario": User.text!,
-                     "Compania":Empresa.text!,
+            "llave":["idUsuario":String(Idusuario),
                      "Token":self.Token]
         ]
         let jsonData = try? JSONSerialization.data(withJSONObject: json)
@@ -925,7 +941,6 @@ class ViewController: UIViewController {
         
         // insert json data to the request
         request.httpBody = jsonData
-        
         let task = URLSession.shared.dataTask(with: request as URLRequest){
             data, response, error in
             
@@ -935,96 +950,102 @@ class ViewController: UIViewController {
                 return;
             }
             do {
+                
                 guard let teamJSON =  try JSONSerialization.jsonObject(with: data!, options: []) as? [String: Any],
                     let Solicitud = teamJSON["solicitudes"] as? [[String: Any]]
                     else { return }
                 DispatchQueue.main.async {
-                   self.ToastExample(message: "Obteniendo Solicitudes...")
                     print("************Ws GetBuzon*************")
                     for i in 0 ..< Solicitud.count{
-                        var coment = Solicitud[i]["COMENTARIO"] as? String
-                        if coment == nil {
-                            coment = ""
-                        }
-                        //self.com.append(coment!)
                         
-                        let esta = Solicitud[i]["ESTATUS"] as? String
-                       // print(esta!)
-                   
-                        var  fechaar = Solicitud[i]["FECHA_ALTA"] as? String
-                        if fechaar == nil {
-                            fechaar = ""
-                        }
+                         var coment = Solicitud[i]["COMENTARIO"] as? String
+                         if coment == nil {
+                         coment = ""
+                         }
+                         //self.com.append(coment!)
+                         
+                         let esta = Solicitud[i]["ESTATUS"] as? String
+                         //print("Estatus",esta!)
+                         
+                         var  fechaar = Solicitud[i]["FECHA_ALTA"] as? String
+                         if fechaar == nil {
+                         fechaar = ""
+                         }
                         
-                        var fechamr = Solicitud[i]["FECHA_MODIFICACION"] as? String
-                        if fechamr == nil {
-                            fechamr = ""
-                        }
+                         var fechamr = Solicitud[i]["FECHA_MODIFICACION"] as? String
+                         if fechamr == nil {
+                         fechamr = ""
+                         }
+                         
+                         let idsolr = Solicitud[i]["ID_SOLICITUD"] as? String
+                          print("Id de la solicitud:",idsolr!)
+                         
+                         var producto = Solicitud[i]["PRODUCTO"] as? String
+                         if producto == nil {
+                         producto = ""
+                         }
+                         
+                         var prome = Solicitud[i]["PROMEDIO_SCORING"] as? String
+                         if prome == nil {
+                         prome = ""
+                         }
                         
-                        let idsolr = Solicitud[i]["ID_SOLICITUD"] as? String
-                       // print(idsolr!)
-                        
-                        var producto = Solicitud[i]["PRODUCTO"] as? String
-                        if producto == nil {
-                            producto = ""
-                        }
-                        
-                        var prome = Solicitud[i]["PROMEDIO_SCORING"] as? String
-                        if prome == nil {
-                            prome = ""
-                        }
                         var solicitud = Solicitud[i]["SOLICITUD_XML"] as? String
                         if solicitud == nil {
                             solicitud = ""
                         }
+                         //Imagenes
+                         var ext1 = Solicitud[i]["E164"] as? String
+                         if ext1 == nil {
+                         ext1 = ""
+                         }
+                         var ext2 = Solicitud[i]["E264"] as? String
+                         if ext2 == nil {
+                         ext2 = ""
+                         }
+                         var ext3 = Solicitud[i]["E364"] as? String
+                         if ext3 == nil {
+                         ext3 = ""
+                         }
+                         var ext4 = Solicitud[i]["E464"] as? String
+                         if ext4 == nil {
+                         ext4 = ""
+                         }
+                         var ext5 = Solicitud[i]["E564"] as? String
+                         if ext5 == nil {
+                         ext5 = ""
+                         }
+                         
+                         var docc1 = Solicitud[i]["DOC_C164"] as? String
+                         if docc1 == nil {
+                         docc1 = ""
+                         }
                         
-                        //Imagenes
-                        var ext1 = Solicitud[i]["E164"] as? String
-                        if ext1 == nil {
-                            ext1 = ""
-                        }
-                        var ext2 = Solicitud[i]["E264"] as? String
-                        if ext2 == nil {
-                            ext2 = ""
-                        }
-                        var ext3 = Solicitud[i]["E364"] as? String
-                        if ext3 == nil {
-                            ext3 = ""
-                        }
-                        var ext4 = Solicitud[i]["E464"] as? String
-                        if ext4 == nil {
-                            ext4 = ""
-                        }
-                        var ext5 = Solicitud[i]["E564"] as? String
-                        if ext5 == nil {
-                            ext5 = ""
-                        }
-                        var docc1 = Solicitud[i]["DOC_C164"] as? String
-                        if docc1 == nil {
-                            docc1 = ""
-                        }
-                       
-                        var docc2 = Solicitud[i]["DOC_C264"] as? String
-                        if docc2 == nil {
-                            docc2 = ""
-                        }
+                         var docc2 = Solicitud[i]["DOC_C264"] as? String
+                         if docc2 == nil {
+                         docc2 = ""
+                         }
+ 
+                         var docia = Solicitud[i]["DOC_IA64"] as? String
+                         if docia == nil {
+                         docia = ""
+                         }
+                      
+                         var docif = Solicitud[i]["DOC_IF64"] as? String
+                         if docif == nil {
+                         docif = ""
+                         }
+                     
                         
-                        var docia = Solicitud[i]["DOC_IA64"] as? String
-                        if docia == nil {
-                            docia = ""
-                        }
-                        var docif = Solicitud[i]["DOC_IF64"] as? String
-                        if docif == nil {
-                            docif = ""
-                        }
-                        var fi = Solicitud[i]["F164"] as? String
-                        if fi == nil {
-                            fi = ""
-                        }
-                        
-                        self.Insertarbuzon(coment: coment!, est: esta!, fechaa: fechaar!, fecham: fechamr!, idsol: idsolr!, product: producto!, prom: prome!, sol: solicitud!,ext1: ext1!,ext2:ext2!,ext3:ext3!,ext4:ext4!,ext5:ext5!,docc1:docc1!,docc2:docc2!,docia:docia!,docif:docif!,fi:fi!)
-                        
+                         var fi = Solicitud[i]["F164"] as? String
+                         if fi == nil {
+                         fi = ""
+                         }
+                         self.ToastExample(message: "Obteniendo Solicitudes...")
+                         self.Insertarbuzon(coment: coment!, est: esta!, fechaa: fechaar!, fecham: fechamr!, idsol: idsolr!, product: producto!, prom: prome!, sol: solicitud!,ext1: ext1!,ext2:ext2!,ext3:ext3!,ext4:ext4!,ext5:ext5!,docc1:docc1!,docc2:docc2!,docia:docia!,docif:docif!,fi:fi!)
+                     
                     }
+                    
                      self.WsCatalogos()
                 }
             } catch {
@@ -1033,11 +1054,12 @@ class ViewController: UIViewController {
             }
         }
         
+        
         task.resume()
         
     }
     
-    func Insertarbuzon(coment:String,est:String,fechaa:String,fecham:String,idsol:String,product:String,prom:String,sol:String,ext1:String,ext2:String,ext3:String,ext4:String,ext5:String,docc1:String,docc2:String,docia:String,docif:String,fi:String){
+    @objc func Insertarbuzon(coment:String,est:String,fechaa:String,fecham:String,idsol:String,product:String,prom:String,sol:String,ext1:String,ext2:String,ext3:String,ext4:String,ext5:String,docc1:String,docc2:String,docia:String,docif:String,fi:String){
         
         if Buzoninsert == "A" {
             let dateFormatter = DateFormatter()
@@ -1071,7 +1093,7 @@ class ViewController: UIViewController {
             do {
                 try context.save()
                 print("Solicitud insertada A!!!!!!")
-                
+                 self.ToastExample(message: "Obteniendo Solicitudes...")
             }catch {
                 print(error)
             }
@@ -1109,16 +1131,14 @@ class ViewController: UIViewController {
             do {
                 try context.save()
                 print("Solicitud insertada B!!!!")
-                
+                 self.ToastExample(message: "Obteniendo Solicitudes...")
             }catch {
                 print(error)
             }
         }
-        
-        
     }
-    
-    func WsCatalogos(){
+   
+   @objc func WsCatalogos(){
       
         let json: [String: Any] = [
             "objPromotor": [
@@ -1132,8 +1152,7 @@ class ViewController: UIViewController {
                 "Gerente":["ClaveG":"","NombreG":""],
                 "TipoUsuario":"4"
             ],
-            "llave":["Usuario": User.text!,
-                     "Compania":Empresa.text!,
+            "llave":["idUsuario":String(Idusuario),
                      "Token":self.Token]
         ]
 
@@ -1162,7 +1181,7 @@ class ViewController: UIViewController {
                     let Solicitud = teamJSON["catalogos"] as? [[String: Any]]
                     else { return }
                 DispatchQueue.main.async {
-                    self.ToastExample(message: "Obteniendo catalogos...")
+                  
                     print("************Ws Catalogos*************")
                     for i in 0 ..< Solicitud.count{
                         let desc = Solicitud[i]["DESCRIPCION"] as? String
@@ -1176,8 +1195,12 @@ class ViewController: UIViewController {
                         
                         let padre = Solicitud[i]["PADRE"] as? String
                        //print(padre!)
-                        self.Insertarcatalogo(desc: desc!, idcat: idCat!, idtc: idTipo!, pad: padre!)
+                        
+                      self.ToastExample(message: "Obteniendo catalogos...")
+                      self.Insertarcatalogo(desc: desc!, idcat: idCat!, idtc: idTipo!, pad: padre!)
+                        
                     }
+                  
                     if self.userArray.count == 0 {
                         self.Insertarusuario()
                     }else{
@@ -1193,7 +1216,7 @@ class ViewController: UIViewController {
         
         task.resume()
     }
-    func Insertarcatalogo(desc:String,idcat:String,idtc:String,pad:String){
+    @objc func Insertarcatalogo(desc:String,idcat:String,idtc:String,pad:String){
         if Catalogoinsert == "A" {
             
             let idc = Int(idcat)
@@ -1206,7 +1229,7 @@ class ViewController: UIViewController {
             do {
                 try context.save()
                 print("Catalogo insertado")
-                
+                 self.ToastExample(message: "Obteniendo catalogos...")
             }catch {
                 print(error)
             }
@@ -1220,15 +1243,14 @@ class ViewController: UIViewController {
             newCat.setValue(pad, forKey: "padre")
             do {
                 try context.save()
-                print("Catalogo insertado")
-                
-            }catch {
+                 self.ToastExample(message: "Obteniendo catalogos...")
+               }catch {
                 print(error)
             }
         }
             
     }
-    func EliminarUsuario(){
+    @objc func EliminarUsuario(){
             self.ToastExample(message: "Finalizando...")
             let noteEntity = "USUARIO" //Entity Name
             
@@ -1249,6 +1271,7 @@ class ViewController: UIViewController {
             do {
                 userArray = try managedContext.fetch(fetchRequest) as! [USUARIO]
                 print("Usuario borrado")
+                  self.ToastExample(message: "Finalizando...")
             
             } catch let error as NSError {
                 print("Error While Fetching Data From DB: \(error.userInfo)")
@@ -1256,7 +1279,7 @@ class ViewController: UIViewController {
          Insertarusuario()
     }
     
-    func Insertarusuario(){
+    @objc func Insertarusuario(){
         self.ToastExample(message: "Finalizando...")
         let newUser = NSEntityDescription.insertNewObject(forEntityName: "USUARIO", into: context)
         newUser.setValue(Empresa.text, forKey: "compania")
@@ -1268,6 +1291,7 @@ class ViewController: UIViewController {
         do {
             try context.save()
             print("Usuario insertado")
+            self.ToastExample(message: "Finalizando...")
             Updateparam()
         }catch {
             print(error)
@@ -1275,7 +1299,7 @@ class ViewController: UIViewController {
         
     }
     
-    func Updateparam(){
+    @objc func Updateparam(){
         self.ToastExample(message: "Finalizando...")
         let request = NSFetchRequest<PARAMETRO>(entityName: "PARAMETRO")
         do {

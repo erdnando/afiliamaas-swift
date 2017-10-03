@@ -7,29 +7,32 @@
 //
 
 import UIKit
-import AVFoundation
-class Foton: BaseViewController,AVCaptureVideoDataOutputSampleBufferDelegate {
-    let captureSession = AVCaptureSession()
-    var previewLayer:CALayer!
-    var capturedevice:AVCaptureDevice!
-    var takePhoto = false
+//import AVFoundation
+class Foton: BaseViewController {
+    /*
+    @objc let captureSession = AVCaptureSession()
+    @objc var previewLayer:CALayer!
+    @objc var capturedevice:AVCaptureDevice!
+    @objc var takePhoto = false
+    */
     override func viewDidLoad() {
         super.viewDidLoad()
         addSlideMenuButton()
     }
+    /*
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         prepareCamera()
     }
     
-    func prepareCamera(){
-        captureSession.sessionPreset = AVCaptureSessionPresetPhoto
-        if let availabledevices = AVCaptureDeviceDiscoverySession(deviceTypes: [.builtInWideAngleCamera], mediaType: AVMediaTypeVideo, position: .back).devices {
+    @objc func prepareCamera(){
+        captureSession.sessionPreset = AVCaptureSession.Preset.photo
+        if let availabledevices = AVCaptureDevice.DiscoverySession(deviceTypes: [AVCaptureDevice.DeviceType.builtInWideAngleCamera], mediaType: AVMediaType.video, position: .back).devices {
             capturedevice = availabledevices.first
             beginnSession()
         }
     }
-    func beginnSession () {
+    @objc func beginnSession () {
         do {
             let captureDeviceInput = try AVCaptureDeviceInput(device: capturedevice)
             captureSession.addInput(captureDeviceInput)
@@ -43,7 +46,7 @@ class Foton: BaseViewController,AVCaptureVideoDataOutputSampleBufferDelegate {
             self.previewLayer.frame = self.view.layer.frame
             captureSession.startRunning()
             let dataOutput = AVCaptureVideoDataOutput()
-            dataOutput.videoSettings = [(kCVPixelBufferPixelFormatTypeKey as NSString):NSNumber(value: kCVPixelFormatType_32BGRA )]
+            dataOutput.videoSettings = [((kCVPixelBufferPixelFormatTypeKey as NSString) as String):NSNumber(value: kCVPixelFormatType_32BGRA )]
             dataOutput.alwaysDiscardsLateVideoFrames = true
             
             if captureSession.canAddOutput(dataOutput) {
@@ -56,12 +59,14 @@ class Foton: BaseViewController,AVCaptureVideoDataOutputSampleBufferDelegate {
             dataOutput.setSampleBufferDelegate(self, queue: queue)
         }
     }
+    
+    */
     @IBAction func takePhoto(_ sender: Any) {
-        takePhoto = true
+        //takePhoto = true
     }
+    /*
     
-    
-    func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) {
+    @objc func captureOutput(captureOutput: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         if takePhoto {
             takePhoto = false
             if let image = self.getImageFromSampleBuffer(buffer: sampleBuffer) {
@@ -77,7 +82,7 @@ class Foton: BaseViewController,AVCaptureVideoDataOutputSampleBufferDelegate {
             }
         }
     }
-    func getImageFromSampleBuffer(buffer:CMSampleBuffer) -> UIImage?{
+    @objc func getImageFromSampleBuffer(buffer:CMSampleBuffer) -> UIImage?{
         if let pixelbuffer = CMSampleBufferGetImageBuffer(buffer) {
             let ciImage = CIImage(cvPixelBuffer: pixelbuffer)
             let context = CIContext()
@@ -89,7 +94,7 @@ class Foton: BaseViewController,AVCaptureVideoDataOutputSampleBufferDelegate {
         return nil
     }
     
-    func stopCaptureSession(){
+    @objc func stopCaptureSession(){
         self.captureSession.stopRunning()
         if let inputs = captureSession.inputs as? [AVCaptureDeviceInput] {
             for input in inputs {
@@ -113,5 +118,5 @@ class Foton: BaseViewController,AVCaptureVideoDataOutputSampleBufferDelegate {
         // Pass the selected object to the new view controller.
     }
     */
-
+    */
 }

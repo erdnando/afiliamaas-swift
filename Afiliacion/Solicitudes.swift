@@ -8,13 +8,13 @@
 
 import UIKit
 
-class Solicitudes: BaseViewController,Miscambios{
+class Solicitudes: BaseViewController{
 
-    var Id = ""
-    var BuzonActivo = ""
-    var identificador = 0
-    var margen = -63
-    var CatalogoActivo = ""
+    @objc var Id = ""
+    @objc var BuzonActivo = ""
+    @objc var identificador = 0
+    @objc var margen = -63
+    @objc var CatalogoActivo = ""
     @IBOutlet weak var Atras: UIBarButtonItem!
     
     @IBOutlet weak var Btgen: UILabel?
@@ -101,7 +101,7 @@ class Solicitudes: BaseViewController,Miscambios{
        
        
     }
-    func Vistadata(valor: Int) {
+    @objc func Vistadata(valor: Int) {
         super.viewDidLoad()
         print(valor)
         if valor == 1{
@@ -144,11 +144,6 @@ class Solicitudes: BaseViewController,Miscambios{
         } else {
             self.navigationController!.pushViewController(destViewController, animated: true)
         }
-    }
-    
-    func cambio() {
-        self.LDom?.backgroundColor = UIColor.black
-        self.Domicilio?.backgroundColor = UIColor.black
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

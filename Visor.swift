@@ -13,14 +13,14 @@ class Visor: UIViewController {
    
     @IBOutlet weak var Titulo: UILabel!
     @IBOutlet weak var Imagen: UIImageView!
-    var texto = ""
-    var Iimagen = ""
+    @objc var texto = ""
+    @objc var Iimagen = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         Titulo.text = texto
         cargarimagen()
     }
-    func cargarimagen() {
+    @objc func cargarimagen() {
         //identificacion frente
         let identf : Data = Data(base64Encoded: Iimagen, options: .ignoreUnknownCharacters)!
         let decodedimagef = UIImage(data: identf)

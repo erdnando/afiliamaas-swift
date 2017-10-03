@@ -11,111 +11,111 @@ import UIKit
 class Firma: UIViewController {
     
     //General
-    var Grnombre = ""
-    var Grsnombre = ""
-    var Grapep = ""
-    var Grapem = ""
-    var Grtipo = "Tipo de identificacion"
-    var Gridtipo = ""
-    var Gridentificacion = ""
-    var sexo = ""
-    var Grnacionalidad = "Nacionalidad"
-    var Gridnacionalidad = ""
-    var Grfecha = "Fecha de nacimiento"
-    var Grrfc = ""
-    var Grestcivil = "Estado civil"
-    var Gridestcivil = ""
-    var Grnumero = ""
+    @objc var Grnombre = ""
+    @objc var Grsnombre = ""
+    @objc var Grapep = ""
+    @objc var Grapem = ""
+    @objc var Grtipo = "Tipo de identificacion"
+    @objc var Gridtipo = ""
+    @objc var Gridentificacion = ""
+    @objc var sexo = ""
+    @objc var Grnacionalidad = "Nacionalidad"
+    @objc var Gridnacionalidad = ""
+    @objc var Grfecha = "Fecha de nacimiento"
+    @objc var Grrfc = ""
+    @objc var Grestcivil = "Estado civil"
+    @objc var Gridestcivil = ""
+    @objc var Grnumero = ""
     
     //Domicilio
-    var Drcalle = ""
-    var Drnume = ""
-    var Drnumi = ""
-    var Drcolonia = ""
-    var Drestado = "Estado"
-    var Dridestado = ""
-    var Drdel = "Delegación/Municipio"
-    var Driddel = ""
-    var Drcp = ""
-    var Drtiempo = ""
-    var Drestatus = "Estatus de residencia"
-    var Dridestatus = ""
-    var Drmonto = ""
-    var Drcorreo = ""
-    var Drtelefono = ""
-    var Drmovil = ""
-    var Drcompania = "Compañia movil"
-    var Dridcompania = ""
+    @objc var Drcalle = ""
+    @objc var Drnume = ""
+    @objc var Drnumi = ""
+    @objc var Drcolonia = ""
+    @objc var Drestado = "Estado"
+    @objc var Dridestado = ""
+    @objc var Drdel = "Delegación/Municipio"
+    @objc var Driddel = ""
+    @objc var Drcp = ""
+    @objc var Drtiempo = ""
+    @objc var Drestatus = "Estatus de residencia"
+    @objc var Dridestatus = ""
+    @objc var Drmonto = ""
+    @objc var Drcorreo = ""
+    @objc var Drtelefono = ""
+    @objc var Drmovil = ""
+    @objc var Drcompania = "Compañia movil"
+    @objc var Dridcompania = ""
     
     //Datos economicos
-    var Drnombre = ""
-    var Drgiro = ""
-    var Drantiguedad = ""
-    var Drtipo = "Tipo de contrato"
-    var Dridtipo = ""
-    var Drpuesto = ""
-    var Dringreso = ""
-    var Drcasado = ""
-    var Drfuente = ""
-    var Drotros = ""
-    var Drcalle2 = ""
-    var Drnume2 = ""
-    var Drnumi2 = ""
-    var Drcolonia2 = ""
-    var Drestado2 = "Estado"
-    var Dridestado2 = ""
-    var Drdel2 = "Delegación/Municipio"
-    var Driddel2 = ""
-    var Drcp2 = ""
-    var Drtelefono2 = ""
-    var Drextencion = ""
+    @objc var Drnombre = ""
+    @objc var Drgiro = ""
+    @objc var Drantiguedad = ""
+    @objc var Drtipo = "Tipo de contrato"
+    @objc var Dridtipo = ""
+    @objc var Drpuesto = ""
+    @objc var Dringreso = ""
+    @objc var Drcasado = ""
+    @objc var Drfuente = ""
+    @objc var Drotros = ""
+    @objc var Drcalle2 = ""
+    @objc var Drnume2 = ""
+    @objc var Drnumi2 = ""
+    @objc var Drcolonia2 = ""
+    @objc var Drestado2 = "Estado"
+    @objc var Dridestado2 = ""
+    @objc var Drdel2 = "Delegación/Municipio"
+    @objc var Driddel2 = ""
+    @objc var Drcp2 = ""
+    @objc var Drtelefono2 = ""
+    @objc var Drextencion = ""
     
     //Persona politica
-    var person = ""
-    var Prfuncion = ""
-    var parentesco = ""
-    var Prfuncion2 = ""
-    var Prparentesco = ""
+    @objc var person = ""
+    @objc var Prfuncion = ""
+    @objc var parentesco = ""
+    @objc var Prfuncion2 = ""
+    @objc var Prparentesco = ""
     
     //Referecias familiares
-    var Rrnombre = ""
-    var Rrapep = ""
-    var Rrapem = ""
-    var Rrnacionalidad = "Nacionalidad"
-    var Rridnacionalidad = ""
-    var Rrtelefono = ""
+    @objc var Rrnombre = ""
+    @objc var Rrapep = ""
+    @objc var Rrapem = ""
+    @objc var Rrnacionalidad = "Nacionalidad"
+    @objc var Rridnacionalidad = ""
+    @objc var Rrtelefono = ""
     
-    var R2rnombre = ""
-    var R2rapep = ""
-    var R2rapem = ""
-    var Rr2nacionalidad = "Nacionalidad"
-    var Rridnacionalidad2 = ""
-    var R2rtelefono = ""
+    @objc var R2rnombre = ""
+    @objc var R2rapep = ""
+    @objc var R2rapem = ""
+    @objc var Rr2nacionalidad = "Nacionalidad"
+    @objc var Rridnacionalidad2 = ""
+    @objc var R2rtelefono = ""
     
-    var R3rnombre = ""
-    var R3rapep = ""
-    var R3rapem = ""
-    var Rr3nacionalidad = "Nacionalidad"
-    var Rridnacionalidad3 = ""
-    var R3rtelefono = ""
+    @objc var R3rnombre = ""
+    @objc var R3rapep = ""
+    @objc var R3rapem = ""
+    @objc var Rr3nacionalidad = "Nacionalidad"
+    @objc var Rridnacionalidad3 = ""
+    @objc var R3rtelefono = ""
     //Documentos
-    var bidentificacionf = ""
-    var bidentificaciont = ""
-    var bcontrato = ""
-    var bcontratop = ""
-    var bfirma = ""
+    @objc var bidentificacionf = ""
+    @objc var bidentificaciont = ""
+    @objc var bcontrato = ""
+    @objc var bcontratop = ""
+    @objc var bfirma = ""
     
-    var margen = 0
-    var deslizar = 0
+    @objc var margen = 0
+    @objc var deslizar = 0
     
     @IBOutlet weak var Panel: UIImageView!
-    var lastPoint = CGPoint.zero
-    var red: CGFloat = 0.0
-    var green: CGFloat = 0.0
-    var blue: CGFloat = 0.0
-    var brushWidth: CGFloat = 10.0
-    var opacity: CGFloat = 1.0
-    var swiped = false
+    @objc var lastPoint = CGPoint.zero
+    @objc var red: CGFloat = 0.0
+    @objc var green: CGFloat = 0.0
+    @objc var blue: CGFloat = 0.0
+    @objc var brushWidth: CGFloat = 10.0
+    @objc var opacity: CGFloat = 1.0
+    @objc var swiped = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -128,7 +128,7 @@ class Firma: UIViewController {
         }
     }
     
-    func drawLineFrom(fromPoint: CGPoint, toPoint: CGPoint) {
+    @objc func drawLineFrom(fromPoint: CGPoint, toPoint: CGPoint) {
         
         UIGraphicsBeginImageContextWithOptions(view.bounds.size, false, 0)
         
@@ -250,8 +250,7 @@ class Firma: UIViewController {
             //Documentos
             Ngen.bidentificacionf = bidentificacionf
             Ngen.bidentificaciont = bidentificaciont
-            Ngen.bcontrato = bcontrato
-            Ngen.bcontratop = bcontratop
+           
             Ngen.bfirma = bfirma
             
             
@@ -262,7 +261,7 @@ class Firma: UIViewController {
     }
     
     
-    func convert(Imagen:UIImage) {
+    @objc func convert(Imagen:UIImage) {
         let imageData: NSData = UIImageJPEGRepresentation(Imagen, 0.4)! as NSData
         bfirma = imageData.base64EncodedString(options: .lineLength64Characters)
         print("Imgen codificada en base 64:",bfirma)

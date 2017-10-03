@@ -9,8 +9,8 @@
 import UIKit
 
 class Foto: BaseViewController {
-    var takenPhoto:UIImage?
-    var bandera = true
+    @objc var takenPhoto:UIImage?
+    @objc var bandera = true
     @IBOutlet weak var imageView: UIImageView!
     
     override func viewDidLoad() {
@@ -23,7 +23,7 @@ class Foto: BaseViewController {
       convert(Imagen: imageView.image!)
     }
     
-    func convert(Imagen:UIImage) {
+    @objc func convert(Imagen:UIImage) {
         let imageData: NSData = UIImageJPEGRepresentation(Imagen, 0.4)! as NSData
         let imageStr = imageData.base64EncodedString(options: .lineLength64Characters)
         print("Imgen codificada en base 64:",imageStr)

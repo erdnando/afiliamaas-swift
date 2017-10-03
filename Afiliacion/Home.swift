@@ -12,10 +12,10 @@ import UIKit
 class Home: BaseViewController {
     
     //Datos Usuario
-    var Usuario = ""
-    var Contrasena = ""
-    var compania = ""
-    var id = 0
+    @objc var Usuario = ""
+    @objc var Contrasena = ""
+    @objc var compania = ""
+    @objc var id = 0
     
     //Contenedores
     @IBOutlet weak var Todas: UIView!

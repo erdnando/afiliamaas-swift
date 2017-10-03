@@ -27,12 +27,12 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     /**
     *  Array containing menu options
     */
-    var arrayMenuOptions = [Dictionary<String,String>]()
+    @objc var arrayMenuOptions = [Dictionary<String,String>]()
     
     /**
     *  Menu button which was tapped to display the menu
     */
-    var btnMenu : UIButton!
+    @objc var btnMenu : UIButton!
     
     /**
     *  Delegate of the MenuVC
@@ -55,7 +55,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         updateArrayMenuOptions()
     }
     
-    func updateArrayMenuOptions(){
+    @objc func updateArrayMenuOptions(){
         arrayMenuOptions.append(["title":"Mis Solicitudes", "icon":"HomeIcon"])
         arrayMenuOptions.append(["title":"Nueva Solicitud", "icon":"PlayIcon"])
         arrayMenuOptions.append(["title":"Mis Citas", "icon":"PlayIcon"])

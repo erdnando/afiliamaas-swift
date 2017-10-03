@@ -10,28 +10,28 @@ import UIKit
 import CoreData
 class Todos: UIViewController,XMLParserDelegate,UITableViewDataSource,UITableViewDelegate {
     
-    var Buzonactivo = ""
-    var Catalogoactivo = ""
+    @objc var Buzonactivo = ""
+    @objc var Catalogoactivo = ""
     //Objetos CoreData
-    var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    @objc var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     //Tabla parametros
-    var paramArray:[PARAMETRO] = []
-    var buzonA:[Rbuzon] = []
-    var buzonB:[BUZON_A] = []
+    @objc var paramArray:[PARAMETRO] = []
+    @objc var buzonA:[Rbuzon] = []
+    @objc var buzonB:[BUZON_A] = []
     
     
-    var Nombre:[String] = []
-    var Apep:[String] = []
-    var Apem:[String] = []
+    @objc var Nombre:[String] = []
+    @objc var Apep:[String] = []
+    @objc var Apem:[String] = []
     
-    var Vnombre:[String] = []
-    var vapep:[String] = []
-    var vapem:[String] = []
+    @objc var Vnombre:[String] = []
+    @objc var vapep:[String] = []
+    @objc var vapem:[String] = []
     
     //Variables para parciar
-    var parser = XMLParser()
-    var element:String = ""
+    @objc var parser = XMLParser()
+    @objc var element:String = ""
     
     @IBOutlet weak var Tabla: UITableView!
     
@@ -48,7 +48,7 @@ class Todos: UIViewController,XMLParserDelegate,UITableViewDataSource,UITableVie
         Buscarparamca()
     }
     
-    func fetchData2() {
+    @objc func fetchData2() {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
         do {
@@ -58,7 +58,7 @@ class Todos: UIViewController,XMLParserDelegate,UITableViewDataSource,UITableVie
         }
     }
     
-    func fetchData3() {
+    @objc func fetchData3() {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
         do {
@@ -68,7 +68,7 @@ class Todos: UIViewController,XMLParserDelegate,UITableViewDataSource,UITableVie
         }
     }
     
-    func fetchData4() {
+    @objc func fetchData4() {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
         do {
@@ -81,7 +81,7 @@ class Todos: UIViewController,XMLParserDelegate,UITableViewDataSource,UITableVie
     
     
     //Buscar buzon activo
-    func Buscarparamba(){
+    @objc func Buscarparamba(){
         var num = 0
         repeat{
             if paramArray[num].parametro == "BUZON_ACTIVO" {
@@ -100,7 +100,7 @@ class Todos: UIViewController,XMLParserDelegate,UITableViewDataSource,UITableVie
         }
     }
     //Buscar Catalogo Activo
-    func Buscarparamca() {
+    @objc func Buscarparamca() {
         var num = 0
         repeat{
             if paramArray[num].parametro == "CATALOGO_ACTIVO" {
@@ -118,7 +118,7 @@ class Todos: UIViewController,XMLParserDelegate,UITableViewDataSource,UITableVie
         
     }
     //Estraer Xml dependiendo quie sea el buzon activo
-    func verBuzona(){
+    @objc func verBuzona(){
         print("Registros del Buzon activo")
         var num = 0
         print("***************XML BuzonA*******************")
@@ -131,7 +131,7 @@ class Todos: UIViewController,XMLParserDelegate,UITableViewDataSource,UITableVie
         ExtDatos()
     }
     
-    func verBuzonb(){
+    @objc func verBuzonb(){
         print("Registros del Buzon activo")
         var num = 0
         print("***************XML BuzonB*******************")
@@ -144,7 +144,7 @@ class Todos: UIViewController,XMLParserDelegate,UITableViewDataSource,UITableVie
         ExtDatos()
     }
     
-    func ExtDatos(){
+    @objc func ExtDatos(){
         var num = 0
         
         repeat{
@@ -169,7 +169,7 @@ class Todos: UIViewController,XMLParserDelegate,UITableViewDataSource,UITableVie
     }
     
     
-    func verDatos(){
+    @objc func verDatos(){
         var num = 0
         
         repeat {
@@ -181,7 +181,7 @@ class Todos: UIViewController,XMLParserDelegate,UITableViewDataSource,UITableVie
         
     }
     
-    func beginParsing(xml:String)
+    @objc func beginParsing(xml:String)
     {
         let dato = xml.data(using: .utf8)
         parser = XMLParser(data: dato!)
@@ -247,6 +247,7 @@ class Todos: UIViewController,XMLParserDelegate,UITableViewDataSource,UITableVie
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("Selecionaste una celda")
         if let sol = self.storyboard?.instantiateViewController(withIdentifier: "Solicitud_Detalle") as? Solicitudes {
             if Buzonactivo == "A" {
                 sol.Id = String(buzonA[indexPath.row].id_solicitud)

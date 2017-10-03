@@ -22,7 +22,7 @@ class BaseViewController: UIViewController, SlideMenuDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    func slideMenuItemSelectedAtIndex(_ index: Int32) {
+    @objc func slideMenuItemSelectedAtIndex(_ index: Int32) {
         let topViewController : UIViewController = self.navigationController!.topViewController!
         print("View Controller is : \(topViewController) \n", terminator: "")
         switch(index){
@@ -42,7 +42,7 @@ class BaseViewController: UIViewController, SlideMenuDelegate {
         }
     }
     
-    func openViewControllerBasedOnIdentifier(_ strIdentifier:String){
+    @objc func openViewControllerBasedOnIdentifier(_ strIdentifier:String){
         let destViewController : UIViewController = self.storyboard!.instantiateViewController(withIdentifier: strIdentifier)
         
         let topViewController : UIViewController = self.navigationController!.topViewController!
@@ -54,7 +54,7 @@ class BaseViewController: UIViewController, SlideMenuDelegate {
         }
     }
     
-    func addSlideMenuButton(){
+    @objc func addSlideMenuButton(){
         let btnShowMenu = UIButton(type: UIButtonType.system)
         btnShowMenu.setImage(self.defaultMenuImage(), for: UIControlState())
         btnShowMenu.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
@@ -63,7 +63,7 @@ class BaseViewController: UIViewController, SlideMenuDelegate {
         self.navigationItem.leftBarButtonItem = customBarItem;
     }
 
-    func defaultMenuImage() -> UIImage {
+    @objc func defaultMenuImage() -> UIImage {
         var defaultMenuImage = UIImage()
         
         UIGraphicsBeginImageContextWithOptions(CGSize(width: 30, height: 22), false, 0.0)
@@ -85,7 +85,7 @@ class BaseViewController: UIViewController, SlideMenuDelegate {
         return defaultMenuImage;
     }
     
-    func onSlideMenuButtonPressed(_ sender : UIButton){
+    @objc func onSlideMenuButtonPressed(_ sender : UIButton){
         if (sender.tag == 10)
         {
             // To Hide Menu If it already there
