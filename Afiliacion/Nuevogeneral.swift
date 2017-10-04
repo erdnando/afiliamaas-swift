@@ -24,10 +24,16 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
     @objc var Grapem = ""
     @IBOutlet weak var Gidentificacion: UITextField!
     @objc var Gridentificacion = ""
-    @IBOutlet weak var Grfc: UITextField!
-    @objc var Grrfc = ""
-    @IBOutlet weak var Gnumero: UITextField!
+    
+    @IBOutlet weak var Grfc: UILabel!
+    
+   
+    @IBOutlet weak var Gnumero: UILabel!
     @objc var Grnumero = ""
+    @IBOutlet weak var GBtnumero: UIButton!
+    @IBOutlet weak var Gpnumero: UIPickerView!
+    
+    
     @IBOutlet weak var GBttipo: UIButton!
     @IBOutlet weak var Gtipo: UILabel!
     @objc var Grtipo = ""
@@ -222,12 +228,21 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
     //Documentos
     
     @IBOutlet weak var Documentos: UILabel!
+    
     @IBOutlet weak var Iidenntificacionf: UIImageView!
     @objc var bidentificacionf = ""
+    @IBOutlet weak var Eidentificacionf: UILabel!
+    var tidentificacionf = ""
+    
     @IBOutlet weak var Iidentificaciont: UIImageView!
     @objc var bidentificaciont = ""
+    @IBOutlet weak var Eidentificaciont: UILabel!
+    var tidentificaciont = ""
+    
     @IBOutlet weak var Ifirma: UIImageView!
     @objc var bfirma = ""
+    @IBOutlet weak var Efirma: UILabel!
+    var tfirma = ""
     
     @IBOutlet weak var Iextra1: UIImageView!
     @IBOutlet weak var Btextra1: UIButton!
@@ -265,6 +280,7 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
     @objc var Compania = [Dictionary<String,String>]()
     @objc var Estatus = [Dictionary<String,String>]()
     @objc var contrato = [Dictionary<String,String>]()
+    var dependientes = ["1","2","4","5","6","7","8","9","10"]
     
     //catalogo activo
     @objc var Catalogoactivo = ""
@@ -272,6 +288,9 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
     @objc var deslizar = 0
     @objc var margeny = 0
    
+    //variable donde se almacena la vocal del apellido paterno
+    var vocal = ""
+    var banderav:Bool = true
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -315,14 +334,12 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
         GBtnacionalidad.layer.borderWidth = 1
         GBtfecha.layer.cornerRadius = 15
         GBtfecha.layer.borderWidth = 1
-        Grfc.delegate = self
         Grfc.layer.cornerRadius = 15
         Grfc.layer.borderWidth = 1
         GBtestcivil.layer.cornerRadius = 15
         GBtestcivil.layer.borderWidth = 1
-        Gnumero.delegate = self
-        Gnumero.layer.cornerRadius = 15
-        Gnumero.layer.borderWidth = 1
+        GBtnumero.layer.cornerRadius = 15
+        GBtnumero.layer.borderWidth = 1
         
         //Domicilio
         Domicilio.layer.masksToBounds = true
@@ -500,6 +517,9 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
         Gpestcivil.delegate = self
         Gpestcivil.dataSource = self as? UIPickerViewDataSource
         
+        Gpnumero.delegate = self
+        Gpnumero.dataSource = self as? UIPickerViewDataSource
+        
         Dpestado.delegate = self
         Dpestado.dataSource = self as? UIPickerViewDataSource
         
@@ -529,6 +549,42 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
         
         R3pnacionalidad.delegate = self
         R3pnacionalidad.dataSource = self as? UIPickerViewDataSource
+        
+        //Fecha de nacimiento menos de 18 años
+        let fecha = Date()
+        let fechaa = String(describing: fecha)
+        let longitud = fechaa.characters.count
+        var letters = fechaa.characters.map { String($0) }
+        var num = 0
+       
+        var anio = ""
+        repeat{
+            if letters[num] == "-" {
+                break
+            }else {
+                anio = anio + letters[num]
+                num = num+1
+            }
+        }while num < longitud
+        
+        print("valor de anio:",anio)
+        let valor = Int(anio)
+        let calendar = Calendar.current
+        var minDateComponent = calendar.dateComponents([.day,.month,.year], from: Date())
+        minDateComponent.year = valor!-100
+        
+        let minDate = calendar.date(from: minDateComponent)
+        print(" min date : \(String(describing: minDate))")
+        
+        var maxDateComponent = calendar.dateComponents([.day,.month,.year], from: Date())
+        maxDateComponent.year = valor!-18
+        
+        let maxDate = calendar.date(from: maxDateComponent)
+        print("max date : \(String(describing: maxDate))")
+        
+        Gpfecha.minimumDate = minDate! as Date
+        Gpfecha.maximumDate =  maxDate! as Date
+        
         // Recuperar datos al momento de deslizar el scroll
         if deslizar == 1 {
             //General
@@ -546,7 +602,6 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
             }
             Gnacionalidad.text = Grnacionalidad
             Gfecha.text = Grfecha
-            Grfc.text = Grrfc
             Gestcivil.text = Grestcivil
             Gnumero.text = Grnumero
             
@@ -589,9 +644,12 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
             //Persona Politica
             if persona == "SI" {
                 Psi.isOn = true
+                Pfuncion.alpha = 1
             }
-            if persona == "NO" {   //Aqui me quede !!!!!!!!!!
+            if persona == "NO" {
                 Pno.isOn = true
+                Pfuncion2.alpha = 1
+                Pparentesco.alpha = 1
             }
                
             
@@ -625,6 +683,9 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
             R3nacionalidad.text = Rr3nacionalidad
             R3telefono.text = R3rtelefono
             // Documentacion
+            Eidentificacionf.text = tidentificacionf
+            Eidentificaciont.text = tidentificaciont
+            Efirma.text = tfirma
             if Imagen == 1 {
                 Iextra1.alpha = 1
                 Btextra1.alpha = 0
@@ -729,13 +790,89 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
  
         //funcion para cargar imagen en imageview
         CargarImagen()
+        //funcion para calcular RFC
+        if Gnombre.text != "" && Gapep.text != "" && Gapem.text != "" && Gfecha.text != "Fecha de nacimiento*"{
+             RFC()
+        }
         //recuperar valor de margen
         DispatchQueue.main.async
             {
                 self.myscroll.contentOffset.y = CGFloat(self.margeny)
             }
     }
-    
+    func RFC() {
+        //Nombre
+        var letters = Grnombre.characters.map { String($0) }
+        //Apellido Paterno
+        let longitud2 = Grapep.characters.count
+        var letters2 = Grapep.characters.map { String($0) }
+        //Apellido Materno
+        var letters3 = Grapem.characters.map { String($0) }
+        //Primera letra del apellido paterno
+        var Rfc = ""
+        Rfc = Rfc + letters2[0]
+        //Primera vocal del apellido paterno
+        var num = 1
+        repeat {
+            extvocal(valor: String(letters2[num]))
+            if banderav == true {
+                num = num+1
+            }else {
+                break
+            }
+        }while num < longitud2
+        Rfc = Rfc + letters2[num]
+        //Primera letra del apellido materno
+        Rfc = Rfc + letters3[0]
+        //Primera letra del nombre
+        Rfc = Rfc + letters[0]
+        //Obtencion de dias y fecha y año de nacimiento
+        let longitud4 = Grfecha.characters.count
+        var letters4 = Grfecha.characters.map { String($0) }
+        num = 0
+        var cont = 0
+        var dia = ""
+        var mes = ""
+        var anio = ""
+        repeat{
+            if letters4[num] == "/" {
+                num = num+1
+                cont = cont+1
+            }else {
+                if cont == 0 {
+                    dia = dia+letters4[num]
+                    num = num+1
+                }else {
+                    if cont == 1 {
+                        mes = mes+letters4[num]
+                        num = num+1
+                    }else {
+                        if cont == 2 {
+                            anio = anio+letters4[num]
+                            num = num+1
+                        }
+                    }
+                }
+            }
+        }while num < longitud4
+        var letters5 = anio.characters.map { String($0) }
+        let year = letters5[2] + letters5[3]
+        Rfc = Rfc+year+mes+dia
+        
+        Grfc.text = Rfc
+    }
+    func extvocal(valor:String){
+        var arrayvocal = ["a","e","i","o","u","A","E","I","O","U"]
+        var num = 0
+        repeat {
+            if valor == arrayvocal[num] {
+               banderav = false
+               break
+            }else {
+                num = num+1
+            }
+        }while num < arrayvocal.count
+    }
     @objc func CargarImagen() {
         //identificacion frente
         let identf : Data = Data(base64Encoded: bidentificacionf, options: .ignoreUnknownCharacters)!
@@ -850,7 +987,7 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
             //Documentos
             sol.bidentificacionf = bidentificacionf
             sol.bidentificaciont = bidentificaciont
-           
+            
             sol.bfirma = bfirma
             
             sol.deslizar = 1
@@ -954,9 +1091,11 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
             
             //Documentos
             sol.bidentificacionf = bidentificacionf
+            sol.tidentificacionf = tidentificacionf
             sol.bidentificaciont = bidentificaciont
-           
+            sol.tidentificaciont = tidentificaciont
             sol.bfirma = bfirma
+            sol.tfirma = tfirma
             
             sol.deslizar = 1
             self.navigationController?.pushViewController(sol, animated: false)
@@ -1071,27 +1210,9 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
             return newLength <= 20
         }
         
-        if textField == self.Grfc {
-            //solo acepta letras y numeros
-            let invalidChars = NSCharacterSet.alphanumerics.inverted
-            let rango = string.rangeOfCharacter(from: invalidChars)
-            if rango != nil {
-                
-                return false
-            } else {
-                //solo tiene un rango de 13 caracteres
-                guard let text = Grfc.text else { return true }
-                let newLength = text.characters.count + string.characters.count - range.length
-                return newLength <= 13
-            }
-        }
+      
         
-        if textField == self.Gnumero {
-          //solo tiene un rango de 3 caracteres
-          guard let text = Gnumero.text else { return true }
-          let newLength = text.characters.count + string.characters.count - range.length
-          return newLength <= 3
-        }
+   
         //******************************************Domicilio*******************************
         if textField == self.Dcalle {
             //solo acepta letras y numeros
@@ -1233,7 +1354,7 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
             //solo tiene un rango de 7 caracteres
             guard let text = Dingreso.text else { return true }
             let newLength = text.characters.count + string.characters.count - range.length
-            return newLength <= 7
+            return newLength <= 6
         }
         
         if textField == self.Dcasado {
@@ -1254,7 +1375,7 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
            //solo tiene un rango de 7 caracteres
            guard let text = Dotros.text else { return true }
            let newLength = text.characters.count + string.characters.count - range.length
-           return newLength <= 7
+           return newLength <= 6
         }
         
         if textField == self.Dcalle2 {
@@ -1649,10 +1770,15 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
                 sol.Rridnacionalidad3 = Rridnacionalidad3
                 sol.R3rtelefono = R3telefono.text!
                 
+              
                 //Documentos
                 sol.bidentificacionf = bidentificacionf
+                sol.tidentificacionf = tidentificacionf
                 sol.bidentificaciont = bidentificaciont
+                sol.tidentificaciont = tidentificaciont
                 sol.bfirma = bfirma
+                sol.tfirma = tfirma
+                
                 sol.marco = Imagen
                 
                 sol.deslizar = 1
@@ -1758,8 +1884,12 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
                 
                 //Documentos
                 sol.bidentificacionf = bidentificacionf
+                sol.tidentificacionf = tidentificacionf
                 sol.bidentificaciont = bidentificaciont
+                sol.tidentificaciont = tidentificaciont
                 sol.bfirma = bfirma
+                sol.tfirma = tfirma
+                
                 sol.marco = Imagen
                 
                 sol.deslizar = 1
@@ -1865,8 +1995,12 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
                 
                 //Documentos
                 sol.bidentificacionf = bidentificacionf
+                sol.tidentificacionf = tidentificacionf
                 sol.bidentificaciont = bidentificaciont
+                sol.tidentificaciont = tidentificaciont
                 sol.bfirma = bfirma
+                sol.tfirma = tfirma
+                
                 sol.marco = Imagen
                 
                 sol.deslizar = 1
@@ -1973,8 +2107,12 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
                 
                 //Documentos
                 sol.bidentificacionf = bidentificacionf
+                sol.tidentificacionf = tidentificacionf
                 sol.bidentificaciont = bidentificaciont
+                sol.tidentificaciont = tidentificaciont
                 sol.bfirma = bfirma
+                sol.tfirma = tfirma
+                
                 sol.marco = Imagen
 
                 
@@ -2079,8 +2217,12 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
                 
                 //Documentos
                 sol.bidentificacionf = bidentificacionf
+                sol.tidentificacionf = tidentificacionf
                 sol.bidentificaciont = bidentificaciont
+                sol.tidentificaciont = tidentificaciont
                 sol.bfirma = bfirma
+                sol.tfirma = tfirma
+                
                 sol.marco = Imagen
                 
                 sol.deslizar = 1
@@ -2184,8 +2326,12 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
                 
                 //Documentos
                 sol.bidentificacionf = bidentificacionf
+                sol.tidentificacionf = tidentificacionf
                 sol.bidentificaciont = bidentificaciont
+                sol.tidentificaciont = tidentificaciont
                 sol.bfirma = bfirma
+                sol.tfirma = tfirma
+                
                 sol.marco = Imagen
                 
                 
@@ -2383,6 +2529,7 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
         dateFormatter.dateFormat = "dd/MM/yyyy"
         let strDate = dateFormatter.string(from: Gpfecha.date)
         self.Gfecha.text = strDate
+        
     }
   
     @IBAction func Fecha(_ sender: UIButton) {
@@ -2399,7 +2546,11 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
     @IBAction func EstadoCivil(_ sender: UIButton) {
         Gpestcivil.alpha = 1
     }
-     //Domilicio
+    
+    @IBAction func Numerodedependientes(_ sender: UIButton) {
+        Gpnumero.alpha = 1
+    }
+    //Domilicio
     @IBAction func Estado(_ sender: UIButton) {
         Dpestado.alpha = 1
     }
@@ -2433,13 +2584,15 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
         if Psi.isOn {
             persona = "SI"
             Pno.isOn = false
+            Pfuncion.alpha = 1
         }
     }
     
     @IBAction func pno(_ sender: UISwitch) {
         if Pno.isOn {
             persona = "NO"
-          Psi.isOn = false
+            Psi.isOn = false
+            Pfuncion.alpha = 0
         }
     }
     
@@ -2447,6 +2600,8 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
         if Psi2.isOn {
             parentesco = "SI"
             Pno2.isOn = false
+            Pfuncion2.alpha = 1
+            Pparentesco.alpha = 1
         }
     }
     
@@ -2454,6 +2609,8 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
         if Pno2.isOn {
             parentesco = "NO"
             Psi2.isOn = false
+            Pfuncion2.alpha = 0
+            Pparentesco.alpha = 0
         }
     }
    
@@ -2484,6 +2641,9 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
         }
         if pickerView == self.Gpestcivil {
             count = Estadocivil.count
+        }
+        if pickerView == self.Gpnumero {
+            count = dependientes.count
         }
         if pickerView == self.Dpestado {
             count = Estado.count
@@ -2528,6 +2688,9 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
         }
         if pickerView == self.Gpestcivil {
             valor = Estadocivil[row]["Desc"]!
+        }
+        if pickerView == self.Gpnumero {
+            valor = dependientes[row]
         }
         if pickerView == self.Dpestado {
             valor = Estado[row]["Desc"]!
@@ -2577,6 +2740,10 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
             self.Gestcivil.text = self.Estadocivil[row]["Desc"]!
             Gridestcivil =  self.Estadocivil[row]["Id"]!
             Gpestcivil.alpha = 0
+        }
+        if pickerView == self.Gpnumero {
+            self.Gnumero.text = self.dependientes[row]
+            Gpnumero.alpha = 0
         }
         if pickerView == self.Dpestado {
             self.Destado.text = self.Estado[row]["Desc"]!

@@ -100,10 +100,11 @@ class Firma: UIViewController {
     @objc var R3rtelefono = ""
     //Documentos
     @objc var bidentificacionf = ""
+    var tidentificacionf = ""
     @objc var bidentificaciont = ""
-    @objc var bcontrato = ""
-    @objc var bcontratop = ""
+    var tidentificaciont = ""
     @objc var bfirma = ""
+    var tfirma = ""
     
     @objc var margen = 0
     @objc var deslizar = 0
@@ -119,7 +120,7 @@ class Firma: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+      
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         swiped = false
@@ -180,7 +181,7 @@ class Firma: UIViewController {
             Ngen.sexo = sexo
             Ngen.Grnacionalidad = Grnacionalidad
             Ngen.Grfecha = Grfecha
-            Ngen.Grrfc = Grrfc
+            
             Ngen.Grestcivil = Grestcivil
             Ngen.Grnumero = Grnumero
             
@@ -249,14 +250,14 @@ class Firma: UIViewController {
             Ngen.R3rtelefono = R3rtelefono
             //Documentos
             Ngen.bidentificacionf = bidentificacionf
+            Ngen.tidentificacionf = tidentificacionf
             Ngen.bidentificaciont = bidentificaciont
-           
+            Ngen.tidentificaciont = tidentificaciont
             Ngen.bfirma = bfirma
-            
-            
+            Ngen.tfirma = tfirma
             Ngen.deslizar = deslizar
             Ngen.margeny = margen
-            self.navigationController?.pushViewController(Ngen, animated: true)
+            self.navigationController?.pushViewController(Ngen, animated: false)
         }
     }
     
@@ -265,7 +266,15 @@ class Firma: UIViewController {
         let imageData: NSData = UIImageJPEGRepresentation(Imagen, 0.4)! as NSData
         bfirma = imageData.base64EncodedString(options: .lineLength64Characters)
         print("Imgen codificada en base 64:",bfirma)
-        
+        let ticks = String(Date().ticks)
+        tfirma = "TEC_"+ticks+".jpg"
+        print(tfirma)
     }
 
+}
+//codigo para ticks
+extension Date {
+    var ticks: UInt64 {
+        return UInt64((self.timeIntervalSince1970 + 62_135_596_800) * 10_000_000)
+    }
 }

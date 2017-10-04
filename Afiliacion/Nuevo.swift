@@ -29,15 +29,15 @@ class Nuevo: BaseViewController {
     @objc var Grsnombre = ""
     @objc var Grapep = ""
     @objc var Grapem = ""
-    @objc var Grtipo = "Tipo de identificacion"
+    @objc var Grtipo = "Tipo de identificacion *"
     @objc var Gridtipo = ""
     @objc var Gridentificacion = ""
     @objc var sexo = ""
-    @objc var Grnacionalidad = "Nacionalidad"
+    @objc var Grnacionalidad = "Nacionalidad*"
     @objc var Gridnacionalidad = ""
-    @objc var Grfecha = "Fecha de nacimiento"
+    @objc var Grfecha = "Fecha de nacimiento*"
     @objc var Grrfc = ""
-    @objc var Grestcivil = "Estado civil"
+    @objc var Grestcivil = "Estado civil*"
     @objc var Gridestcivil = ""
     @objc var Grnumero = ""
     
@@ -46,26 +46,26 @@ class Nuevo: BaseViewController {
     @objc var Drnume = ""
     @objc var Drnumi = ""
     @objc var Drcolonia = ""
-    @objc var Drestado = "Estado"
+    @objc var Drestado = "Estado*"
     @objc var Dridestado = ""
-    @objc var Drdel = "Delegación/Municipio"
+    @objc var Drdel = "Delegación/Municipio*"
     @objc var Driddel = ""
     @objc var Drcp = ""
     @objc var Drtiempo = ""
-    @objc var Drestatus = "Estatus de residencia"
+    @objc var Drestatus = "Estatus de residencia*"
     @objc var Dridestatus = ""
     @objc var Drmonto = ""
     @objc var Drcorreo = ""
     @objc var Drtelefono = ""
     @objc var Drmovil = ""
-    @objc var Drcompania = "Compañia movil"
+    @objc var Drcompania = "Compañia movil*"
     @objc var Dridcompania = ""
     
     //Datos economicos
     @objc var Drnombre = ""
     @objc var Drgiro = ""
     @objc var Drantiguedad = ""
-    @objc var Drtipo = "Tipo de contrato"
+    @objc var Drtipo = "Tipo de contrato*"
     @objc var Dridtipo = ""
     @objc var Drpuesto = ""
     @objc var Dringreso = ""
@@ -76,9 +76,9 @@ class Nuevo: BaseViewController {
     @objc var Drnume2 = ""
     @objc var Drnumi2 = ""
     @objc var Drcolonia2 = ""
-    @objc var Drestado2 = "Estado"
+    @objc var Drestado2 = "Estado*"
     @objc var Dridestado2 = ""
-    @objc var Drdel2 = "Delegación/Municipio"
+    @objc var Drdel2 = "Delegación/Municipio*"
     @objc var Driddel2 = ""
     @objc var Drcp2 = ""
     @objc var Drtelefono2 = ""
@@ -95,14 +95,14 @@ class Nuevo: BaseViewController {
     @objc var Rrnombre = ""
     @objc var Rrapep = ""
     @objc var Rrapem = ""
-    @objc var Rrnacionalidad = "Nacionalidad"
+    @objc var Rrnacionalidad = "Nacionalidad*"
     @objc var Rridnacionalidad = ""
     @objc var Rrtelefono = ""
     
     @objc var R2rnombre = ""
     @objc var R2rapep = ""
     @objc var R2rapem = ""
-    @objc var Rr2nacionalidad = "Nacionalidad"
+    @objc var Rr2nacionalidad = "Nacionalidad*"
     @objc var Rridnacionalidad2 = ""
     @objc var R2rtelefono = ""
     
@@ -114,9 +114,11 @@ class Nuevo: BaseViewController {
     @objc var R3rtelefono = ""
     //Documentos
     @objc var bidentificacionf = ""
+    var tidentificacionf = "Identificacion parte frontal"
     @objc var bidentificaciont = ""
-    
+    var tidentificaciont = "Identificacion parte posterior"
     @objc var bfirma = ""
+    var tfirma = "Firma"
     
     //Datos de promotor
     @objc var usuario = ""
@@ -224,7 +226,7 @@ class Nuevo: BaseViewController {
             Ngen.Grnacionalidad = Grnacionalidad
             Ngen.Gridnacionalidad = Gridnacionalidad
             Ngen.Grfecha = Grfecha
-            Ngen.Grrfc = Grrfc
+        
             Ngen.Grestcivil = Grestcivil
             Ngen.Gridestcivil = Gridestcivil
             Ngen.Grnumero = Grnumero
@@ -304,9 +306,11 @@ class Nuevo: BaseViewController {
             Ngen.R3rtelefono = R3rtelefono
             //Documentos
             Ngen.bidentificacionf = bidentificacionf
+            Ngen.tidentificacionf = tidentificacionf
             Ngen.bidentificaciont = bidentificaciont
-           
+            Ngen.tidentificaciont = tidentificaciont
             Ngen.bfirma = bfirma
+            Ngen.tfirma = tfirma
                         
             Ngen.deslizar = deslizar
             Ngen.margeny = margen
@@ -316,6 +320,14 @@ class Nuevo: BaseViewController {
     }
     
     @IBAction func Guardar(_ sender: UIBarButtonItem) {
+        //validacion de monto de vivienda hasta 100,000,000
+        let monto = Int(Drmonto)
+        if monto! < 100000001 {
+            print("monto valido")
+        }else {
+            print("Monto no valido")
+        }
+        
         //validacion de Correo electronico
         let bandera:Bool = validateEmail(enteredEmail: Drcorreo)
         if  bandera == true {

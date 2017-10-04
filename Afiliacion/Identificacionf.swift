@@ -100,6 +100,7 @@ class Identificacionf: BaseViewController {
     @objc var R3rtelefono = ""
     //Documentos
     @objc var bidentificacionf = ""
+    
     @objc var bidentificaciont = ""
     @objc var bcontrato = ""
     @objc var bcontratop = ""
