@@ -334,6 +334,7 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
         GBtnacionalidad.layer.borderWidth = 1
         GBtfecha.layer.cornerRadius = 15
         GBtfecha.layer.borderWidth = 1
+        Gpfecha.backgroundColor = UIColor(red:0.11, green:0.74, blue:0.92, alpha:1.0)
         Grfc.layer.cornerRadius = 15
         Grfc.layer.borderWidth = 1
         GBtestcivil.layer.cornerRadius = 15

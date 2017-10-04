@@ -2945,17 +2945,6 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <datePicker alpha="0.0" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="9qv-uJ-5fd">
-                                                <rect key="frame" x="8" y="281" width="360" height="100"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                                <date key="date" timeIntervalSinceReferenceDate="527786555.26951802">
-                                                    <!--2017-09-22 3:22:35 p.m. +0000-->
-                                                </date>
-                                                <connections>
-                                                    <action selector="datePickerAction:" destination="LUM-xw-Fjo" eventType="valueChanged" id="v2P-Po-aYy"/>
-                                                </connections>
-                                            </datePicker>
                                             <pickerView alpha="0.0" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3ob-vM-USC">
                                                 <rect key="frame" x="8" y="80" width="360" height="100"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
@@ -3158,6 +3147,18 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <datePicker alpha="0.0" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="9qv-uJ-5fd">
+                                                <rect key="frame" x="8" y="281" width="360" height="100"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                                <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                                <date key="date" timeIntervalSinceReferenceDate="527786555.26951802">
+                                                    <!--2017-09-22 3:22:35 p.m. +0000-->
+                                                </date>
+                                                <connections>
+                                                    <action selector="datePickerAction:" destination="LUM-xw-Fjo" eventType="valueChanged" id="v2P-Po-aYy"/>
+                                                </connections>
+                                            </datePicker>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
