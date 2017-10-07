@@ -281,7 +281,10 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
     @objc var Estatus = [Dictionary<String,String>]()
     @objc var contrato = [Dictionary<String,String>]()
     var dependientes = ["1","2","4","5","6","7","8","9","10"]
-    
+    //Arreglo de anexos
+    var Anexo1 = [Dictionary<String,String>]()
+    var Anexo2 = [Dictionary<String,String>]()
+    var Anexo3 = [Dictionary<String,String>]()
     //catalogo activo
     @objc var Catalogoactivo = ""
     @objc var visibilidad = false
@@ -791,17 +794,67 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
  
         //funcion para cargar imagen en imageview
         CargarImagen()
+         //Tablas de homoclave
+        Anexos()
         //funcion para calcular RFC
         if Gnombre.text != "" && Gapep.text != "" && Gapem.text != "" && Gfecha.text != "Fecha de nacimiento*"{
              RFC()
         }
+       
         //recuperar valor de margen
         DispatchQueue.main.async
             {
                 self.myscroll.contentOffset.y = CGFloat(self.margeny)
             }
     }
+    func Anexos() {
+        //tabla Anexo1
+        Anexo1.append(["Carac":"0","valor":"00"])
+        Anexo1.append(["Carac":"1","valor":"01"])
+        Anexo1.append(["Carac":"2","valor":"02"])
+        Anexo1.append(["Carac":"3","valor":"03"])
+        Anexo1.append(["Carac":"4","valor":"04"])
+        Anexo1.append(["Carac":"5","valor":"05"])
+        Anexo1.append(["Carac":"6","valor":"06"])
+        Anexo1.append(["Carac":"7","valor":"07"])
+        Anexo1.append(["Carac":"8","valor":"08"])
+        Anexo1.append(["Carac":"9","valor":"09"])
+        Anexo1.append(["Carac":"&","valor":"10"])
+        Anexo1.append(["Carac":"A","valor":"11"])
+        Anexo1.append(["Carac":"B","valor":"12"])
+        Anexo1.append(["Carac":"C","valor":"13"])
+        Anexo1.append(["Carac":"D","valor":"14"])
+        Anexo1.append(["Carac":"E","valor":"15"])
+        Anexo1.append(["Carac":"F","valor":"16"])
+        Anexo1.append(["Carac":"G","valor":"17"])
+        Anexo1.append(["Carac":"H","valor":"18"])
+        Anexo1.append(["Carac":"I","valor":"19"])
+        Anexo1.append(["Carac":"J","valor":"20"])
+        Anexo1.append(["Carac":"K","valor":"21"])
+        Anexo1.append(["Carac":"L","valor":"22"])
+        Anexo1.append(["Carac":"M","valor":"23"])
+        Anexo1.append(["Carac":"N","valor":"24"])
+        Anexo1.append(["Carac":"O","valor":"25"])
+        Anexo1.append(["Carac":"P","valor":"26"])
+        Anexo1.append(["Carac":"Q","valor":"27"])
+        Anexo1.append(["Carac":"R","valor":"28"])
+        Anexo1.append(["Carac":"S","valor":"29"])
+        Anexo1.append(["Carac":"T","valor":"30"])
+        Anexo1.append(["Carac":"U","valor":"31"])
+        Anexo1.append(["Carac":"V","valor":"32"])
+        Anexo1.append(["Carac":"W","valor":"33"])
+        Anexo1.append(["Carac":"X","valor":"34"])
+        Anexo1.append(["Carac":"Y","valor":"35"])
+        Anexo1.append(["Carac":"Z","valor":"36"])
+        Anexo1.append(["Carac":"Ñ","valor":"37"])
+        
+    }
     func RFC() {
+        //Convertir a Mayusculas
+        Grnombre = Grnombre.uppercased()
+        print("Nombre",Grnombre)
+        Grapep = Grapep.uppercased()
+        Grapem = Grapem.uppercased()
         //Nombre
         var letters = Grnombre.characters.map { String($0) }
         //Apellido Paterno
@@ -859,7 +912,8 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
         var letters5 = anio.characters.map { String($0) }
         let year = letters5[2] + letters5[3]
         Rfc = Rfc+year+mes+dia
-        
+        let nombrec = Grnombre
+        homoclave(nombreC: nombrec)
         Grfc.text = Rfc
     }
     func extvocal(valor:String){
@@ -873,6 +927,9 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
                 num = num+1
             }
         }while num < arrayvocal.count
+    }
+    func homoclave(nombreC:String) {
+        
     }
     @objc func CargarImagen() {
         //identificacion frente

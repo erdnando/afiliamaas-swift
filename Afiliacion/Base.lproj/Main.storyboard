@@ -545,7 +545,19 @@
                     <view key="view" contentMode="scaleToFill" id="LYd-BS-tqx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JYr-vG-kZ8">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="JYr-vG-kZ8" firstAttribute="top" secondItem="UQQ-4h-nEU" secondAttribute="bottom" id="Cfa-2T-P7d"/>
+                            <constraint firstItem="JYr-vG-kZ8" firstAttribute="leading" secondItem="LYd-BS-tqx" secondAttribute="leading" id="S2a-Yf-RDy"/>
+                            <constraint firstAttribute="trailing" secondItem="JYr-vG-kZ8" secondAttribute="trailing" id="Xxx-15-kxz"/>
+                            <constraint firstItem="1x3-xH-G3Q" firstAttribute="top" secondItem="JYr-vG-kZ8" secondAttribute="bottom" id="fkt-p6-eoM"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="UEP-CI-RiD">
                         <barButtonItem key="rightBarButtonItem" systemItem="camera" id="a76-ZS-jdZ">
@@ -666,7 +678,19 @@
                     <view key="view" contentMode="scaleToFill" id="TwP-t4-qSf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v9i-cN-gm9">
+                                <rect key="frame" x="0.0" y="64" width="375" height="559"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="HjA-Qz-2LX" firstAttribute="top" secondItem="v9i-cN-gm9" secondAttribute="bottom" id="BAE-VP-ovA"/>
+                            <constraint firstItem="v9i-cN-gm9" firstAttribute="leading" secondItem="TwP-t4-qSf" secondAttribute="leading" id="aSq-36-Szk"/>
+                            <constraint firstAttribute="trailing" secondItem="v9i-cN-gm9" secondAttribute="trailing" id="bJK-Wa-OmJ"/>
+                            <constraint firstItem="v9i-cN-gm9" firstAttribute="top" secondItem="Bsd-M8-Kjy" secondAttribute="bottom" id="tk1-Uv-R6M"/>
+                        </constraints>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="Bm4-O5-bQP">
@@ -677,10 +701,13 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="previewView" destination="v9i-cN-gm9" id="j7M-sL-zpU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nh6-WN-59K" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7598" y="2154"/>
+            <point key="canvasLocation" x="7546" y="1372"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="GSU-Gu-eM3">
@@ -736,7 +763,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="poP-Dz-pYl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7598" y="1389"/>
+            <point key="canvasLocation" x="7577" y="2104"/>
         </scene>
         <!--Solicitudes-->
         <scene sceneID="fIB-Cb-hmM">

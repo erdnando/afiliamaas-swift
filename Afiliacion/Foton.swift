@@ -7,116 +7,42 @@
 //
 
 import UIKit
-//import AVFoundation
+import AVFoundation
 class Foton: BaseViewController {
-    /*
-    @objc let captureSession = AVCaptureSession()
-    @objc var previewLayer:CALayer!
-    @objc var capturedevice:AVCaptureDevice!
-    @objc var takePhoto = false
-    */
+    
+    @IBOutlet weak var previewView: UIView!
+    
+    var captureSession: AVCaptureSession?
+    var videoPreviewLayer: AVCaptureVideoPreviewLayer?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         addSlideMenuButton()
-    }
-    /*
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        prepareCamera()
-    }
-    
-    @objc func prepareCamera(){
-        captureSession.sessionPreset = AVCaptureSession.Preset.photo
-        if let availabledevices = AVCaptureDevice.DiscoverySession(deviceTypes: [AVCaptureDevice.DeviceType.builtInWideAngleCamera], mediaType: AVMediaType.video, position: .back).devices {
-            capturedevice = availabledevices.first
-            beginnSession()
-        }
-    }
-    @objc func beginnSession () {
+        //Configuracion de la camara trasera
         do {
-            let captureDeviceInput = try AVCaptureDeviceInput(device: capturedevice)
-            captureSession.addInput(captureDeviceInput)
-        }catch {
-            print(error.localizedDescription)
+            let captureDevice = AVCaptureDevice.default(for: AVMediaType.video)
+            let input = try AVCaptureDeviceInput(device: captureDevice!)
+            captureSession = AVCaptureSession()
+            captureSession?.addInput(input)
+            //aa
+            videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession!)
+            videoPreviewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
+            videoPreviewLayer?.frame = view.layer.bounds
+            previewView.layer.addSublayer(videoPreviewLayer!)
+            //Inciar la seccion en la camara
+            captureSession?.startRunning()
+        } catch {
+            print(error)
         }
         
-        if let previewLayer = AVCaptureVideoPreviewLayer(session: captureSession) {
-            self.previewLayer = previewLayer
-            self.view.layer.addSublayer(self.previewLayer)
-            self.previewLayer.frame = self.view.layer.frame
-            captureSession.startRunning()
-            let dataOutput = AVCaptureVideoDataOutput()
-            dataOutput.videoSettings = [((kCVPixelBufferPixelFormatTypeKey as NSString) as String):NSNumber(value: kCVPixelFormatType_32BGRA )]
-            dataOutput.alwaysDiscardsLateVideoFrames = true
-            
-            if captureSession.canAddOutput(dataOutput) {
-                captureSession.addOutput(dataOutput)
-            }
-            
-            captureSession.commitConfiguration()
-            
-            let queue = DispatchQueue(label: "com.brianadvent.CaptureQueue")
-            dataOutput.setSampleBufferDelegate(self, queue: queue)
-        }
     }
     
-    */
     @IBAction func takePhoto(_ sender: Any) {
-        //takePhoto = true
-    }
-    /*
-    
-    @objc func captureOutput(captureOutput: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-        if takePhoto {
-            takePhoto = false
-            if let image = self.getImageFromSampleBuffer(buffer: sampleBuffer) {
-                
-                let photoVc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Foto") as! Foto
-                photoVc.takenPhoto = image
-                photoVc.bandera = false
-                DispatchQueue.main.async {
-                    self.present(photoVc, animated: true, completion:{
-                        self.stopCaptureSession()
-                    })
-                }
-            }
-        }
-    }
-    @objc func getImageFromSampleBuffer(buffer:CMSampleBuffer) -> UIImage?{
-        if let pixelbuffer = CMSampleBufferGetImageBuffer(buffer) {
-            let ciImage = CIImage(cvPixelBuffer: pixelbuffer)
-            let context = CIContext()
-            let imageRect = CGRect(x: 0, y: 0, width: CVPixelBufferGetWidth(pixelbuffer), height: CVPixelBufferGetHeight(pixelbuffer))
-            if let image = context.createCGImage(ciImage, from: imageRect) {
-                return UIImage(cgImage: image, scale: UIScreen.main.scale, orientation: .right)
-            }
-        }
-        return nil
+        print("Hola mundo")
     }
     
-    @objc func stopCaptureSession(){
-        self.captureSession.stopRunning()
-        if let inputs = captureSession.inputs as? [AVCaptureDeviceInput] {
-            for input in inputs {
-                self.captureSession.removeInput(input)
-            }
-        }
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    */
+    
+    
 }

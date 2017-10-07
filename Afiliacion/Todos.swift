@@ -124,7 +124,7 @@ class Todos: UIViewController,XMLParserDelegate,UITableViewDataSource,UITableVie
         print("***************XML BuzonA*******************")
         repeat {
            // print(num)
-            //print(buzonA[num].solicitud_xml!)
+           //print(buzonA[num].solicitud_xml!)
             beginParsing(xml: buzonA[num].solicitud_xml!)
             num = num+1
         }while num < buzonA.count
@@ -145,25 +145,27 @@ class Todos: UIViewController,XMLParserDelegate,UITableViewDataSource,UITableVie
     }
     
     @objc func ExtDatos(){
+        print("******************Extrayendo datos********************")
         var num = 0
         
         repeat{
+            //print(Vnombre[num],"Indice",num)
             Nombre.append(Vnombre[num])
-            num = num+3
+            num = num+7
         }while num < Vnombre.count-1
         
         num = 0
         repeat{
             //print("id:",num,"Valor:",vapep[num])
             Apep.append(vapep[num])
-            num = num+3
+            num = num+7
         }while num < vapep.count-1
         
         num = 0
         repeat{
            // print("id:",num,"Valor:",vapem[num])
             Apem.append(vapem[num])
-            num = num+3
+            num = num+7
         }while num < vapem.count-1
         //verDatos()
     }
@@ -181,7 +183,7 @@ class Todos: UIViewController,XMLParserDelegate,UITableViewDataSource,UITableVie
         
     }
     
-    @objc func beginParsing(xml:String)
+    func beginParsing(xml:String)
     {
         let dato = xml.data(using: .utf8)
         parser = XMLParser(data: dato!)
@@ -198,15 +200,14 @@ class Todos: UIViewController,XMLParserDelegate,UITableViewDataSource,UITableVie
     {
     
         if element == "Pmrnombre" {
-            
-            Vnombre.append(string)
+           Vnombre.append(string)
         }
+        
         if element == "Apaterno" {
-            
-            vapep.append(string)
+           vapep.append(string)
         }
         if element == "Amaterno" {
-            vapem.append(string)
+           vapem.append(string)
         }
         
     }
@@ -235,7 +236,7 @@ class Todos: UIViewController,XMLParserDelegate,UITableViewDataSource,UITableVie
             formatter.dateFormat =  "dd/MM/yyyy"
             let fecha = formatter.string(from: buzonB[indexPath.row].fecha_alta_b! as Date)
             cell.IdSolicitud.text = String(buzonB[indexPath.row].id_solicitud_b)
-            cell.Nombre.text = Nombre[indexPath.row] + " " + Apep[indexPath.row] + " " + Apem[indexPath.row]
+           cell.Nombre.text = Nombre[indexPath.row] + " " + Apep[indexPath.row] + " " + Apem[indexPath.row]
             cell.Fecha.text =  fecha
         }
            

@@ -28,19 +28,19 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
     @IBOutlet weak var Gapem: UITextField!
     @IBOutlet weak var Gtipo: UILabel!
     @IBOutlet weak var Gnumero: UITextField!
-    @objc var Sexo = ""
     @IBOutlet weak var Hombre: UISwitch!
     @IBOutlet weak var Mujer: UISwitch!
-    @objc var dia = ""
-    @objc var mes = ""
-    @objc var anio = ""
+    @objc var dia:[String] = []
+    @objc var mes:[String] = []
+    @objc var anio:[String] = []
     
     @IBOutlet weak var Gnan: UITextField!
     @IBOutlet weak var Fechanac: UITextField!
     @IBOutlet weak var Rfc: UITextField!
-    
+    var rfc:[String] = []
     @IBOutlet weak var Gestado: UITextField!
     @IBOutlet weak var Numdependientes: UITextField!
+    var dependientes:[String] = []
     //Domicilio
     
     @IBOutlet weak var Domicilio: UILabel!
@@ -55,6 +55,7 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
     @IBOutlet weak var Gestatusresidencia: UITextField!
     @IBOutlet weak var Gmontovivienda: UITextField!
     @IBOutlet weak var Dcorreo: UITextField!
+    var correo:[String]=[]
     @IBOutlet weak var Dtelefono: UITextField!
     @IBOutlet weak var Dcelular: UITextField!
     @IBOutlet weak var Dcompania: UITextField!
@@ -63,14 +64,22 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
     
     @IBOutlet weak var Datos: UILabel!
     @IBOutlet weak var DEmpresa: UITextField!
+    var Empresa:[String] = []
     @IBOutlet weak var DGiro: UITextField!
+    var Giro:[String] = []
     @IBOutlet weak var Dantiguedad: UITextField!
+    var Antiguedad:[String] = []
     @IBOutlet weak var Dtipo: UITextField!
     @IBOutlet weak var Dpuesto: UITextField!
+    var puesto:[String] = []
     @IBOutlet weak var Dingreso: UITextField!
+    var ingreso:[String] = []
     @IBOutlet weak var Dcasados: UITextField!
+    var casado:[String] = []
     @IBOutlet weak var Dfuenteingresos: UITextField!
+    var fuente:[String] = []
     @IBOutlet weak var Dotrosingresos: UITextField!
+    var otros:[String] = []
     @IBOutlet weak var Dcalle: UITextField!
     @IBOutlet weak var Dnumext: UITextField!
     @IBOutlet weak var Dnumint: UITextField!
@@ -151,7 +160,8 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
     var Telcelular:[String] = []
     var Telefono:[String] = []
     var Nacionalidad:[String] = []
-    
+    var identificacion:[String] = []
+    var sexo:[String] = []
     //Variables para parciar
     var parser = XMLParser()
     var element:String = ""
@@ -652,11 +662,10 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
         repeat {
             // print(num)
             if buzonA[num].id_solicitud == Int32(Solicitud){
-                print(buzonA[num].solicitud_xml!)
-                //beginParsing(xml: buzonA[num].solicitud_xml!)
+                //print(buzonA[num].solicitud_xml!)
+                beginParsing(xml: buzonA[num].solicitud_xml!)
         
                 self.Imageidentif = buzonA[num].doc_if!
-                print("*****BASE 64*****",buzonA[num].doc_if!)
                 self.Imageidentia = buzonA[num].doc_ia!
                 self.Imagefirm = buzonA[num].fi!
                 self.Imagecont = buzonA[num].doc_c1!
@@ -678,8 +687,8 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
         print("***************XML Buzon Activo B*******************")
         repeat {
             if buzonB[num].id_solicitud_b == Int32(Solicitud){
-                print(buzonA[num].solicitud_xml!)
-              //  beginParsing(xml: buzonB[num].solicitud_xml_b!)
+               // print(buzonA[num].solicitud_xml!)
+              beginParsing(xml: buzonB[num].solicitud_xml_b!)
             
                 self.Imageidentif = buzonB[num].doc_if!
                 self.Imageidentia = buzonB[num].doc_ia!
@@ -702,32 +711,33 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
             //Nombre
             repeat {
                 if num == 0 {
-                    print("Nombre",Nombre[num],num)
-                  //  Gnombre.text = Nombre[num]
-                    num = num + 1
+                    //print("Nombre",Nombre[num],num)
+                    Gnombre.text = Nombre[num]
+                  num = num + 2
                 }else {
-                    if num == 1 {
+                    if num == 2 {
                         //print("Nombre",Nombre[num],num)
-                    //    Rnombre.text = Nombre[num]
-                        num = num + 1
+                        Rnombre.text = Nombre[num]
+                        num = num + 2
                     }else {
-                        if num == 2 {
-                            //print("Nombre",Nombre[num],num)
-                      //      R2nombre.text = Nombre[num]
-                            num = num + 1
+                        if num == 4 {
+                           // print("Nombre",Nombre[num],num)
+                            R2nombre.text = Nombre[num]
+                            num = num + 2
                         }else {
-                            if num == 3{
+                            if num == 6{
                                 //print("Nombre",Nombre[num],num)
-                        //        R3nombre.text = Nombre[num]
-                                num = num + 1
+                                R3nombre.text = Nombre[num]
+                                num = num + 2
                             }
                         }
                     }
-                    
+ 
                 }
+           
             }while num < Nombre.count
         }
-       /*
+       
         if Apep.count != 0 {
             //Apellido Paterno
             num = 0
@@ -735,22 +745,22 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
                 if num == 0 {
                     //print("Apellido Paterno:",Apep[num])
                     Gapep.text = Apep[num]
-                    num = num + 1
+                    num = num + 2
                 }else {
-                    if num == 1 {
+                    if num == 2 {
                         //print("Apellido Paterno:",Apep[num])
                         Rapep.text = Apep[num]
-                        num = num + 1
+                        num = num + 2
                     }else {
-                        if num == 2 {
+                        if num == 4 {
                             //print("Apellido Paterno:",Apep[num])
                             R2apep.text = Apep[num]
-                            num = num + 1
+                            num = num + 2
                         }else {
-                            if num == 3{
+                            if num == 6{
                                 //print("Apellido Paterno:",Apep[num])
                                 R3apep.text = Apep[num]
-                                num = num + 1
+                                num = num + 2
                             }
                         }
                     }
@@ -765,19 +775,19 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
                 if num == 0 {
                     //print("Apellido Materno:",Apem[num])
                     Gapem.text = Apem[num]
-                    num = num + 1
+                    num = num + 2
                 }else {
-                    if num == 1 {
+                    if num == 2 {
                         //print("Apellido Materno:",Apem[num])
                         Rapem.text = Apem[num]
-                        num = num + 1
+                        num = num + 2
                     }else {
-                        if num == 2 {
+                        if num == 4 {
                             //print("Apellido Materno:",Apem[num])
                             R2apem.text = Apem[num]
-                            num = num + 1
+                            num = num + 2
                         }else {
-                            if num == 3{
+                            if num == 6{
                                 //print("Apellido Materno:",Apem[num])
                                 R3apem.text = Apem[num]
                                 num = num + 1
@@ -788,20 +798,47 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
             }while num < Apem.count
 
         }
-        //Sexo
-        print(Sexo)
-        if Sexo == "MASCULINO" {
-            Hombre.isOn = true
-        }else {
-            Mujer.isOn = true
+        //identificacion
+        if identificacion.count != 0 {
+            num = 0
+            repeat{
+                if num == 0 {
+                    //print(identificacion[num])
+                    Gnumero.text = identificacion[num]
+                    num = num+2
+                }
+            }while num < identificacion.count
         }
+        //Sexo
+        //Sexo
+        if sexo.count != 0 {
+            num = 0
+            repeat {
+                if num == 0 {
+                    print("Sexo:",sexo[num],num)
+                    
+                    if sexo[num] == "MASCULINO" {
+                     Hombre.isOn = true
+                     }else {
+                     Mujer.isOn = true
+                     }
+                    
+                    num = num+2
+                }
+            }while num < sexo.count
+        }
+        
+    
+       
         //fecha
         var fecha = ""
-        let valor = Int(mes)
+        let valor = Int(mes[0])
         var meses:[String] = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"]
-        fecha = dia + " de " + meses[valor!-1] + " de " + anio
+        fecha = dia[0] + " de " + meses[valor!-1] + " de " + anio[0]
         Fechanac.text = fecha
-       
+        Rfc.text = rfc[0]
+        Numdependientes.text = dependientes[0]
+        
         //calle
         if calle.count != 0 {
             num = 0
@@ -809,10 +846,11 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
                 if num == 0{
                      //print("calle",calle[num])
                      Gcalle.text = calle[num]
-                     num = num+1
-                }else {
+                     num = num+2
+                }
+                if num == 2 {
                     Dcalle.text = calle[num]
-                    num = num+1
+                    num = num+2
                 }
             }while num < calle.count
         }
@@ -824,10 +862,11 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
                 if num == 0{
                     //print("Num Ext:", Numext[num])
                     Gnumext.text = Numext[num]
-                    num = num+1
-                }else {
+                    num = num+2
+                }
+                if num == 2 {
                     Dnumext.text = Numext[num]
-                    num = num+1
+                    num = num+2
                 }
             }while num < Numext.count
         }
@@ -836,11 +875,11 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
         if numint.count != 0 {
             num = 0
             repeat{
-                if num == 0{
+                if num == 0 {
                     //print("Num Int",numint[num])
                     Gnumint.text = numint[num]
                     num = num+1
-                }else {
+                }else{
                     Dnumint.text = numint[num]
                     num = num+1
                 }
@@ -853,49 +892,52 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
                 if num == 0{
                      //print("Colonia",colonia[num])
                      Gcolonia.text = colonia[num]
-                     num = num+1
-                }else {
+                     num = num+2
+                }
+                if num == 2 {
                     DColonia.text = colonia[num]
-                    num = num+1
+                    num = num+2
                 }
             }while num < colonia.count
         }
-        ///Aquie voy a realizar pruebas
+        
         //Nacionalidad
         if Nacionalidad.count != 0 {
             num = 0
             repeat {
                 if num == 0 {
                     Nacionalidad(registro: Nacionalidad[num], indice: num)
-                    num = num + 1
+                    num = num + 2
                 }else {
-                    if num == 1 {
+                    if num == 2 {
                          Nacionalidad(registro: Nacionalidad[num], indice: num)
-                        num = num + 1
+                        num = num + 2
                     }else {
-                        if num == 2 {
+                        if num == 4 {
                             Nacionalidad(registro: Nacionalidad[num], indice: num)
-                            num = num + 1
+                            num = num + 2
                         }else {
-                            if num == 3{
+                            if num == 6 {
                                Nacionalidad(registro: Nacionalidad[num], indice: num)
-                               num = num + 1
+                               num = num + 2
                             }
                         }
                     }
                 }
             }while num < Nacionalidad.count
         }
+        
         //Estado
         if Estado.count != 0 {
             num = 0
             repeat{
                 if num == 0{
                     Estado(registro: Estado[num], indice: num)
-                    num = num+1
-                }else {
+                    num = num+2
+                }
+                if num == 2{
                     Estado(registro: Estado[num], indice: num)
-                    num = num+1
+                    num = num+2
                 }
             }while num < Estado.count
         }
@@ -905,10 +947,11 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
             repeat{
                 if num == 0{
                     Municipio(registro: Mun[num], indice: num)
-                    num = num+1
-                }else {
+                    num = num+2
+                }
+                if num == 2{
                     Municipio(registro: Mun[num], indice: num)
-                    num = num+1
+                    num = num+2
                 }
             }while num < Mun.count
         }
@@ -918,10 +961,11 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
             repeat{
                 if num == 0{
                     Ccp.text = cp[num]
-                    num = num+1
-                }else {
+                    num = num+2
+                }
+                if num == 2{
                     Dcp.text = cp[num]
-                    num = num+1
+                    num = num+2
                 }
             }while num < cp.count
         }
@@ -962,16 +1006,19 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
                 }
             }while num < monto.count
         }
+        Dcorreo.text = correo[0]
+        
        //Telefono de casa
         if Telcasa.count != 0 {
             num = 0
             repeat{
                 if num == 0{
                     Dtelefono.text = Telcasa[num]
-                    num = num+1
-                }else {
+                    num = num+2
+                }
+                if num == 2{
                     Dtelefonoofic.text = Telcasa[num]
-                    num = num+1
+                    num = num+2
                 }
             }while num < Telcasa.count
         }
@@ -987,6 +1034,15 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
                 }
             }while num < Telcelular.count
         }
+        DEmpresa.text = Empresa[0]
+        DGiro.text = Giro[0]
+        Dantiguedad.text = Antiguedad[0]
+        Dpuesto.text = puesto[0]
+        Dingreso.text = ingreso[0]
+        Dcasados.text = casado[0]
+        Dfuenteingresos.text = fuente[0]
+        Dotrosingresos.text = otros[0]
+        /*
         //Telefono de casa
         if Telefono.count != 0 {
             num = 0
@@ -1257,11 +1313,11 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
     {
         
         if element == "Pmrnombre" {
-            
+            //print("Valor de Nombre",string)
             Nombre.append(string)
         }
         if element == "Apaterno" {
-            
+            //print("Valor de Apep",string)
             Apep.append(string)
         }
         if element == "Amaterno" {
@@ -1270,6 +1326,7 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
         
         if element == "Tpoidentif" {
             var num = 0
+            //print("Tipo de identificacion",string)
             if catalogoA == "A" {
                 repeat {
                     if cataloA[num].id_catalogo == Int32(string){
@@ -1294,29 +1351,33 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
         }
         
         if element == "Noidenficacion" {
-            Gnumero.text = string
+            //print("Numero de identificacion",string)
+            identificacion.append(string)
         }
         
         if element == "Sexo" {
-            Sexo = string
+            //print("sex",string)
+            sexo.append(string)
         }
         if element == "Nacionalidad" {
            Nacionalidad.append(string)
         }
+        
         if element == "Fechanacdia" {
             //print("dia",string)
-            dia = string
+            dia.append(string)
         }
+        
         if element == "FechasnacMes" {
            //print("mes",string)
-            mes = string
+            mes.append(string)
         }
         if element == "FechanacAnio" {
            //print("Anio",string)
-            anio = string
+           anio.append(string)
         }
         if element == "Rfc" {
-            Rfc.text = string
+            rfc.append(string)
         }
         if element == "Edocivil" {
             var num = 0
@@ -1343,52 +1404,61 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
             }
         }
         if element == "Nodependiente" {
-            Numdependientes.text = string
+            dependientes.append(string)
         }
         if element == "Calle" {
+            //print("Calle",string)
            calle.append(string)
         }
         if element == "NoInt" {
             //print("Num Int:",string)
-            //Numint.text = string
-            numint.append(string)
+           numint.append(string)
         }
         if element == "NoExt" {
             //print("Num Ext:",string)
-            //Numext.text = string
             Numext.append(string)
         }
         if element == "Colonia" {
+            //print("Colonia",string)
             colonia.append(string)
         }
         
         if element == "Estado" {
+            //print("Estado",string)
             Estado.append(string)
         }
         
         if element == "Delegacion" {
+            //print("Delegacion",string)
             Mun.append(string)
         }
         
         if element == "Cpdom" {
+            //print("Cp",string)
             cp.append(string)
         }
         if element == "TiempoResidencia" {
+            //print("TiempoResidencia:",string)
             tiempor.append(string)
         }
         if element == "EstatusResidencia" {
+            //print("Estatus residencia",string)
             estatusr.append(string)
         }
         if element == "MontoVivienda" {
+            //print("Monto",string)
             monto.append(string)
         }
         if element == "Email" {
-            Dcorreo.text = string
+            //print("Email",string)
+            correo.append(string)
         }
         if element == "Telcasa" {
+            //print("Telcasa:",string)
             Telcasa.append(string)
         }
         if element == "Telmovil" {
+            //print("Telmovil")
             Telcelular.append(string)
         }
         if element == "CompaniaMovil" {
@@ -1416,14 +1486,14 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
             }
         }
         if element == "NombreEmpresa" {
-            DEmpresa.text = string
+            Empresa.append(string)
         }
         if element == "GiroEmpresa" {
-            DGiro.text = string
+            Giro.append(string)
         }
         if element == "AntiguedadEmpleo" {
-            Dantiguedad.text = string
-        }
+            Antiguedad.append(string)
+         }
         if element == "TipoContrato" {
             var num = 0
             if catalogoA == "A" {
@@ -1449,19 +1519,19 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
             }
         }
         if element == "Puesto" {
-            Dpuesto.text = string
+            puesto.append(string)
         }
         if element == "Ingresos" {
-            Dingreso.text = string
+            ingreso.append(string)
         }
         if element == "AniosCasada" {
-            Dcasados.text = string
+            casado.append(string)
         }
         if element == "FuenteOtrosIngresos" {
-            Dfuenteingresos.text = string
+            fuente.append(string)
         }
         if element == "OtrosIngresos" {
-            Dotrosingresos.text = string
+            otros.append(string)
         }
         if element == "TieneParentesco" {
             if string == "SI" {
@@ -1485,7 +1555,7 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
         }
         if element == "Descparentesco" {
             Pfuncion2.text = string
-        }
+        }/*
         if element == "TelefonoCasa" {
             Telefono.append(string)
         }
@@ -1504,7 +1574,7 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
         if element == "Contrato2Path" {
             Dcontratop.text = string
         }
-            
+            */
     }
     //listas desplegables
     @IBAction func Identificacion(_ sender: UIButton) {
