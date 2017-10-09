@@ -648,12 +648,13 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
             //Persona Politica
             if persona == "SI" {
                 Psi.isOn = true
+                Pno.isOn = false
                 Pfuncion.alpha = 1
             }
             if persona == "NO" {
+                Psi.isOn = false
                 Pno.isOn = true
-                Pfuncion2.alpha = 1
-                Pparentesco.alpha = 1
+                Pfuncion.alpha = 0
             }
                
             
@@ -661,9 +662,15 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
             
             if parentesco == "SI" {
                 Psi2.isOn = true
+                Pno2.isOn = false
+                Pfuncion2.alpha = 1
+                Pparentesco.alpha = 1
             }
             if parentesco == "NO" {
+                Psi2.isOn = false
                 Pno2.isOn = true
+                Pfuncion2.alpha = 0
+                Pparentesco.alpha = 0
             }
             Pfuncion2.text = Prfuncion2
             Pparentesco.text = Prparentesco
@@ -1154,7 +1161,7 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
             sol.tidentificaciont = tidentificaciont
             sol.bfirma = bfirma
             sol.tfirma = tfirma
-            
+            sol.marco = Imagen
             sol.deslizar = 1
             self.navigationController?.pushViewController(sol, animated: false)
         }
@@ -1288,17 +1295,33 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
         }
         
         if textField == self.Dnume {
+            //solo acepta letras y numeros
+            let invalidChars = NSCharacterSet.alphanumerics.inverted
+            let rango = string.rangeOfCharacter(from: invalidChars)
+            if rango != nil {
+                
+                return false
+            } else {
             //solo tiene un rango de 4 caracteres
             guard let text = Dnume.text else { return true }
             let newLength = text.characters.count + string.characters.count - range.length
             return newLength <= 4
+            }
         }
         
         if textField == self.Dnumi {
-        //solo tiene un rango de 4 caracteres
-        guard let text = Dnumi.text else { return true }
-        let newLength = text.characters.count + string.characters.count - range.length
-        return newLength <= 4
+            //solo acepta letras y numeros
+            let invalidChars = NSCharacterSet.alphanumerics.inverted
+            let rango = string.rangeOfCharacter(from: invalidChars)
+            if rango != nil {
+                
+                return false
+            } else {
+             //solo tiene un rango de 4 caracteres
+             guard let text = Dnumi.text else { return true }
+             let newLength = text.characters.count + string.characters.count - range.length
+             return newLength <= 4
+                 }
         }
         
         if textField == self.Dcolonia {
@@ -1661,7 +1684,7 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
         
         if textField == self.R2telefono {
             //solo tiene un rango de 13 caracteres
-            guard let text = Rtelefono.text else { return true }
+            guard let text = R2telefono.text else { return true }
             let newLength = text.characters.count + string.characters.count - range.length
             return newLength <= 13
         }
@@ -1713,7 +1736,7 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
         
         if textField == self.R3telefono {
             //solo tiene un rango de 13 caracteres
-            guard let text = Rtelefono.text else { return true }
+            guard let text = R3telefono.text else { return true }
             let newLength = text.characters.count + string.characters.count - range.length
             return newLength <= 13
         }

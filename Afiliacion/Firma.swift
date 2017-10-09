@@ -105,6 +105,7 @@ class Firma: UIViewController {
     var tidentificaciont = ""
     @objc var bfirma = ""
     var tfirma = ""
+    var marco = 0
     
     @objc var margen = 0
     @objc var deslizar = 0
@@ -170,19 +171,21 @@ class Firma: UIViewController {
     
     @IBAction func Guardar(_ sender: UIBarButtonItem) {
         convert(Imagen: Panel.image!)
-        if  let Ngen = self.storyboard?.instantiateViewController(withIdentifier: "Newgen") as? Nuevogeneral {
-            //General
+        if  let Ngen = self.storyboard?.instantiateViewController(withIdentifier: "New") as? Nuevo {
             Ngen.Grnombre = Grnombre
             Ngen.Grsnombre = Grsnombre
             Ngen.Grapep = Grapep
             Ngen.Grapem = Grapem
             Ngen.Grtipo = Grtipo
+            Ngen.Gridtipo = Gridtipo
             Ngen.Gridentificacion = Gridentificacion
             Ngen.sexo = sexo
             Ngen.Grnacionalidad = Grnacionalidad
+            Ngen.Gridnacionalidad = Gridnacionalidad
             Ngen.Grfecha = Grfecha
             
             Ngen.Grestcivil = Grestcivil
+            Ngen.Gridestcivil = Gridestcivil
             Ngen.Grnumero = Grnumero
             
             
@@ -192,21 +195,26 @@ class Firma: UIViewController {
             Ngen.Drnumi = Drnumi
             Ngen.Drcolonia = Drcolonia
             Ngen.Drestado = Drestado
+            Ngen.Dridestado = Dridestado
             Ngen.Drdel = Drdel
+            Ngen.Driddel = Driddel
             Ngen.Drcp = Drcp
             Ngen.Drtiempo = Drtiempo
             Ngen.Drestatus = Drestatus
+            Ngen.Dridestatus = Dridestatus
             Ngen.Drmonto = Drmonto
             Ngen.Drcorreo = Drcorreo
             Ngen.Drtelefono = Drtelefono
             Ngen.Drmovil = Drmovil
             Ngen.Drcompania = Drcompania
+            Ngen.Dridcompania = Dridcompania
             
             //Datos economicos
             Ngen.Drnombre = Drnombre
             Ngen.Drgiro = Drgiro
             Ngen.Drantiguedad = Drantiguedad
             Ngen.Drtipo = Drtipo
+            Ngen.Dridtipo = Dridtipo
             Ngen.Drpuesto = Drpuesto
             Ngen.Dringreso = Dringreso
             Ngen.Drcasado = Drcasado
@@ -217,14 +225,16 @@ class Firma: UIViewController {
             Ngen.Drnumi2 = Drnumi2
             Ngen.Drcolonia2 = Drcolonia2
             Ngen.Drestado2 = Drestado2
+            Ngen.Dridestado2 = Dridestado2
             Ngen.Drdel2 = Drdel2
+            Ngen.Driddel2 = Driddel2
             Ngen.Drcp2 = Drcp2
             Ngen.Drtelefono2 = Drtelefono2
             Ngen.Drextencion = Drextencion
             
             
             //Persona politica
-            Ngen.persona = person
+            Ngen.person = person
             Ngen.Prfuncion = Prfuncion
             Ngen.parentesco = parentesco
             Ngen.Prfuncion2 = Prfuncion2
@@ -235,18 +245,21 @@ class Firma: UIViewController {
             Ngen.Rrapep = Rrapep
             Ngen.Rrapem = Rrapem
             Ngen.Rrnacionalidad = Rrnacionalidad
+            Ngen.Rridnacionalidad = Rridnacionalidad
             Ngen.Rrtelefono = Rrtelefono
             
             Ngen.R2rnombre = R2rnombre
             Ngen.R2rapep = R2rapep
             Ngen.R2rapem = R2rapem
-            Ngen.R2rnacionalidad = Rr2nacionalidad
+            Ngen.Rr2nacionalidad = Rr2nacionalidad
+            Ngen.Rridnacionalidad2 = Rridnacionalidad2
             Ngen.R2rtelefono = R2rtelefono
             
             Ngen.R3rnombre = R3rnombre
             Ngen.R3rapep = R3rapep
             Ngen.R3rapem = R3rapem
             Ngen.Rr3nacionalidad = Rr3nacionalidad
+            Ngen.Rridnacionalidad3 = Rridnacionalidad3
             Ngen.R3rtelefono = R3rtelefono
             //Documentos
             Ngen.bidentificacionf = bidentificacionf
@@ -255,8 +268,10 @@ class Firma: UIViewController {
             Ngen.tidentificaciont = tidentificaciont
             Ngen.bfirma = bfirma
             Ngen.tfirma = tfirma
+            
             Ngen.deslizar = deslizar
-            Ngen.margeny = margen
+            Ngen.margen = margen
+            Ngen.marco = marco
             self.navigationController?.pushViewController(Ngen, animated: false)
         }
     }

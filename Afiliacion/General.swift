@@ -130,6 +130,7 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
     @IBOutlet weak var Dcontratop: UILabel!
     //Imagenes
     @IBOutlet weak var Iidentificacionf: UIImageView!
+    var Documentos:[String] = []
     @IBOutlet weak var Iidentificaciona: UIImageView!
     @IBOutlet weak var Ifirma: UIImageView!
     @IBOutlet weak var IContrato: UIImageView!
@@ -706,6 +707,7 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
       }
     
     @objc func verDatos(){
+        
         var num = 0
         if Nombre.count != 0 {
             //Nombre
@@ -854,7 +856,7 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
                 }
             }while num < calle.count
         }
-        
+ 
         //Num ext
         if Numext.count != 0 {
             num = 0
@@ -1042,28 +1044,58 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
         Dcasados.text = casado[0]
         Dfuenteingresos.text = fuente[0]
         Dotrosingresos.text = otros[0]
-        /*
+        
         //Telefono de casa
         if Telefono.count != 0 {
             num = 0
             repeat{
                 if num == 0{
                     Rtelefono.text = Telefono[num]
-                     num = num+1
+                     num = num+3
                 }else {
-                    if num == 1{
+                    if num == 3{
                         R2telefono.text = Telefono[num]
-                        num = num+1
+                        num = num+3
                     }else {
-                        if num == 2{
+                        if num == 6{
                             R3telefono.text = Telefono[num]
-                            num = num+1
+                            num = num+3
                         }
                     }
                 }
             }while num < Telefono.count
         }
-         */
+        //Titulo de Documentacion
+        if Documentos.count != 0 {
+            num = 0
+            repeat {
+                if num == 0 {
+                     Didentificacionf.text = Documentos[num]
+                     num = num+2
+                }else {
+                    if num == 2 {
+                        Didentificaciona.text = Documentos[num]
+                        num = num+2
+                    }else {
+                        if num == 4 {
+                            Dfirma.text = Documentos[num]
+                             num = num+2
+                        }else {
+                            if num == 6 {
+                                Dcontrato.text = Documentos[num]
+                                num = num+2
+                            }else {
+                                if num == 8 {
+                                    Dcontratop.text = Documentos[num]
+                                    num = num+2
+                                }
+                            }
+                        }
+                    }
+                }
+            }while num < Documentos.count 
+        }
+        
     }
     
     @objc func residencia(registro:String) {
@@ -1313,7 +1345,7 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
     {
         
         if element == "Pmrnombre" {
-            //print("Valor de Nombre",string)
+            print("Valor de Nombre",string)
             Nombre.append(string)
         }
         if element == "Apaterno" {
@@ -1407,7 +1439,7 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
             dependientes.append(string)
         }
         if element == "Calle" {
-            //print("Calle",string)
+           //print("Calle",string)
            calle.append(string)
         }
         if element == "NoInt" {
@@ -1537,6 +1569,8 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
             if string == "SI" {
                 Ppolitica2si.isOn = true
                 }else {
+                Pfuncion2.alpha = 0
+                Pfuncion3.alpha = 0
                 Ppolitica2no.isOn = true
             }
         }
@@ -1544,6 +1578,7 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
             if string == "SI" {
                 Ppoliticasi.isOn = true
             }else{
+                Pfuncion.alpha = 0
                 Ppoliticano.isOn = true
             }
         }
@@ -1555,26 +1590,33 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
         }
         if element == "Descparentesco" {
             Pfuncion2.text = string
-        }/*
+        }
         if element == "TelefonoCasa" {
+            //print("Telefono de casa",string)
             Telefono.append(string)
         }
         if element == "IdentificacionFrentePath" {
-            Didentificacionf.text = string
-        }
+            //print("identificacion",string)
+            Documentos.append(string)
+           
+       }
         if element == "IdentificacionAtrasPath" {
-            Didentificaciona.text = string
+            Documentos.append(string)
+            
         }
         if element == "FirmaPath" {
-            Dfirma.text = string
+            Documentos.append(string)
+            
         }
         if element == "Contrato1Path" {
-            Dcontrato.text = string
+            Documentos.append(string)
+            
         }
         if element == "Contrato2Path" {
-            Dcontratop.text = string
+            Documentos.append(string)
+            
         }
-            */
+        
     }
     //listas desplegables
     @IBAction func Identificacion(_ sender: UIButton) {

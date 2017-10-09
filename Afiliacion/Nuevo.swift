@@ -121,20 +121,30 @@ class Nuevo: BaseViewController {
     var tfirma = "Firma"
     
     //Datos de promotor
+    var Idusuario = 0
     @objc var usuario = ""
     @objc var pass = ""
     @objc var comp = ""
     @objc var userArray:[USUARIO] = []
+    @objc var buzonA:[Rbuzon] = []
+    @objc var buzonB:[BUZON_A] = []
+    @objc var paramArray:[PARAMETRO] = []
+    @objc var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     @objc var identificador = 0
     @objc var margen = 0
     @objc var deslizar = 0
     var marco = 0
-    
+    var Buzon = ""
+    //ID solicitud
+    var IdSolicitud = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         addSlideMenuButton()
         fetchData()
+        fetchData2()
+        fetchData3()
+        fetchData4()
         //Etiquetas Redondas
         
         General.layer.masksToBounds = true
@@ -196,7 +206,7 @@ class Nuevo: BaseViewController {
             Documentos.backgroundColor = UIColor.blue
         }
         General.backgroundColor = UIColor.blue
-
+        
     }
     
     @objc func fetchData () {
@@ -204,6 +214,34 @@ class Nuevo: BaseViewController {
         
         do {
             userArray = try context.fetch(USUARIO.fetchRequest())
+        }catch {
+            print(error)
+        }
+    }
+    @objc func fetchData2() {
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        
+        do {
+            paramArray = try context.fetch(PARAMETRO.fetchRequest())
+        }catch {
+            print(error)
+        }
+    }
+    @objc func fetchData3() {
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        
+        do {
+            buzonA = try context.fetch(Rbuzon.fetchRequest())
+        }catch {
+            print(error)
+        }
+    }
+    
+    @objc func fetchData4() {
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        
+        do {
+            buzonB = try context.fetch(BUZON_A.fetchRequest())
         }catch {
             print(error)
         }
@@ -320,6 +358,7 @@ class Nuevo: BaseViewController {
     }
     
     @IBAction func Guardar(_ sender: UIBarButtonItem) {
+        
         //validacion de monto de vivienda hasta 100,000,000
         let monto = Int(Drmonto)
         if monto! < 100000001 {
@@ -327,7 +366,7 @@ class Nuevo: BaseViewController {
         }else {
             print("Monto no valido")
         }
-        
+ 
         //validacion de Correo electronico
         let bandera:Bool = validateEmail(enteredEmail: Drcorreo)
         if  bandera == true {
@@ -335,7 +374,7 @@ class Nuevo: BaseViewController {
         }else{
             print("No es un correo")
         }
-        
+ 
         //Obtencion de dias y fecha y año de nacimiento
         let longitud = Grfecha.characters.count
         var letters = Grfecha.characters.map { String($0) }
@@ -411,14 +450,200 @@ class Nuevo: BaseViewController {
         Usuario()
         let c = Character(UnicodeScalar(34))
         let Comd = String(c)
-        let Xml = "<?xml version="+Comd+"1.0"+Comd+" encoding="+Comd+"UTF-8"+Comd+"?> <SolicitudType xmlns:xsi="+Comd+"http://www.w3.org/2001/XMLSchema-instance"+Comd+" xmlns:xsd="+Comd+"http://www.w3.org/2001/XMLSchema"+Comd+"><Lattitude>19.4140762787095</Lattitude><Longuitud>-99.0129281651914</Longuitud><generales><Tpoidentif>"+Gridtipo+"</Tpoidentif> <Noidenficacion>"+Gridentificacion+"</Noidenficacion><Pmrnombre>"+Grnombre+"</Pmrnombre><Sdonombre>"+Grsnombre+"</Sdonombre><Apaterno>"+Grapep+"</Apaterno><Amaterno>"+Grapem+"</Amaterno><Sexo>"+sexo+"</Sexo><Nacionalidad>"+Gridnacionalidad+"</Nacionalidad><Fechanacdia>"+dia+"</Fechanacdia><Rfc>"+Grrfc+"</Rfc><Edocivil>"+Gridestcivil+"</Edocivil><Nodependiente>"+Grnumero+"</Nodependiente><Cveperspol>2</Cveperspol> <FechasnacMes>"+mes+"</FechasnacMes><FechanacAnio>"+anio+"</FechanacAnio></generales><doc><IdentificacionFrentePath>TEC_636395911640643196.jpg</IdentificacionFrentePath> <IdentificacionAtrasPath>TEC_636395912088133899.jpg</IdentificacionAtrasPath><Contrato1Path>TEC_636395912441057948.jpg</Contrato1Path><Contrato2Path>TEC_636395912942097782.jpg</Contrato2Path><Extra1>TEC_636395913267419058.jpg</Extra1><Extra2>..</Extra2><Extra3>..</Extra3><Extra4>..</Extra4><Extra5>..</Extra5><FirmaPath>TEC_636395912150998843.jpg</FirmaPath></doc><domicilio><Calle>"+Drcalle+"</Calle><NoInt>"+Drnumi+"</NoInt><NoExt>"+Drnume+"</NoExt><Cpdom>"+Drcp+"</Cpdom><Estado>"+Dridestado+"</Estado><Delegacion>"+Driddel+"</Delegacion><Colonia>"+Drcolonia+"</Colonia> <TiempoResidencia>"+Drtiempo+"</TiempoResidencia><EstatusResidencia>"+Dridestatus+"</EstatusResidencia><MontoVivienda>"+Drmonto+"</MontoVivienda><Email>"+Drcorreo+"</Email><Telcasa>"+Drtelefono+"</Telcasa><Telmovil>"+Drmovil+"</Telmovil><CompaniaMovil>"+Dridcompania+"</CompaniaMovil></domicilio><Personapolitica><EsPersonaPolitica>"+person+"</EsPersonaPolitica><TipoParentesco>"+Prparentesco+"</TipoParentesco> <Descfuncion>"+Prfuncion+"</Descfuncion><Descparentesco>"+Prfuncion2+"</Descparentesco><TieneParentesco>"+parentesco+"</TieneParentesco></Personapolitica><Refer><Pmrnombre>"+Rrnombre+"</Pmrnombre> <Sdonombre/><Apaterno>"+Rrapep+"</Apaterno><Amaterno>"+Rrapem+"</Amaterno><Nacionalidad>"+Rridnacionalidad+"</Nacionalidad><TelefonoCasa>"+Rrtelefono+"</TelefonoCasa></Refer><Refer2> <Pmrnombre>"+R2rnombre+"</Pmrnombre><Sdonombre/><Apaterno>"+R2rapep+"</Apaterno><Amaterno>"+R2rapem+"</Amaterno><Nacionalidad>"+Rridnacionalidad2+"</Nacionalidad><TelefonoCasa>"+R2rtelefono+"</TelefonoCasa></Refer2><Refer3> <Pmrnombre>"+R3rnombre+"</Pmrnombre><Sdonombre/><Apaterno>"+R3rapep+"</Apaterno><Amaterno>"+R3rapem+"</Amaterno><Nacionalidad>"+Rridnacionalidad3+"</Nacionalidad><TelefonoCasa>"+R3rtelefono+"</TelefonoCasa></Refer3><Promotor><Compania>"+comp+"</Compania><Usuario>"+usuario+"</Usuario><Contrasenia>"+pass+"</Contrasenia></Promotor><FolioLocal>0</FolioLocal><DiaCreacion>"+dia2+"</DiaCreacion><MesCreacion>"+mes2+"</MesCreacion><AnioCreacion>"+anio2+"</AnioCreacion><Deconominos><TipoContrato>"+Dridtipo+"</TipoContrato><AntiguedadEmpleo>"+Drantiguedad+"</AntiguedadEmpleo><AniosCasada>"+Drcasado+"</AniosCasada><Ingresos>"+Dringreso+"</Ingresos><NombreEmpresa>"+Drnombre+"</NombreEmpresa><GiroEmpresa>"+Drgiro+"</GiroEmpresa><Puesto>"+Drpuesto+"</Puesto><Domicilio><Calle>"+Drcalle2+"</Calle><NoInt>"+Drnumi2+"</NoInt> <NoExt>"+Drnume2+"</NoExt><Cpdom>"+Drcp2+"</Cpdom><Estado>"+Dridestado2+"</Estado><Delegacion>"+Driddel2+"</Delegacion><Colonia>"+Drcolonia2+"</Colonia><TiempoResidencia>0</TiempoResidencia><EstatusResidencia>0</EstatusResidencia><MontoVivienda>0</MontoVivienda><Telcasa>"+Drtelefono2+"</Telcasa><Telmovil/></Domicilio><OtrosIngresos>"+Drotros+"</OtrosIngresos><FuenteOtrosIngresos>"+Drfuente+"</FuenteOtrosIngresos></Deconominos></SolicitudType>"
+        let Xml = "<?xml version="+Comd+"1.0"+Comd+" encoding="+Comd+"UTF-8"+Comd+"?> <SolicitudType xmlns:xsi="+Comd+"http://www.w3.org/2001/XMLSchema-instance"+Comd+" xmlns:xsd="+Comd+"http://www.w3.org/2001/XMLSchema"+Comd+"> <generales> <Tpoidentif>"+Gridtipo+"</Tpoidentif> <Noidenficacion>"+Gridentificacion+"</Noidenficacion> <Pmrnombre>"+Grnombre+"</Pmrnombre> <Sdonombre>"+Grsnombre+"</Sdonombre> <Apaterno>"+Grapep+"</Apaterno> <Amaterno>"+Grapem+"</Amaterno> <Sexo>"+sexo+"</Sexo> <Nacionalidad>"+Gridnacionalidad+"</Nacionalidad> <Fechanacdia>"+dia+"</Fechanacdia> <Rfc>"+Grrfc+"</Rfc> <Edocivil>"+Gridestcivil+"</Edocivil> <Nodependiente>"+Grnumero+"</Nodependiente> <Cveperspol>2</Cveperspol> <FechasnacMes>"+mes+"</FechasnacMes> <FechanacAnio>"+anio+"</FechanacAnio> </generales> <doc> <IdentificacionFrentePath>TEC_636395911640643196.jpg</IdentificacionFrentePath>  <IdentificacionAtrasPath>TEC_636395912088133899.jpg</IdentificacionAtrasPath> <Contrato1Path>TEC_636395912441057948.jpg</Contrato1Path> <Contrato2Path>TEC_636395912942097782.jpg</Contrato2Path> <FirmaPath>"+tfirma+"</FirmaPath> <Extra1>.....</Extra1> <Extra2>..</Extra2> <Extra3>..</Extra3> <Extra4>..</Extra4> <Extra5>..</Extra5> </doc> <domicilio> <Calle>"+Drcalle+"</Calle> <NoInt>"+Drnumi+"</NoInt> <NoExt>"+Drnume+"</NoExt> <Cpdom>"+Drcp+"</Cpdom> <Estado>"+Dridestado+"</Estado> <Delegacion>"+Driddel+"</Delegacion> <Colonia>"+Drcolonia+"</Colonia> <TiempoResidencia>"+Drtiempo+"</TiempoResidencia> <EstatusResidencia>"+Dridestatus+"</EstatusResidencia> <MontoVivienda>"+Drmonto+"</MontoVivienda> <Email>"+Drcorreo+"</Email> <Telcasa>"+Drtelefono+"</Telcasa> <Telmovil>"+Drmovil+"</Telmovil> <CompaniaMovil>"+Dridcompania+"</CompaniaMovil> </domicilio> <Personapolitica> <TipoParentesco>"+Prparentesco+"</TipoParentesco> <Descfuncion>"+Prfuncion+"</Descfuncion> <Descparentesco>"+Prfuncion2+"</Descparentesco> <TieneParentesco>"+parentesco+"</TieneParentesco> <EsPersonaPolitica>"+person+"</EsPersonaPolitica> </Personapolitica> <Refer> <Pmrnombre>"+Rrnombre+"</Pmrnombre> <Sdonombre/> <Apaterno>"+Rrapep+"</Apaterno> <Amaterno>"+Rrapem+"</Amaterno> <Nacionalidad>"+Rridnacionalidad+"</Nacionalidad> <TelefonoCasa>"+Rrtelefono+"</TelefonoCasa> </Refer> <Refer2> <Pmrnombre>"+R2rnombre+"</Pmrnombre> <Sdonombre/> <Apaterno>"+R2rapep+"</Apaterno> <Amaterno>"+R2rapem+"</Amaterno> <Nacionalidad>"+Rridnacionalidad2+"</Nacionalidad> <TelefonoCasa>"+R2rtelefono+"</TelefonoCasa> </Refer2> <Refer3> <Pmrnombre>"+R3rnombre+"</Pmrnombre> <Sdonombre/> <Apaterno>"+R3rapep+"</Apaterno> <Amaterno>"+R3rapem+"</Amaterno> <Nacionalidad>"+Rridnacionalidad3+"</Nacionalidad> <TelefonoCasa>"+R3rtelefono+"</TelefonoCasa> </Refer3> <Promotor> <Compania>"+comp+"</Compania> <Usuario>"+usuario+"</Usuario> <Contrasenia>"+pass+"</Contrasenia> </Promotor> <FolioLocal>0</FolioLocal> <DiaCreacion>"+dia2+"</DiaCreacion> <MesCreacion>"+mes2+"</MesCreacion> <AnioCreacion>20"+anio2+"</AnioCreacion> <Deconominos> <TipoContrato>"+Dridtipo+"</TipoContrato> <AntiguedadEmpleo>"+Drantiguedad+"</AntiguedadEmpleo> <AniosCasada>"+Drcasado+"</AniosCasada> <Ingresos>"+Dringreso+"</Ingresos> <NombreEmpresa>"+Drnombre+"</NombreEmpresa> <GiroEmpresa>"+Drgiro+"</GiroEmpresa> <Puesto>"+Drpuesto+"</Puesto> <Domicilio> <Calle>"+Drcalle2+"</Calle> <NoInt>"+Drnumi2+"</NoInt>  <NoExt>"+Drnume2+"</NoExt> <Cpdom>"+Drcp2+"</Cpdom> <Estado>"+Dridestado2+"</Estado> <Delegacion>"+Driddel2+"</Delegacion> <Colonia>"+Drcolonia2+"</Colonia> <TiempoResidencia>0</TiempoResidencia> <EstatusResidencia>0</EstatusResidencia> <MontoVivienda>0</MontoVivienda> <Telcasa>"+Drtelefono2+"</Telcasa> <Telmovil/> </Domicilio> <OtrosIngresos>"+Drotros+"</OtrosIngresos> <FuenteOtrosIngresos>"+Drfuente+"</FuenteOtrosIngresos> </Deconominos> <Lattitude>19.41409467264</Lattitude> <Longuitud>-99.0129458034061</Longuitud> </SolicitudType>"
         print("valor de XML: ",Xml)
+         Buscarparamba()
+        Insertarbuzon(fechaa: fechaa, sol: Xml, ext1: bfirma, ext2: bfirma, ext3: bfirma, ext4: bfirma, ext5: bfirma, docc1: bfirma, docc2: bfirma, docia: bfirma, docif: bfirma, fi: bfirma)
+ 
        
+        //BuscarIdSolicitud()
+    }
+   
+    //Buscar buzon activo
+    @objc func Buscarparamba(){
+       
+        var num = 0
+        repeat{
+            if paramArray[num].parametro == "BUZON_ACTIVO" {
+                Buzon = paramArray[num].valor!
+                print("Buzon activo es:", Buzon)
+                break
+            }else {
+                num = num+1
+            }
+        }while num < paramArray.count
+    }
+    //Buscar IdSolicitud
+    func BuscarIdSolicitud(){
+        var num = 0
+        if Buzon == "A" {
+            repeat {
+                if buzonA[num].id_solicitud == 1 {
+                    IdSolicitud = 2
+                    break
+                }else {
+                    if buzonA[num].id_solicitud == 2 {
+                        IdSolicitud = 3
+                        break
+                    }else {
+                        if buzonA[num].id_solicitud == 3 {
+                            IdSolicitud = 4
+                            break
+                        }else {
+                            if buzonA[num].id_solicitud == 4 {
+                                IdSolicitud = 5
+                                break
+                            }else {
+                                if buzonA[num].id_solicitud == 5 {
+                                    IdSolicitud = 6
+                                    break
+                                }else {
+                                    if buzonA[num].id_solicitud == 6 {
+                                        IdSolicitud = 7
+                                        break
+                                    }else {
+                                        if buzonA[num].id_solicitud == 7 {
+                                            IdSolicitud = 8
+                                            break
+                                        }else {
+                                            if buzonA[num].id_solicitud == 8 {
+                                                IdSolicitud = 9
+                                                break
+                                            }else {
+                                                if buzonA[num].id_solicitud == 9 {
+                                                   IdSolicitud = 10
+                                                    break
+                                                } else {
+                                                    if buzonA[num].id_solicitud == 10 {
+                                                        print("Exediste el numero de solicitudes")
+                                                        break
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                print("ID Buzon:",buzonA[num].id_solicitud)
+                num = num+1
+            }while num < buzonA.count
+            if IdSolicitud == 0 {
+               IdSolicitud = 1
+            }
+            print("Valor de IdSolicitud:",IdSolicitud)
+        }else {
+            repeat {
+                print("ID Buzon:",buzonB[num].id_solicitud_b)
+                num = num+1
+            }while num < buzonB.count
+            if IdSolicitud == 0 {
+                IdSolicitud = 1
+            }
+            print("Valor de IdSolicitud:",IdSolicitud)
+        }
+        
+    }
+    @objc func Insertarbuzon(fechaa:String,sol:String,ext1:String,ext2:String,ext3:String,ext4:String,ext5:String,docc1:String,docc2:String,docia:String,docif:String,fi:String){
+        
+        if Buzon == "A" {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat =  "dd/MM/yyyy"
+            let date = dateFormatter.date(from: fechaa)
+            
+            let newBuz = NSEntityDescription.insertNewObject(forEntityName: "Rbuzon", into: context)
+            newBuz.setValue("", forKey: "comentario")
+            newBuz.setValue(6, forKey: "estatus")
+            newBuz.setValue(date, forKey: "fecha_alta")
+            newBuz.setValue(date, forKey: "fecha_modificacion")
+            newBuz.setValue(1, forKey: "id_solicitud")//esta debe de ser calculable
+            newBuz.setValue(Idusuario, forKey: "id_usuario")
+            newBuz.setValue(0, forKey: "motivo")
+            newBuz.setValue("", forKey: "producto")
+            newBuz.setValue("", forKey: "promedio_scoring")
+            newBuz.setValue(sol, forKey: "solicitud_xml")
+            newBuz.setValue(ext1, forKey: "ext_c1")
+            newBuz.setValue(ext2, forKey: "ext_c2")
+            newBuz.setValue(ext3, forKey: "ext_c3")
+            newBuz.setValue(ext4, forKey: "ext_c4")
+            newBuz.setValue(ext5, forKey: "ext_c5")
+            newBuz.setValue(docc1, forKey: "doc_c1")
+            newBuz.setValue(docc2, forKey: "doc_c2")
+            newBuz.setValue(docia, forKey: "doc_ia")
+            newBuz.setValue(docif, forKey: "doc_if")
+            newBuz.setValue(fi, forKey: "fi")
+            
+            do {
+                try context.save()
+                print("Solicitud insertada A!!!!!!")
+                let destViewController : UIViewController = self.storyboard!.instantiateViewController(withIdentifier: "Home")
+                
+                let topViewController : UIViewController = self.navigationController!.topViewController!
+                
+                if (topViewController.restorationIdentifier! == destViewController.restorationIdentifier!){
+                    print("Same VC")
+                } else {
+                    self.navigationController!.pushViewController(destViewController, animated: true)
+                }
+                
+            }catch {
+                print(error)
+            }
+            
+        }else {
+            
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat =  "dd/MM/yyyy"
+            let date = dateFormatter.date(from: fechaa)
+        
+            let newBuz = NSEntityDescription.insertNewObject(forEntityName: "BUZON_A", into: context)
+            
+            newBuz.setValue("", forKey: "comentario_b")
+            newBuz.setValue(6, forKey: "estatus_b")
+            newBuz.setValue(date, forKey: "fecha_alta_b")
+            newBuz.setValue(date, forKey: "fecha_modificacion_b")
+            newBuz.setValue(1, forKey: "id_solicitud_b")//esta debe de ser calculable
+            newBuz.setValue(Idusuario, forKey: "id_usuario_b")
+            newBuz.setValue(0, forKey: "motivo_b")
+            newBuz.setValue("", forKey: "producto_b")
+            newBuz.setValue("", forKey: "promedio_scoring_b")
+            newBuz.setValue(sol, forKey: "solicitud_xml_b")
+            newBuz.setValue(ext1, forKey: "ext_c1")
+            newBuz.setValue(ext2, forKey: "ext_c2")
+            newBuz.setValue(ext3, forKey: "ext_c3")
+            newBuz.setValue(ext4, forKey: "ext_c4")
+            newBuz.setValue(ext5, forKey: "ext_c5")
+            newBuz.setValue(docc1, forKey: "doc_c1")
+            newBuz.setValue(docc2, forKey: "doc_c2")
+            newBuz.setValue(docia, forKey: "doc_ia")
+            newBuz.setValue(docif, forKey: "doc_if")
+            newBuz.setValue(fi, forKey: "fi")
+            
+            do {
+                try context.save()
+                print("Solicitud insertada B!!!!")
+                let destViewController : UIViewController = self.storyboard!.instantiateViewController(withIdentifier: "Home")
+                
+                let topViewController : UIViewController = self.navigationController!.topViewController!
+                
+                if (topViewController.restorationIdentifier! == destViewController.restorationIdentifier!){
+                    print("Same VC")
+                } else {
+                    self.navigationController!.pushViewController(destViewController, animated: true)
+                }
+                
+            }catch {
+                print(error)
+            }
+        }
     }
     
     @objc func Usuario() {
         var num = 0
         repeat {
+            Idusuario = Int(userArray[num].id_usuario)
             usuario = userArray[num].user!
             comp = userArray[num].compania!
             pass = userArray[num].contrasena!
@@ -433,7 +658,6 @@ class Nuevo: BaseViewController {
         let emailPredicate = NSPredicate(format:"SELF MATCHES %@", emailFormat)
         
         return emailPredicate.evaluate(with: enteredEmail)
-        
-        
-    }
+   }
+    
 }
