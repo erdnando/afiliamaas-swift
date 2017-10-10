@@ -150,22 +150,34 @@ class Todos: UIViewController,XMLParserDelegate,UITableViewDataSource,UITableVie
         
         repeat{
             //print(Vnombre[num],"Indice",num)
-            Nombre.append(Vnombre[num])
-            num = num+7
-        }while num < Vnombre.count-1
+            if Vnombre[num] != " " {
+                Nombre.append(Vnombre[num])
+                num = num+7
+            }else {
+                num = num+1
+            }
+         }while num < Vnombre.count-1
         
         num = 0
         repeat{
             //print("id:",num,"Valor:",vapep[num])
-            Apep.append(vapep[num])
-            num = num+7
-        }while num < vapep.count-1
+            if vapep[num] != " " {
+                Apep.append(vapep[num])
+                num = num+7
+            }else{
+               num = num+1
+            }
+         }while num < vapep.count-1
         
         num = 0
         repeat{
            // print("id:",num,"Valor:",vapem[num])
-            Apem.append(vapem[num])
-            num = num+7
+            if vapem[num] != " " {
+                Apem.append(vapem[num])
+                num = num+7
+            }else {
+                num = num+1
+            }
         }while num < vapem.count-1
         //verDatos()
     }
@@ -200,6 +212,7 @@ class Todos: UIViewController,XMLParserDelegate,UITableViewDataSource,UITableVie
     {
     
         if element == "Pmrnombre" {
+            //print("Nombre",string)
            Vnombre.append(string)
         }
         

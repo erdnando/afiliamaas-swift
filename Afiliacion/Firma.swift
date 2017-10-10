@@ -183,7 +183,7 @@ class Firma: UIViewController {
             Ngen.Grnacionalidad = Grnacionalidad
             Ngen.Gridnacionalidad = Gridnacionalidad
             Ngen.Grfecha = Grfecha
-            
+            Ngen.Grrfc = Grrfc
             Ngen.Grestcivil = Grestcivil
             Ngen.Gridestcivil = Gridestcivil
             Ngen.Grnumero = Grnumero

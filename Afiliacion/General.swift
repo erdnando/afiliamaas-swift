@@ -92,14 +92,20 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
     
     //Persona politica
     
+    
     @IBOutlet weak var Tpersona: UILabel!
+    var persona:[String] = []
     @IBOutlet weak var Ppoliticasi: UISwitch!
     @IBOutlet weak var Ppoliticano: UISwitch!
     @IBOutlet weak var Pfuncion: UITextField!
+    var funcion:[String] = []
+    var parentesco:[String] = []
     @IBOutlet weak var Ppolitica2si: UISwitch!
     @IBOutlet weak var Ppolitica2no: UISwitch!
     @IBOutlet weak var Pfuncion2: UITextField!
+    var funcion2:[String] = []
     @IBOutlet weak var Pfuncion3: UITextField!
+    var funcion3:[String] = []
     
     
     //Formulario Referencias
@@ -386,7 +392,7 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
     }
     
     @objc func CargarImagen() {
-        print("valor de Imagen en base 64",self.Imageidentif)
+        //print("valor de Imagen en base 64",self.Imageidentif)
         //identificacion frente
         let identf : Data = Data(base64Encoded: Imageidentif, options: .ignoreUnknownCharacters)!
         let decodedimagef = UIImage(data: identf)
@@ -663,7 +669,7 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
         repeat {
             // print(num)
             if buzonA[num].id_solicitud == Int32(Solicitud){
-                //print(buzonA[num].solicitud_xml!)
+                print(buzonA[num].solicitud_xml!)
                 beginParsing(xml: buzonA[num].solicitud_xml!)
         
                 self.Imageidentif = buzonA[num].doc_if!
@@ -688,7 +694,7 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
         print("***************XML Buzon Activo B*******************")
         repeat {
             if buzonB[num].id_solicitud_b == Int32(Solicitud){
-               // print(buzonA[num].solicitud_xml!)
+              //print(buzonB[num].solicitud_xml_b!)
               beginParsing(xml: buzonB[num].solicitud_xml_b!)
             
                 self.Imageidentif = buzonB[num].doc_if!
@@ -792,7 +798,7 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
                             if num == 6{
                                 //print("Apellido Materno:",Apem[num])
                                 R3apem.text = Apem[num]
-                                num = num + 1
+                                num = num + 2
                             }
                         }
                     }
@@ -878,15 +884,17 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
             num = 0
             repeat{
                 if num == 0 {
-                    //print("Num Int",numint[num])
+                    print("Num Int",numint[num],"Id",num)
                     Gnumint.text = numint[num]
-                    num = num+1
+                    num = num+2
                 }else{
+                    print("Num Int",numint[num],"Id",num)
                     Dnumint.text = numint[num]
-                    num = num+1
+                    num = num+2
                 }
             }while num < numint.count
         }
+        
         //Colonia
         if colonia.count != 0 {
             num = 0
@@ -1095,7 +1103,31 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
                 }
             }while num < Documentos.count 
         }
-        
+        //Tiene parentesco
+        if parentesco[0] == "SI" {
+            Ppolitica2si.isOn = true
+            Ppolitica2no.isOn = false
+            Pfuncion2.alpha = 1
+            Pfuncion3.alpha = 1
+            Pfuncion3.text = funcion3[0]
+            Pfuncion2.text = funcion2[0]
+        }else {
+            Pfuncion2.alpha = 0
+            Pfuncion3.alpha = 0
+            Ppolitica2no.isOn = true
+            Ppolitica2si.isOn = false
+        }
+        //Es persona politica
+        if persona[0] == "SI" {
+            Ppoliticasi.isOn = true
+            Pfuncion.alpha = 1
+            Pfuncion.text = funcion[0]
+            Ppoliticano.isOn = false
+        }else{
+            Pfuncion.alpha = 0
+            Ppoliticano.isOn = true
+            Ppoliticasi.isOn = false
+        }
     }
     
     @objc func residencia(registro:String) {
@@ -1150,7 +1182,7 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
             }
           /*****************************************************/
         }else {
-            if indice == 1 {
+            if indice == 2 {
                 /*************************Referencia 1***********************/
                 if catalogoA == "A" {
                     repeat {
@@ -1175,7 +1207,7 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
                 }
                 /*****************************************************/
             }else {
-                if indice == 2 {
+                if indice == 4 {
                     /*************************Referencia 2***********************/
                     if catalogoA == "A" {
                         repeat {
@@ -1200,7 +1232,7 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
                     }
                     /*****************************************************/
                 }else {
-                    if indice == 3 {
+                    if indice == 6 {
                         /*************************Referencia 3***********************/
                         if catalogoA == "A" {
                             repeat {
@@ -1345,7 +1377,7 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
     {
         
         if element == "Pmrnombre" {
-            print("Valor de Nombre",string)
+            //print("Valor de Nombre",string)
             Nombre.append(string)
         }
         if element == "Apaterno" {
@@ -1392,6 +1424,7 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
             sexo.append(string)
         }
         if element == "Nacionalidad" {
+           //print("nacionalidad",string)
            Nacionalidad.append(string)
         }
         
@@ -1409,6 +1442,7 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
            anio.append(string)
         }
         if element == "Rfc" {
+            //print("Rfc",string)
             rfc.append(string)
         }
         if element == "Edocivil" {
@@ -1443,7 +1477,7 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
            calle.append(string)
         }
         if element == "NoInt" {
-            //print("Num Int:",string)
+           print("Num Int:",string)
            numint.append(string)
         }
         if element == "NoExt" {
@@ -1566,30 +1600,26 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
             otros.append(string)
         }
         if element == "TieneParentesco" {
-            if string == "SI" {
-                Ppolitica2si.isOn = true
-                }else {
-                Pfuncion2.alpha = 0
-                Pfuncion3.alpha = 0
-                Ppolitica2no.isOn = true
-            }
+            //print("Tieneparentesco",string)
+            parentesco.append(string)
+           
         }
         if element == "EsPersonaPolitica" {
-            if string == "SI" {
-                Ppoliticasi.isOn = true
-            }else{
-                Pfuncion.alpha = 0
-                Ppoliticano.isOn = true
-            }
+            persona.append(string)
+            
         }
         if element == "TipoParentesco" {
-            Pfuncion3.text = string
+            print("Tipoparentesco",string)
+            funcion3.append(string)
+            
         }
         if element == "Descfuncion" {
-            Pfuncion.text = string
+            funcion.append(string)
+            
         }
         if element == "Descparentesco" {
-            Pfuncion2.text = string
+            funcion2.append(string)
+           
         }
         if element == "TelefonoCasa" {
             //print("Telefono de casa",string)

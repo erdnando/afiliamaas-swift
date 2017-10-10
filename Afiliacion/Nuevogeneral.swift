@@ -922,6 +922,7 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
         let nombrec = Grnombre
         homoclave(nombreC: nombrec)
         Grfc.text = Rfc
+        
     }
     func extvocal(valor:String){
         var arrayvocal = ["a","e","i","o","u","A","E","I","O","U"]

@@ -452,11 +452,12 @@ class Nuevo: BaseViewController {
         let Comd = String(c)
         let Xml = "<?xml version="+Comd+"1.0"+Comd+" encoding="+Comd+"UTF-8"+Comd+"?> <SolicitudType xmlns:xsi="+Comd+"http://www.w3.org/2001/XMLSchema-instance"+Comd+" xmlns:xsd="+Comd+"http://www.w3.org/2001/XMLSchema"+Comd+"> <generales> <Tpoidentif>"+Gridtipo+"</Tpoidentif> <Noidenficacion>"+Gridentificacion+"</Noidenficacion> <Pmrnombre>"+Grnombre+"</Pmrnombre> <Sdonombre>"+Grsnombre+"</Sdonombre> <Apaterno>"+Grapep+"</Apaterno> <Amaterno>"+Grapem+"</Amaterno> <Sexo>"+sexo+"</Sexo> <Nacionalidad>"+Gridnacionalidad+"</Nacionalidad> <Fechanacdia>"+dia+"</Fechanacdia> <Rfc>"+Grrfc+"</Rfc> <Edocivil>"+Gridestcivil+"</Edocivil> <Nodependiente>"+Grnumero+"</Nodependiente> <Cveperspol>2</Cveperspol> <FechasnacMes>"+mes+"</FechasnacMes> <FechanacAnio>"+anio+"</FechanacAnio> </generales> <doc> <IdentificacionFrentePath>TEC_636395911640643196.jpg</IdentificacionFrentePath>  <IdentificacionAtrasPath>TEC_636395912088133899.jpg</IdentificacionAtrasPath> <Contrato1Path>TEC_636395912441057948.jpg</Contrato1Path> <Contrato2Path>TEC_636395912942097782.jpg</Contrato2Path> <FirmaPath>"+tfirma+"</FirmaPath> <Extra1>.....</Extra1> <Extra2>..</Extra2> <Extra3>..</Extra3> <Extra4>..</Extra4> <Extra5>..</Extra5> </doc> <domicilio> <Calle>"+Drcalle+"</Calle> <NoInt>"+Drnumi+"</NoInt> <NoExt>"+Drnume+"</NoExt> <Cpdom>"+Drcp+"</Cpdom> <Estado>"+Dridestado+"</Estado> <Delegacion>"+Driddel+"</Delegacion> <Colonia>"+Drcolonia+"</Colonia> <TiempoResidencia>"+Drtiempo+"</TiempoResidencia> <EstatusResidencia>"+Dridestatus+"</EstatusResidencia> <MontoVivienda>"+Drmonto+"</MontoVivienda> <Email>"+Drcorreo+"</Email> <Telcasa>"+Drtelefono+"</Telcasa> <Telmovil>"+Drmovil+"</Telmovil> <CompaniaMovil>"+Dridcompania+"</CompaniaMovil> </domicilio> <Personapolitica> <TipoParentesco>"+Prparentesco+"</TipoParentesco> <Descfuncion>"+Prfuncion+"</Descfuncion> <Descparentesco>"+Prfuncion2+"</Descparentesco> <TieneParentesco>"+parentesco+"</TieneParentesco> <EsPersonaPolitica>"+person+"</EsPersonaPolitica> </Personapolitica> <Refer> <Pmrnombre>"+Rrnombre+"</Pmrnombre> <Sdonombre/> <Apaterno>"+Rrapep+"</Apaterno> <Amaterno>"+Rrapem+"</Amaterno> <Nacionalidad>"+Rridnacionalidad+"</Nacionalidad> <TelefonoCasa>"+Rrtelefono+"</TelefonoCasa> </Refer> <Refer2> <Pmrnombre>"+R2rnombre+"</Pmrnombre> <Sdonombre/> <Apaterno>"+R2rapep+"</Apaterno> <Amaterno>"+R2rapem+"</Amaterno> <Nacionalidad>"+Rridnacionalidad2+"</Nacionalidad> <TelefonoCasa>"+R2rtelefono+"</TelefonoCasa> </Refer2> <Refer3> <Pmrnombre>"+R3rnombre+"</Pmrnombre> <Sdonombre/> <Apaterno>"+R3rapep+"</Apaterno> <Amaterno>"+R3rapem+"</Amaterno> <Nacionalidad>"+Rridnacionalidad3+"</Nacionalidad> <TelefonoCasa>"+R3rtelefono+"</TelefonoCasa> </Refer3> <Promotor> <Compania>"+comp+"</Compania> <Usuario>"+usuario+"</Usuario> <Contrasenia>"+pass+"</Contrasenia> </Promotor> <FolioLocal>0</FolioLocal> <DiaCreacion>"+dia2+"</DiaCreacion> <MesCreacion>"+mes2+"</MesCreacion> <AnioCreacion>20"+anio2+"</AnioCreacion> <Deconominos> <TipoContrato>"+Dridtipo+"</TipoContrato> <AntiguedadEmpleo>"+Drantiguedad+"</AntiguedadEmpleo> <AniosCasada>"+Drcasado+"</AniosCasada> <Ingresos>"+Dringreso+"</Ingresos> <NombreEmpresa>"+Drnombre+"</NombreEmpresa> <GiroEmpresa>"+Drgiro+"</GiroEmpresa> <Puesto>"+Drpuesto+"</Puesto> <Domicilio> <Calle>"+Drcalle2+"</Calle> <NoInt>"+Drnumi2+"</NoInt>  <NoExt>"+Drnume2+"</NoExt> <Cpdom>"+Drcp2+"</Cpdom> <Estado>"+Dridestado2+"</Estado> <Delegacion>"+Driddel2+"</Delegacion> <Colonia>"+Drcolonia2+"</Colonia> <TiempoResidencia>0</TiempoResidencia> <EstatusResidencia>0</EstatusResidencia> <MontoVivienda>0</MontoVivienda> <Telcasa>"+Drtelefono2+"</Telcasa> <Telmovil/> </Domicilio> <OtrosIngresos>"+Drotros+"</OtrosIngresos> <FuenteOtrosIngresos>"+Drfuente+"</FuenteOtrosIngresos> </Deconominos> <Lattitude>19.41409467264</Lattitude> <Longuitud>-99.0129458034061</Longuitud> </SolicitudType>"
         print("valor de XML: ",Xml)
-         Buscarparamba()
+        Buscarparamba()
+        BuscarIdSolicitud()
         Insertarbuzon(fechaa: fechaa, sol: Xml, ext1: bfirma, ext2: bfirma, ext3: bfirma, ext4: bfirma, ext5: bfirma, docc1: bfirma, docc2: bfirma, docia: bfirma, docif: bfirma, fi: bfirma)
  
        
-        //BuscarIdSolicitud()
+        
     }
    
     //Buscar buzon activo
@@ -475,44 +476,46 @@ class Nuevo: BaseViewController {
     }
     //Buscar IdSolicitud
     func BuscarIdSolicitud(){
+       
         var num = 0
         if Buzon == "A" {
             repeat {
+                print("IdSolicitud",buzonA[num].id_solicitud,num)
                 if buzonA[num].id_solicitud == 1 {
                     IdSolicitud = 2
-                    break
+                    
                 }else {
                     if buzonA[num].id_solicitud == 2 {
                         IdSolicitud = 3
-                        break
+                        
                     }else {
                         if buzonA[num].id_solicitud == 3 {
                             IdSolicitud = 4
-                            break
+                            
                         }else {
                             if buzonA[num].id_solicitud == 4 {
                                 IdSolicitud = 5
-                                break
+                                
                             }else {
                                 if buzonA[num].id_solicitud == 5 {
                                     IdSolicitud = 6
-                                    break
+                                
                                 }else {
                                     if buzonA[num].id_solicitud == 6 {
                                         IdSolicitud = 7
-                                        break
+                                        
                                     }else {
                                         if buzonA[num].id_solicitud == 7 {
                                             IdSolicitud = 8
-                                            break
+                                            
                                         }else {
                                             if buzonA[num].id_solicitud == 8 {
                                                 IdSolicitud = 9
-                                                break
+                                                
                                             }else {
                                                 if buzonA[num].id_solicitud == 9 {
                                                    IdSolicitud = 10
-                                                    break
+                                                    
                                                 } else {
                                                     if buzonA[num].id_solicitud == 10 {
                                                         print("Exediste el numero de solicitudes")
@@ -527,16 +530,65 @@ class Nuevo: BaseViewController {
                         }
                     }
                 }
-                print("ID Buzon:",buzonA[num].id_solicitud)
+                //print("IdSolicitud",buzonA[num].id_solicitud)
                 num = num+1
             }while num < buzonA.count
             if IdSolicitud == 0 {
                IdSolicitud = 1
             }
             print("Valor de IdSolicitud:",IdSolicitud)
-        }else {
+        }else { //Buzonb
             repeat {
-                print("ID Buzon:",buzonB[num].id_solicitud_b)
+                if buzonB[num].id_solicitud_b == 1 {
+                    IdSolicitud = 2
+                    
+                }else {
+                    if buzonB[num].id_solicitud_b == 2 {
+                        IdSolicitud = 3
+                    
+                    }else {
+                        if buzonB[num].id_solicitud_b == 3 {
+                            IdSolicitud = 4
+                            
+                        }else {
+                            if buzonB[num].id_solicitud_b == 4 {
+                                IdSolicitud = 5
+                                
+                            }else {
+                                if buzonB[num].id_solicitud_b == 5 {
+                                    IdSolicitud = 6
+                                    
+                                }else {
+                                    if buzonB[num].id_solicitud_b == 6 {
+                                        IdSolicitud = 7
+                                        
+                                    }else {
+                                        if buzonB[num].id_solicitud_b == 7 {
+                                            IdSolicitud = 8
+                                        
+                                        }else {
+                                            if buzonB[num].id_solicitud_b == 8 {
+                                                IdSolicitud = 9
+                                                
+                                            }else {
+                                                if buzonB[num].id_solicitud_b == 9 {
+                                                    IdSolicitud = 10
+                                                    
+                                                } else {
+                                                    if buzonB[num].id_solicitud_b == 10 {
+                                                        print("Exediste el numero de solicitudes")
+                                                        break
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+             
                 num = num+1
             }while num < buzonB.count
             if IdSolicitud == 0 {
@@ -558,7 +610,7 @@ class Nuevo: BaseViewController {
             newBuz.setValue(6, forKey: "estatus")
             newBuz.setValue(date, forKey: "fecha_alta")
             newBuz.setValue(date, forKey: "fecha_modificacion")
-            newBuz.setValue(1, forKey: "id_solicitud")//esta debe de ser calculable
+            newBuz.setValue(IdSolicitud, forKey: "id_solicitud")//esta debe de ser calculable
             newBuz.setValue(Idusuario, forKey: "id_usuario")
             newBuz.setValue(0, forKey: "motivo")
             newBuz.setValue("", forKey: "producto")
@@ -604,7 +656,7 @@ class Nuevo: BaseViewController {
             newBuz.setValue(6, forKey: "estatus_b")
             newBuz.setValue(date, forKey: "fecha_alta_b")
             newBuz.setValue(date, forKey: "fecha_modificacion_b")
-            newBuz.setValue(1, forKey: "id_solicitud_b")//esta debe de ser calculable
+            newBuz.setValue(IdSolicitud, forKey: "id_solicitud_b")//esta debe de ser calculable
             newBuz.setValue(Idusuario, forKey: "id_usuario_b")
             newBuz.setValue(0, forKey: "motivo_b")
             newBuz.setValue("", forKey: "producto_b")

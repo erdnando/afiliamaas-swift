@@ -522,6 +522,7 @@ class ViewController: UIViewController {
                 if buzonB[num].estatus_b == 6 || buzonB[num].estatus_b == 7 {
                     print("encontre un estatus 6 0 7")
                     bandera = false
+                    break
                 }else {
                     num = num + 1
                 }
