@@ -261,7 +261,6 @@ class Nuevo: BaseViewController {
     }
     @IBAction func Guardar(_ sender: UIBarButtonItem) {
         Buscarparamba()
-        BuscarIdSolicitud()
         CamposVacios()
    }
    
@@ -280,36 +279,7 @@ class Nuevo: BaseViewController {
         }while num < paramArray.count
     }
     
-    //Buscar IdSolicitud
-    func BuscarIdSolicitud(){
-       var num = 0
-        if Buzon == "A" {
-            repeat {
-                if buzonA[num].estatus == 6 || buzonA[num].estatus == 0 {
-                    print("IdSolicitud",buzonA[num].id_solicitud)
-                    if IdSolicitud <= buzonA[num].id_solicitud {
-                        IdSolicitud = Int(buzonA[num].id_solicitud)+1
-                    }
-                    num = num+1
-                } else {
-                    num = num+1
-                }
-             }while num < buzonA.count
-             print("Id Solicitud",IdSolicitud)
-        }else { //Buzonb
-            repeat {
-                if buzonB[num].estatus_b == 6 || buzonB[num].estatus_b == 0 {
-                    print("IdSolicitud",buzonB[num].id_solicitud_b)
-                    if IdSolicitud <= buzonB[num].id_solicitud_b {
-                        IdSolicitud = Int(buzonB[num].id_solicitud_b)+1
-                    }
-                    num = num+1
-                }else {
-                    num = num+1
-                }
-            }while num < buzonB.count
-       }
-    }
+   
     func CamposVacios(){
         var num = 0
         var mensaje = "\n\n Campos Faltantes: "
@@ -488,6 +458,7 @@ class Nuevo: BaseViewController {
         
         if Arraycamp.count != 0 {
             Estatus = 0
+            print("Estatus",Estatus)
             repeat {
                 
                 mensaje = mensaje + Arraycamp[num] + ","
@@ -656,13 +627,132 @@ class Nuevo: BaseViewController {
         print("Valor de Guardar:",guardar)
         if validador == 1 && guardar == 0 {
              //Insertarbuzon(fechaa: fechaa, sol: Xml, ext1: bfirma, ext2: bfirma, ext3: bfirma, ext4: bfirma, ext5: bfirma, docc1: bfirma, docc2: bfirma, docia: bfirma, docif: bfirma, fi: bfirma)
-            guardar = 1
             print("Insertar")
-        }else {
-            if validador == 1 && guardar == 1 {
+            BuscarIdSolicitud()
+            
+            let Ngen = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Newgen") as! Nuevogeneral
+            //General
+            Ngen.Grnombre = Grnombre
+            Ngen.Grsnombre = Grsnombre
+            Ngen.Grapep = Grapep
+            Ngen.Grapem = Grapem
+            Ngen.Grtipo = Grtipo
+            Ngen.Gridtipo = Gridtipo
+            Ngen.Gridentificacion = Gridentificacion
+            Ngen.sexo = sexo
+            Ngen.Grnacionalidad = Grnacionalidad
+            Ngen.Gridnacionalidad = Gridnacionalidad
+            Ngen.Grfecha = Grfecha
+            
+            Ngen.Grestcivil = Grestcivil
+            Ngen.Gridestcivil = Gridestcivil
+            Ngen.Grnumero = Grnumero
+            
+            
+            //Domicilio
+            Ngen.Drcalle = Drcalle
+            Ngen.Drnume = Drnume
+            Ngen.Drnumi = Drnumi
+            Ngen.Drcolonia = Drcolonia
+            Ngen.Drestado = Drestado
+            Ngen.Dridestado = Dridestado
+            Ngen.Drdel = Drdel
+            Ngen.Driddel = Driddel
+            Ngen.Drcp = Drcp
+            Ngen.Drtiempo = Drtiempo
+            Ngen.Drestatus = Drestatus
+            Ngen.Dridestatus = Dridestatus
+            Ngen.Drmonto = Drmonto
+            Ngen.Drcorreo = Drcorreo
+            Ngen.Drtelefono = Drtelefono
+            Ngen.Drmovil = Drmovil
+            Ngen.Drcompania = Drcompania
+            Ngen.Dridcompania = Dridcompania
+            
+            //Datos economicos
+            Ngen.Drnombre = Drnombre
+            Ngen.Drgiro = Drgiro
+            Ngen.Drantiguedad = Drantiguedad
+            Ngen.Drtipo = Drtipo
+            Ngen.Dridtipo = Dridtipo
+            Ngen.Drpuesto = Drpuesto
+            Ngen.Dringreso = Dringreso
+            Ngen.Drcasado = Drcasado
+            Ngen.Drfuente = Drfuente
+            Ngen.Drotros = Drotros
+            Ngen.Drcalle2 = Drcalle2
+            Ngen.Drnume2 = Drnume2
+            Ngen.Drnumi2 = Drnumi2
+            Ngen.Drcolonia2 = Drcolonia2
+            Ngen.Drestado2 = Drestado2
+            Ngen.Dridestado2 = Dridestado2
+            Ngen.Drdel2 = Drdel2
+            Ngen.Driddel2 = Driddel2
+            Ngen.Drcp2 = Drcp2
+            Ngen.Drtelefono2 = Drtelefono2
+            Ngen.Drextencion = Drextencion
+            
+            
+            //Persona politica
+            Ngen.persona = person
+            Ngen.Prfuncion = Prfuncion
+            Ngen.parentesco = parentesco
+            Ngen.Prfuncion2 = Prfuncion2
+            Ngen.Prparentesco = Prparentesco
+            
+            //Referencias familiares
+            Ngen.Rrnombre = Rrnombre
+            Ngen.Rrapep = Rrapep
+            Ngen.Rrapem = Rrapem
+            Ngen.Rrnacionalidad = Rrnacionalidad
+            Ngen.Rridnacionalidad = Rridnacionalidad
+            Ngen.Rrtelefono = Rrtelefono
+            
+            Ngen.R2rnombre = R2rnombre
+            Ngen.R2rapep = R2rapep
+            Ngen.R2rapem = R2rapem
+            Ngen.R2rnacionalidad = Rr2nacionalidad
+            Ngen.Rridnacionalidad2 = Rridnacionalidad2
+            Ngen.R2rtelefono = R2rtelefono
+            
+            Ngen.R3rnombre = R3rnombre
+            Ngen.R3rapep = R3rapep
+            Ngen.R3rapem = R3rapem
+            Ngen.Rr3nacionalidad = Rr3nacionalidad
+            Ngen.Rridnacionalidad3 = Rridnacionalidad3
+            Ngen.R3rtelefono = R3rtelefono
+            //Documentos
+            Ngen.bidentificacionf = bidentificacionf
+            Ngen.tidentificacionf = tidentificacionf
+            Ngen.bidentificaciont = bidentificaciont
+            Ngen.tidentificaciont = tidentificaciont
+            Ngen.bfirma = bfirma
+            Ngen.tfirma = tfirma
+            
+            Ngen.deslizar = deslizar
+            Ngen.margeny = margen
+            Ngen.Imagen = marco
+            Ngen.guardar = IdSolicitud
+            self.navigationController?.pushViewController(Ngen, animated: false)
+            
+        } else{
+            if validador == 1 && guardar != 0 {
                //guardar
-               
+               print("ID al buscar:",IdSolicitud)
                print("Modificar")
+            }else {
+                if validador == 0 && guardar == 0 {
+                    //Insertarbuzon(fechaa: fechaa, sol: Xml, ext1: bfirma, ext2: bfirma, ext3: bfirma, ext4: bfirma, ext5: bfirma, docc1: bfirma, docc2: bfirma, docia: bfirma, docif: bfirma, fi: bfirma)
+                    let destViewController : UIViewController = self.storyboard!.instantiateViewController(withIdentifier: "Home")
+                    
+                    let topViewController : UIViewController = self.navigationController!.topViewController!
+                    
+                    if (topViewController.restorationIdentifier! == destViewController.restorationIdentifier!){
+                        print("Same VC")
+                    } else {
+                        self.navigationController!.pushViewController(destViewController, animated: true)
+                    }
+                }
             }
         }
         //No realiza ninguna Accion
@@ -670,8 +760,39 @@ class Nuevo: BaseViewController {
             ToastExample(message: "Solicitud No guardada")
         }
         
+        
     }
-    
+    //Buscar IdSolicitud
+    func BuscarIdSolicitud(){
+        var num = 0
+        if Buzon == "A" {
+            repeat {
+                if buzonA[num].estatus == 6 || buzonA[num].estatus == 0 {
+                    //print("IdSolicitud",buzonA[num].id_solicitud)
+                    if IdSolicitud <= buzonA[num].id_solicitud {
+                        IdSolicitud = Int(buzonA[num].id_solicitud)+1
+                    }
+                    num = num+1
+                } else {
+                    num = num+1
+                }
+            }while num < buzonA.count
+            print("Id Solicitud",IdSolicitud)
+        }else { //Buzonb
+            repeat {
+                if buzonB[num].estatus_b == 6 || buzonB[num].estatus_b == 0 {
+                    print("IdSolicitud",buzonB[num].id_solicitud_b)
+                    if IdSolicitud <= buzonB[num].id_solicitud_b {
+                        IdSolicitud = Int(buzonB[num].id_solicitud_b)+1
+                    }
+                    num = num+1
+                }else {
+                    num = num+1
+                }
+            }while num < buzonB.count
+             print("Id Solicitud",IdSolicitud)
+        }
+    }
     
     @objc func Insertarbuzon(fechaa:String,sol:String,ext1:String,ext2:String,ext3:String,ext4:String,ext5:String,docc1:String,docc2:String,docia:String,docif:String,fi:String){
         
@@ -751,15 +872,7 @@ class Nuevo: BaseViewController {
             do {
                 try context.save()
                 print("Solicitud insertada B!!!!")
-                let destViewController : UIViewController = self.storyboard!.instantiateViewController(withIdentifier: "Home")
                 
-                let topViewController : UIViewController = self.navigationController!.topViewController!
-                
-                if (topViewController.restorationIdentifier! == destViewController.restorationIdentifier!){
-                    print("Same VC")
-                } else {
-                    self.navigationController!.pushViewController(destViewController, animated: true)
-                }
                 
             }catch {
                 print(error)
@@ -792,7 +905,7 @@ class Nuevo: BaseViewController {
         if segue.identifier == "NuevoGeneral"{
             let Ngen = segue.destination as! Nuevogeneral
             print("VALOR QUE MANDA AL GUARDAR",guardar)
-            if guardar == 1 {
+            
                 //General
                 Ngen.Grnombre = Grnombre
                 Ngen.Grsnombre = Grsnombre
@@ -894,114 +1007,13 @@ class Nuevo: BaseViewController {
                 Ngen.deslizar = deslizar
                 Ngen.margeny = margen
                 Ngen.Imagen = marco
-                Ngen.guardar = 1
+                Ngen.guardar = guardar
             }
-            if guardar == 0 {
-                //General
-                Ngen.Grnombre = Grnombre
-                Ngen.Grsnombre = Grsnombre
-                Ngen.Grapep = Grapep
-                Ngen.Grapem = Grapem
-                Ngen.Grtipo = Grtipo
-                Ngen.Gridtipo = Gridtipo
-                Ngen.Gridentificacion = Gridentificacion
-                Ngen.sexo = sexo
-                Ngen.Grnacionalidad = Grnacionalidad
-                Ngen.Gridnacionalidad = Gridnacionalidad
-                Ngen.Grfecha = Grfecha
-                
-                Ngen.Grestcivil = Grestcivil
-                Ngen.Gridestcivil = Gridestcivil
-                Ngen.Grnumero = Grnumero
-                
-                
-                //Domicilio
-                Ngen.Drcalle = Drcalle
-                Ngen.Drnume = Drnume
-                Ngen.Drnumi = Drnumi
-                Ngen.Drcolonia = Drcolonia
-                Ngen.Drestado = Drestado
-                Ngen.Dridestado = Dridestado
-                Ngen.Drdel = Drdel
-                Ngen.Driddel = Driddel
-                Ngen.Drcp = Drcp
-                Ngen.Drtiempo = Drtiempo
-                Ngen.Drestatus = Drestatus
-                Ngen.Dridestatus = Dridestatus
-                Ngen.Drmonto = Drmonto
-                Ngen.Drcorreo = Drcorreo
-                Ngen.Drtelefono = Drtelefono
-                Ngen.Drmovil = Drmovil
-                Ngen.Drcompania = Drcompania
-                Ngen.Dridcompania = Dridcompania
-                
-                //Datos economicos
-                Ngen.Drnombre = Drnombre
-                Ngen.Drgiro = Drgiro
-                Ngen.Drantiguedad = Drantiguedad
-                Ngen.Drtipo = Drtipo
-                Ngen.Dridtipo = Dridtipo
-                Ngen.Drpuesto = Drpuesto
-                Ngen.Dringreso = Dringreso
-                Ngen.Drcasado = Drcasado
-                Ngen.Drfuente = Drfuente
-                Ngen.Drotros = Drotros
-                Ngen.Drcalle2 = Drcalle2
-                Ngen.Drnume2 = Drnume2
-                Ngen.Drnumi2 = Drnumi2
-                Ngen.Drcolonia2 = Drcolonia2
-                Ngen.Drestado2 = Drestado2
-                Ngen.Dridestado2 = Dridestado2
-                Ngen.Drdel2 = Drdel2
-                Ngen.Driddel2 = Driddel2
-                Ngen.Drcp2 = Drcp2
-                Ngen.Drtelefono2 = Drtelefono2
-                Ngen.Drextencion = Drextencion
-                
-                
-                //Persona politica
-                Ngen.persona = person
-                Ngen.Prfuncion = Prfuncion
-                Ngen.parentesco = parentesco
-                Ngen.Prfuncion2 = Prfuncion2
-                Ngen.Prparentesco = Prparentesco
-                
-                //Referencias familiares
-                Ngen.Rrnombre = Rrnombre
-                Ngen.Rrapep = Rrapep
-                Ngen.Rrapem = Rrapem
-                Ngen.Rrnacionalidad = Rrnacionalidad
-                Ngen.Rridnacionalidad = Rridnacionalidad
-                Ngen.Rrtelefono = Rrtelefono
-                
-                Ngen.R2rnombre = R2rnombre
-                Ngen.R2rapep = R2rapep
-                Ngen.R2rapem = R2rapem
-                Ngen.R2rnacionalidad = Rr2nacionalidad
-                Ngen.Rridnacionalidad2 = Rridnacionalidad2
-                Ngen.R2rtelefono = R2rtelefono
-                
-                Ngen.R3rnombre = R3rnombre
-                Ngen.R3rapep = R3rapep
-                Ngen.R3rapem = R3rapem
-                Ngen.Rr3nacionalidad = Rr3nacionalidad
-                Ngen.Rridnacionalidad3 = Rridnacionalidad3
-                Ngen.R3rtelefono = R3rtelefono
-                //Documentos
-                Ngen.bidentificacionf = bidentificacionf
-                Ngen.tidentificacionf = tidentificacionf
-                Ngen.bidentificaciont = bidentificaciont
-                Ngen.tidentificaciont = tidentificaciont
-                Ngen.bfirma = bfirma
-                Ngen.tfirma = tfirma
-                
-                Ngen.deslizar = deslizar
-                Ngen.margeny = margen
-                Ngen.Imagen = marco
-                Ngen.guardar = 0
-            }
-           
-        }
     }
     
+}
+extension Nuevogeneral {
+    func Cambio() {
+       guardar = 1
+    }
 }

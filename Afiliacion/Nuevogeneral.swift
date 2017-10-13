@@ -297,7 +297,12 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
     var banderav:Bool = true
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Quitar Opcion de Regresar
+        self.navigationItem.setHidesBackButton(true, animated: false)
+        self.title = "Solicitud Almacenada"
+        
         print("Valor de guardar en NewGeneral",guardar)
+  
         //funcion que oculta el teclado
         self.hideKeyboardWhenTappedAround()
         myscroll.delegate = self
@@ -815,9 +820,7 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
                 self.myscroll.contentOffset.y = CGFloat(self.margeny)
             }
     }
-    func prueba() {
-        print("Hola mundo :)")
-    }
+    
     func Anexos() {
         //tabla Anexo1
         Anexo1.append(["Carac":"0","valor":"00"])
@@ -1763,9 +1766,10 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
         print("Posicion Y: ",scrollView.contentOffset.y)
         if scrollView.contentOffset.y < 200 {
             print("General")
-            
+                 print("Guardar",guardar)
             if  let sol = self.storyboard?.instantiateViewController(withIdentifier: "New") as? Nuevo {
                 sol.identificador = 1
+                
                 sol.margen = Int(scrollView.contentOffset.y)
                 //General
                 sol.Grnombre = Gnombre.text!
@@ -1866,7 +1870,10 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
                 sol.tfirma = tfirma
                 
                 sol.marco = Imagen
-                sol.guardar = guardar
+                if guardar == 1 {
+                    sol.guardar = 1
+                }
+            
                 sol.deslizar = 1
                 self.navigationController?.pushViewController(sol, animated: false)
             }
