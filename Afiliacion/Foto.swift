@@ -32,6 +32,7 @@ class Foto: BaseViewController {
     
     
     @IBAction func Camara(_ sender: UIButton) {
+       /*
         if bandera == true {
             if let vc = self.storyboard?.instantiateViewController(withIdentifier: "Foton") as? Foton {
                 self.navigationController?.pushViewController(vc, animated: false)
@@ -39,7 +40,11 @@ class Foto: BaseViewController {
         }else {
             self.dismiss(animated: true, completion: nil)
         }
-        
+        */
+        print("Contrato parte 1")
+        if  let vista = self.storyboard?.instantiateViewController(withIdentifier: "New") as? Nuevo {
+            self.navigationController?.pushViewController(vista, animated: false)
+        }
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

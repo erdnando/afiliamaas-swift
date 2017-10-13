@@ -230,7 +230,7 @@ class ViewController: UIViewController {
         }catch {
             print(error)
         }
-        Verparam()
+        
     }
     
     @objc func hideKeyboardWhenTappedAround() {

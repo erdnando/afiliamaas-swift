@@ -189,151 +189,212 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         //Etiquetas redondas
         Tgeneral.layer.masksToBounds = true
         Tgeneral.layer.cornerRadius = 10
         Gnombre.layer.cornerRadius = 15
         Gnombre.layer.borderWidth = 1
+        Gnombre.isEnabled = false
         G2nombre.layer.cornerRadius = 15
         G2nombre.layer.borderWidth = 1
+        G2nombre.isEnabled = false
         Gapep.layer.cornerRadius = 15
         Gapep.layer.borderWidth = 1
+        Gapep.isEnabled = false
         Gapem.layer.cornerRadius = 15
         Gapem.layer.borderWidth = 1
+        Gapem.isEnabled = false
         Gtipo.layer.masksToBounds = true
         Gtipo.layer.cornerRadius = 15
         Gtipo.layer.borderWidth = 1
+        Gtipo.isEnabled = false
         Gnumero.layer.cornerRadius = 15
         Gnumero.layer.borderWidth = 1
+        Gnumero.isEnabled = false
         Gnan.layer.cornerRadius = 15
         Gnan.layer.borderWidth = 1
+        Gnan.isEnabled = false
         Fechanac.layer.cornerRadius = 15
         Fechanac.layer.borderWidth = 1
+        Fechanac.isEnabled = false
         Rfc.layer.cornerRadius = 15
         Rfc.layer.borderWidth = 1
+        Rfc.isEnabled = false
         Gestado.layer.cornerRadius = 15
         Gestado.layer.borderWidth = 1
+        Gestado.isEnabled = false
         Numdependientes.layer.cornerRadius = 15
         Numdependientes.layer.borderWidth = 1
+        Numdependientes.isEnabled = false
         //Domicilio
         Domicilio.layer.masksToBounds = true
         Domicilio.layer.cornerRadius = 10
         Gcalle.layer.cornerRadius = 15
         Gcalle.layer.borderWidth = 1
+        Gcalle.isEnabled = false
         Gnumext.layer.cornerRadius = 15
         Gnumext.layer.borderWidth = 1
+        Gnumext.isEnabled = false
         Gnumint.layer.cornerRadius = 15
         Gnumint.layer.borderWidth = 1
+        Gnumint.isEnabled = false
         Gcolonia.layer.cornerRadius = 15
         Gcolonia.layer.borderWidth = 1
+        Gcolonia.isEnabled = false
         Destado.layer.cornerRadius = 15
         Destado.layer.borderWidth = 1
+        Destado.isEnabled = false
         Dmun.layer.cornerRadius = 15
         Dmun.layer.borderWidth = 1
+        Dmun.isEnabled = false
         Ccp.layer.cornerRadius = 15
         Ccp.layer.borderWidth = 1
+        Ccp.isEnabled = false
         Gtiemporesidencia.layer.cornerRadius = 15
         Gtiemporesidencia.layer.borderWidth = 1
+        Gtiemporesidencia.isEnabled = false
         Gestatusresidencia.layer.cornerRadius = 15
         Gestatusresidencia.layer.borderWidth = 1
+        Gestatusresidencia.isEnabled = false
         Gmontovivienda.layer.cornerRadius = 15
         Gmontovivienda.layer.borderWidth = 1
+        Gmontovivienda.isEnabled = false
         Dcorreo.layer.cornerRadius = 15
         Dcorreo.layer.borderWidth = 1
+        Dcorreo.isEnabled = false
         Dtelefono.layer.cornerRadius = 15
         Dtelefono.layer.borderWidth = 1
+        Dtelefono.isEnabled = false
         Dcelular.layer.cornerRadius = 15
         Dcelular.layer.borderWidth = 1
+        Dcelular.isEnabled = false
         Dcompania.layer.cornerRadius = 15
         Dcompania.layer.borderWidth = 1
+        Dcompania.isEnabled = false
         
         //Datos economicos
         Datos.layer.masksToBounds = true
         Datos.layer.cornerRadius = 10
         DEmpresa.layer.cornerRadius = 15
         DEmpresa.layer.borderWidth = 1
+        DEmpresa.isEnabled = false
         DGiro.layer.cornerRadius = 15
         DGiro.layer.borderWidth = 1
+        DGiro.isEnabled = false
         Dantiguedad.layer.cornerRadius = 15
         Dantiguedad.layer.borderWidth = 1
+        Dantiguedad.isEnabled = false
         Dtipo.layer.cornerRadius = 15
         Dtipo.layer.borderWidth = 1
+        Dtipo.isEnabled = false
         Dpuesto.layer.cornerRadius = 15
         Dpuesto.layer.borderWidth = 1
+        Dpuesto.isEnabled = false
         Dingreso.layer.cornerRadius = 15
         Dingreso.layer.borderWidth = 1
+        Dingreso.isEnabled = false
         Dcasados.layer.cornerRadius = 15
         Dcasados.layer.borderWidth = 1
+        Dcasados.isEnabled = false
         Dfuenteingresos.layer.cornerRadius = 15
         Dfuenteingresos.layer.borderWidth = 1
+        Dfuenteingresos.isEnabled = false
         Dotrosingresos.layer.cornerRadius = 15
         Dotrosingresos.layer.borderWidth = 1
+        Dotrosingresos.isEnabled = false
         Dcalle.layer.cornerRadius = 15
         Dcalle.layer.borderWidth = 1
+        Dcalle.isEnabled = false
         Dnumext.layer.cornerRadius = 15
         Dnumext.layer.borderWidth = 1
+        Dnumext.isEnabled = false
         Dnumint.layer.cornerRadius = 15
         Dnumint.layer.borderWidth = 1
+        Dnumint.isEnabled = false
         DColonia.layer.cornerRadius = 15
         DColonia.layer.borderWidth = 1
+        DColonia.isEnabled = false
         Daestado.layer.cornerRadius = 15
         Daestado.layer.borderWidth = 1
+        Daestado.isEnabled = false
         Damun.layer.cornerRadius = 15
         Damun.layer.borderWidth = 1
+        Damun.isEnabled = false
         Dcp.layer.cornerRadius = 15
         Dcp.layer.borderWidth = 1
+        Dcp.isEnabled = false
         Dtelefonoofic.layer.cornerRadius = 15
         Dtelefonoofic.layer.borderWidth = 1
+        Dtelefonoofic.isEnabled = false
         Dextencion.layer.cornerRadius = 15
         Dextencion.layer.borderWidth = 1
+        Dextencion.isEnabled = false
         
         //Persona politica
         Tpersona.layer.masksToBounds = true
         Tpersona.layer.cornerRadius = 10
         Pfuncion.layer.cornerRadius = 15
         Pfuncion.layer.borderWidth = 1
+        Pfuncion.isEnabled = false
         Pfuncion2.layer.cornerRadius = 15
         Pfuncion2.layer.borderWidth = 1
+        Pfuncion2.isEnabled = false
         Pfuncion3.layer.cornerRadius = 15
         Pfuncion3.layer.borderWidth = 1
+        Pfuncion3.isEnabled = false
+        
         //Referencias
         Treferencias.layer.masksToBounds = true
         Treferencias.layer.cornerRadius = 10
         Rnombre.layer.cornerRadius = 15
         Rnombre.layer.borderWidth = 1
+        Rnombre.isEnabled = false
         Rapep.layer.cornerRadius = 15
         Rapep.layer.borderWidth = 1
+        Rapep.isEnabled = false
         Rapem.layer.cornerRadius = 15
         Rapem.layer.borderWidth = 1
+        Rapem.isEnabled = false
         Rnan.layer.masksToBounds = true
         Rnan.layer.cornerRadius = 10
         Rnan.layer.borderWidth = 1
         Rtelefono.layer.cornerRadius = 15
         Rtelefono.layer.borderWidth = 1
+        Rtelefono.isEnabled = false
         
         R2nombre.layer.cornerRadius = 15
         R2nombre.layer.borderWidth = 1
+        R2nombre.isEnabled = false
         R2apep.layer.cornerRadius = 15
         R2apep.layer.borderWidth = 1
+        R2apep.isEnabled = false
         R2apem.layer.cornerRadius = 15
         R2apem.layer.borderWidth = 1
+        R2apem.isEnabled = false
         R2nan.layer.masksToBounds = true
         R2nan.layer.cornerRadius = 10
         R2nan.layer.borderWidth = 1
         R2telefono.layer.cornerRadius = 15
         R2telefono.layer.borderWidth = 1
+        R2telefono.isEnabled = false
         
         R3nombre.layer.cornerRadius = 15
         R3nombre.layer.borderWidth = 1
+        R3nombre.isEnabled = false
         R3apep.layer.cornerRadius = 15
         R3apep.layer.borderWidth = 1
+        R3apep.isEnabled = false
         R3apem.layer.cornerRadius = 15
         R3apem.layer.borderWidth = 1
+        R3apem.isEnabled = false
         R3nan.layer.masksToBounds = true
         R3nan.layer.cornerRadius = 10
         R3nan.layer.borderWidth = 1
         R3telefono.layer.cornerRadius = 15
         R3telefono.layer.borderWidth = 1
+        R3telefono.isEnabled = false 
         
         Tdocumentos.layer.masksToBounds = true
         Tdocumentos.layer.cornerRadius = 10
@@ -388,6 +449,8 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
         Icontratop.addGestureRecognizer(cont2)
         Icontratop.isUserInteractionEnabled = true
         Icontratop.image = UIImage(named: Imagecontp)
+        Hombre.isEnabled = false
+        Mujer.isEnabled = false 
         CargarImagen()
     }
     
@@ -1104,6 +1167,11 @@ class General: UIViewController,XMLParserDelegate,UIScrollViewDelegate{
             }while num < Documentos.count 
         }
         //Tiene parentesco
+        Ppoliticano.isEnabled = false
+        Ppoliticasi.isEnabled = false
+        Ppolitica2no.isEnabled = false
+        Ppolitica2si.isEnabled = false
+        
         if parentesco[0] == "SI" {
             Ppolitica2si.isOn = true
             Ppolitica2no.isOn = false

@@ -15,6 +15,7 @@ class Foton: BaseViewController {
     var captureSession: AVCaptureSession?
     var videoPreviewLayer: AVCaptureVideoPreviewLayer?
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         addSlideMenuButton()

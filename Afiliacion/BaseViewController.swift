@@ -30,7 +30,7 @@ class BaseViewController: UIViewController, SlideMenuDelegate {
             self.openViewControllerBasedOnIdentifier("Home")
         break
         case 1:
-            self.openViewControllerBasedOnIdentifier("New")
+            self.openViewControllerBasedOnIdentifier("Foto")
         case 2:
             self.openViewControllerBasedOnIdentifier("Foto")
         break

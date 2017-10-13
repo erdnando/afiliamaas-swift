@@ -11,7 +11,8 @@ import CoreData
 class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,UITextFieldDelegate{
     //Scroll
     @IBOutlet weak var myscroll: UIScrollView!
-   
+    //Variable que Verifica si ya se guardo una vez
+    var guardar = 0
     //General
     @IBOutlet weak var General: UILabel!
     @IBOutlet weak var Gnombre: UITextField!
@@ -296,7 +297,7 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
     var banderav:Bool = true
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        print("Valor de guardar en NewGeneral",guardar)
         //funcion que oculta el teclado
         self.hideKeyboardWhenTappedAround()
         myscroll.delegate = self
@@ -814,6 +815,9 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
                 self.myscroll.contentOffset.y = CGFloat(self.margeny)
             }
     }
+    func prueba() {
+        print("Hola mundo :)")
+    }
     func Anexos() {
         //tabla Anexo1
         Anexo1.append(["Carac":"0","valor":"00"])
@@ -859,7 +863,7 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
     func RFC() {
         //Convertir a Mayusculas
         Grnombre = Grnombre.uppercased()
-        print("Nombre",Grnombre)
+        //print("Nombre",Grnombre)
         Grapep = Grapep.uppercased()
         Grapem = Grapem.uppercased()
         //Nombre
@@ -1862,7 +1866,7 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
                 sol.tfirma = tfirma
                 
                 sol.marco = Imagen
-                
+                sol.guardar = guardar
                 sol.deslizar = 1
                 self.navigationController?.pushViewController(sol, animated: false)
             }
@@ -1971,16 +1975,16 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
                 sol.tidentificaciont = tidentificaciont
                 sol.bfirma = bfirma
                 sol.tfirma = tfirma
-                
+               
                 sol.marco = Imagen
-                
+                sol.guardar = guardar
                 sol.deslizar = 1
                 self.navigationController?.pushViewController(sol, animated: false)
             }
             
         }
         if scrollView.contentOffset.y > 692 && scrollView.contentOffset.y < 1349{
-            //Vistadata(valor: 3)
+            
             print("Datos Economicos")
             
             if  let sol = self.storyboard?.instantiateViewController(withIdentifier: "New") as? Nuevo {
@@ -2083,6 +2087,7 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
                 sol.bfirma = bfirma
                 sol.tfirma = tfirma
                 
+                sol.guardar = guardar
                 sol.marco = Imagen
                 
                 sol.deslizar = 1
@@ -2194,7 +2199,7 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
                 sol.tidentificaciont = tidentificaciont
                 sol.bfirma = bfirma
                 sol.tfirma = tfirma
-                
+                sol.guardar = guardar
                 sol.marco = Imagen
 
                 
@@ -2304,7 +2309,7 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
                 sol.tidentificaciont = tidentificaciont
                 sol.bfirma = bfirma
                 sol.tfirma = tfirma
-                
+                sol.guardar = guardar
                 sol.marco = Imagen
                 
                 sol.deslizar = 1
@@ -2413,7 +2418,7 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
                 sol.tidentificaciont = tidentificaciont
                 sol.bfirma = bfirma
                 sol.tfirma = tfirma
-                
+                sol.guardar = guardar
                 sol.marco = Imagen
                 
                 
