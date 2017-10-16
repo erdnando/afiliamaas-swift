@@ -212,7 +212,7 @@ class Todos: UIViewController,XMLParserDelegate,UITableViewDataSource,UITableVie
     {
     
         if element == "Pmrnombre" {
-            //print("Nombre",string)
+            print("Nombre",string)
            Vnombre.append(string)
         }
         

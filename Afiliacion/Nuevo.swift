@@ -472,8 +472,17 @@ class Nuevo: BaseViewController {
             }))
             self.present(alert, animated: true, completion: nil)
         }else {
-            datos()
-            print("Estatus",Estatus)
+            if guardar == 0 {
+                validador = 2
+                datos()
+                print("Estatus",Estatus)
+            }else {
+                Estatus = 6
+                validador = 3
+                datos()
+                print("Estatus",Estatus)
+            }
+            
         }
        
     }
@@ -496,7 +505,6 @@ class Nuevo: BaseViewController {
         }else {
             validador = 0
             print("No agas nada")
-            
         }
     }
     @objc func ToastExample(message:String){
@@ -519,7 +527,7 @@ class Nuevo: BaseViewController {
         })
     }
     func datos() {
-        /*
+        
          //validacion de monto de vivienda hasta 100,000,000
         if Drmonto != "" {
             let monto = Int(Drmonto)
@@ -580,9 +588,9 @@ class Nuevo: BaseViewController {
         
          let fecha = Date()
          let dateformate = DateFormatter()
-         dateformate.dateStyle = .short
+         dateformate.dateFormat = "dd/MM/yyyy"
          let fechaa = dateformate.string(from: fecha)
-         
+        print("Fecha Actual",fechaa)
          let longitud2 = fechaa.characters.count
          var letters2 = fechaa.characters.map { String($0) }
          num = 0
@@ -622,13 +630,15 @@ class Nuevo: BaseViewController {
          let Comd = String(c)
         
          let Xml = "<?xml version="+Comd+"1.0"+Comd+" encoding="+Comd+"UTF-8"+Comd+"?> <SolicitudType xmlns:xsi="+Comd+"http://www.w3.org/2001/XMLSchema-instance"+Comd+" xmlns:xsd="+Comd+"http://www.w3.org/2001/XMLSchema"+Comd+"> <generales> <Tpoidentif>"+Gridtipo+"</Tpoidentif> <Noidenficacion>"+Gridentificacion+"</Noidenficacion> <Pmrnombre>"+Grnombre+"</Pmrnombre> <Sdonombre>"+Grsnombre+"</Sdonombre> <Apaterno>"+Grapep+"</Apaterno> <Amaterno>"+Grapem+"</Amaterno> <Sexo>"+sexo+"</Sexo> <Nacionalidad>"+Gridnacionalidad+"</Nacionalidad> <Fechanacdia>"+dia+"</Fechanacdia> <Rfc>"+Grrfc+"</Rfc> <Edocivil>"+Gridestcivil+"</Edocivil> <Nodependiente>"+Grnumero+"</Nodependiente> <Cveperspol>2</Cveperspol> <FechasnacMes>"+mes+"</FechasnacMes> <FechanacAnio>"+anio+"</FechanacAnio> </generales> <doc> <IdentificacionFrentePath>TEC_636395911640643196.jpg</IdentificacionFrentePath>  <IdentificacionAtrasPath>TEC_636395912088133899.jpg</IdentificacionAtrasPath> <Contrato1Path>TEC_636395912441057948.jpg</Contrato1Path> <Contrato2Path>TEC_636395912942097782.jpg</Contrato2Path> <FirmaPath>"+tfirma+"</FirmaPath> <Extra1>.....</Extra1> <Extra2>..</Extra2> <Extra3>..</Extra3> <Extra4>..</Extra4> <Extra5>..</Extra5> </doc> <domicilio> <Calle>"+Drcalle+"</Calle> <NoInt>"+Drnumi+"</NoInt> <NoExt>"+Drnume+"</NoExt> <Cpdom>"+Drcp+"</Cpdom> <Estado>"+Dridestado+"</Estado> <Delegacion>"+Driddel+"</Delegacion> <Colonia>"+Drcolonia+"</Colonia> <TiempoResidencia>"+Drtiempo+"</TiempoResidencia> <EstatusResidencia>"+Dridestatus+"</EstatusResidencia> <MontoVivienda>"+Drmonto+"</MontoVivienda> <Email>"+Drcorreo+"</Email> <Telcasa>"+Drtelefono+"</Telcasa> <Telmovil>"+Drmovil+"</Telmovil> <CompaniaMovil>"+Dridcompania+"</CompaniaMovil> </domicilio> <Personapolitica> <TipoParentesco>"+Prparentesco+"</TipoParentesco> <Descfuncion>"+Prfuncion+"</Descfuncion> <Descparentesco>"+Prfuncion2+"</Descparentesco> <TieneParentesco>"+parentesco+"</TieneParentesco> <EsPersonaPolitica>"+person+"</EsPersonaPolitica> </Personapolitica> <Refer> <Pmrnombre>"+Rrnombre+"</Pmrnombre> <Sdonombre/> <Apaterno>"+Rrapep+"</Apaterno> <Amaterno>"+Rrapem+"</Amaterno> <Nacionalidad>"+Rridnacionalidad+"</Nacionalidad> <TelefonoCasa>"+Rrtelefono+"</TelefonoCasa> </Refer> <Refer2> <Pmrnombre>"+R2rnombre+"</Pmrnombre> <Sdonombre/> <Apaterno>"+R2rapep+"</Apaterno> <Amaterno>"+R2rapem+"</Amaterno> <Nacionalidad>"+Rridnacionalidad2+"</Nacionalidad> <TelefonoCasa>"+R2rtelefono+"</TelefonoCasa> </Refer2> <Refer3> <Pmrnombre>"+R3rnombre+"</Pmrnombre> <Sdonombre/> <Apaterno>"+R3rapep+"</Apaterno> <Amaterno>"+R3rapem+"</Amaterno> <Nacionalidad>"+Rridnacionalidad3+"</Nacionalidad> <TelefonoCasa>"+R3rtelefono+"</TelefonoCasa> </Refer3> <Promotor> <Compania>"+comp+"</Compania> <Usuario>"+usuario+"</Usuario> <Contrasenia>"+pass+"</Contrasenia> </Promotor> <FolioLocal>0</FolioLocal> <DiaCreacion>"+dia2+"</DiaCreacion> <MesCreacion>"+mes2+"</MesCreacion> <AnioCreacion>20"+anio2+"</AnioCreacion> <Deconominos> <TipoContrato>"+Dridtipo+"</TipoContrato> <AntiguedadEmpleo>"+Drantiguedad+"</AntiguedadEmpleo> <AniosCasada>"+Drcasado+"</AniosCasada> <Ingresos>"+Dringreso+"</Ingresos> <NombreEmpresa>"+Drnombre+"</NombreEmpresa> <GiroEmpresa>"+Drgiro+"</GiroEmpresa> <Puesto>"+Drpuesto+"</Puesto> <Domicilio> <Calle>"+Drcalle2+"</Calle> <NoInt>"+Drnumi2+"</NoInt>  <NoExt>"+Drnume2+"</NoExt> <Cpdom>"+Drcp2+"</Cpdom> <Estado>"+Dridestado2+"</Estado> <Delegacion>"+Driddel2+"</Delegacion> <Colonia>"+Drcolonia2+"</Colonia> <TiempoResidencia>0</TiempoResidencia> <EstatusResidencia>0</EstatusResidencia> <MontoVivienda>0</MontoVivienda> <Telcasa>"+Drtelefono2+"</Telcasa> <Telmovil/> </Domicilio> <OtrosIngresos>"+Drotros+"</OtrosIngresos> <FuenteOtrosIngresos>"+Drfuente+"</FuenteOtrosIngresos> </Deconominos> <Lattitude>19.41409467264</Lattitude> <Longuitud>-99.0129458034061</Longuitud> </SolicitudType>"
-         print("valor de XML: ",Xml)*/
+         print("valor de XML: ",Xml)
         //Si realiza una accion
         print("Valor de Guardar:",guardar)
         if validador == 1 && guardar == 0 {
-             //Insertarbuzon(fechaa: fechaa, sol: Xml, ext1: bfirma, ext2: bfirma, ext3: bfirma, ext4: bfirma, ext5: bfirma, docc1: bfirma, docc2: bfirma, docia: bfirma, docif: bfirma, fi: bfirma)
-            print("Insertar")
+            
             BuscarIdSolicitud()
+            print("Insertar")
+             Insertarbuzon(sol: Xml, ext1: bfirma, ext2: bfirma, ext3: bfirma, ext4: bfirma, ext5: bfirma, docc1: bfirma, docc2: bfirma, docia: bfirma, docif: bfirma, fi: bfirma)
+          
             
             let Ngen = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Newgen") as! Nuevogeneral
             //General
@@ -735,14 +745,18 @@ class Nuevo: BaseViewController {
             Ngen.guardar = IdSolicitud
             self.navigationController?.pushViewController(Ngen, animated: false)
             
-        } else{
+        } else{//Cuando sigue en estatus 0 y aun faltan campos
             if validador == 1 && guardar != 0 {
                //guardar
+                IdSolicitud = guardar
                print("ID al buscar:",IdSolicitud)
                print("Modificar")
-            }else {
-                if validador == 0 && guardar == 0 {
-                    //Insertarbuzon(fechaa: fechaa, sol: Xml, ext1: bfirma, ext2: bfirma, ext3: bfirma, ext4: bfirma, ext5: bfirma, docc1: bfirma, docc2: bfirma, docia: bfirma, docif: bfirma, fi: bfirma)
+                Update(Xml: Xml, ext1: bfirma, ext2: bfirma, ext3: bfirma, ext4: bfirma, ext5: bfirma, docc1: bfirma, docc2: bfirma, docia: bfirma, docif: bfirma, fi: bfirma)
+            }else {//Cuando todos los campos estan llenos
+                if validador == 2 && guardar == 0 {
+                    BuscarIdSolicitud()
+                    print("Insercion Completa")
+                    Insertarbuzon(sol: Xml, ext1: bfirma, ext2: bfirma, ext3: bfirma, ext4: bfirma, ext5: bfirma, docc1: bfirma, docc2: bfirma, docia: bfirma, docif: bfirma, fi: bfirma)
                     let destViewController : UIViewController = self.storyboard!.instantiateViewController(withIdentifier: "Home")
                     
                     let topViewController : UIViewController = self.navigationController!.topViewController!
@@ -752,6 +766,23 @@ class Nuevo: BaseViewController {
                     } else {
                         self.navigationController!.pushViewController(destViewController, animated: true)
                     }
+                }else {//Cuando pasa de estatus 0 a estatus 6
+                    if validador == 3 && guardar != 0 {
+                        IdSolicitud = guardar
+                        print("ID al buscar:",IdSolicitud)
+                        print("Valor de Bfirna:",bfirma)
+                        print("Modificacion final")
+                        Update(Xml: Xml, ext1: bfirma, ext2: bfirma, ext3: bfirma, ext4: bfirma, ext5: bfirma, docc1: bfirma, docc2: bfirma, docia: bfirma, docif: bfirma, fi: bfirma)
+                        let destViewController : UIViewController = self.storyboard!.instantiateViewController(withIdentifier: "Home")
+                        
+                        let topViewController : UIViewController = self.navigationController!.topViewController!
+                        
+                        if (topViewController.restorationIdentifier! == destViewController.restorationIdentifier!){
+                            print("Same VC")
+                        } else {
+                            self.navigationController!.pushViewController(destViewController, animated: true)
+                        }
+                    }
                 }
             }
         }
@@ -759,7 +790,7 @@ class Nuevo: BaseViewController {
         if validador == 0 {
             ToastExample(message: "Solicitud No guardada")
         }
-        
+       
         
     }
     //Buscar IdSolicitud
@@ -793,19 +824,71 @@ class Nuevo: BaseViewController {
              print("Id Solicitud",IdSolicitud)
         }
     }
+    @objc func Update(Xml:String,ext1:String,ext2:String,ext3:String,ext4:String,ext5:String,docc1:String,docc2:String,docia:String,docif:String,fi:String) {
+        if Buzon == "A" {
+            let request = NSFetchRequest<Rbuzon>(entityName: "Rbuzon")
+            do {
+                let searchResults = try context.fetch(request)
+                for task in searchResults {
+                    if task.id_solicitud == Int32(IdSolicitud) {
+                        task.estatus = Int16(Estatus)
+                        task.solicitud_xml = Xml
+                        task.ext_c1 = ext1
+                        task.ext_c2 = ext2
+                        task.ext_c3 = ext3
+                        task.ext_c4 = ext4
+                        task.ext_c5 = ext4
+                        task.doc_c1 = docc1
+                        task.doc_c2 = docc2
+                        task.doc_ia = docia
+                        task.doc_if = docif
+                        task.fi = fi
+                    }
+                }
+            } catch {
+                print("Error with request: \(error)")
+            }
+            (UIApplication.shared.delegate as! AppDelegate).saveContext()
+            print("SOLICITUD MODIFICADA A")
+        }else {
+            let request = NSFetchRequest<BUZON_A>(entityName: "BUZON_A")
+            do {
+                let searchResults = try context.fetch(request)
+                for task in searchResults {
+                    if task.id_solicitud_b == Int32(IdSolicitud) {
+                        task.estatus_b = Int16(Estatus)
+                        task.solicitud_xml_b = Xml
+                        task.ext_c1 = ext1
+                        task.ext_c2 = ext2
+                        task.ext_c3 = ext3
+                        task.ext_c4 = ext4
+                        task.ext_c5 = ext4
+                        task.doc_c1 = docc1
+                        task.doc_c2 = docc2
+                        task.doc_ia = docia
+                        task.doc_if = docif
+                        task.fi = fi
+                    }
+                }
+            } catch {
+                print("Error with request: \(error)")
+            }
+            (UIApplication.shared.delegate as! AppDelegate).saveContext()
+            print("SOLICITUD MODIFICADA B")
+        }
+    }
     
-    @objc func Insertarbuzon(fechaa:String,sol:String,ext1:String,ext2:String,ext3:String,ext4:String,ext5:String,docc1:String,docc2:String,docia:String,docif:String,fi:String){
+    @objc func Insertarbuzon(sol:String,ext1:String,ext2:String,ext3:String,ext4:String,ext5:String,docc1:String,docc2:String,docia:String,docif:String,fi:String){
         
         if Buzon == "A" {
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat =  "dd/MM/yyyy"
-            let date = dateFormatter.date(from: fechaa)
+            let fecha = Date()
+            
             
             let newBuz = NSEntityDescription.insertNewObject(forEntityName: "Rbuzon", into: context)
             newBuz.setValue("", forKey: "comentario")
             newBuz.setValue(Estatus, forKey: "estatus")
-            newBuz.setValue(date, forKey: "fecha_alta")
-            newBuz.setValue(date, forKey: "fecha_modificacion")
+            newBuz.setValue(fecha, forKey: "fecha_alta")
+            newBuz.setValue(fecha, forKey: "fecha_modificacion")
             newBuz.setValue(IdSolicitud, forKey: "id_solicitud")//esta debe de ser calculable
             newBuz.setValue(Idusuario, forKey: "id_usuario")
             newBuz.setValue(0, forKey: "motivo")
@@ -842,16 +925,15 @@ class Nuevo: BaseViewController {
             
         }else {
             
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat =  "dd/MM/yyyy"
-            let date = dateFormatter.date(from: fechaa)
-        
+            let fecha = Date()
+           
+ 
             let newBuz = NSEntityDescription.insertNewObject(forEntityName: "BUZON_A", into: context)
             
             newBuz.setValue("", forKey: "comentario_b")
-            newBuz.setValue(6, forKey: "estatus_b")
-            newBuz.setValue(date, forKey: "fecha_alta_b")
-            newBuz.setValue(date, forKey: "fecha_modificacion_b")
+            newBuz.setValue(Estatus, forKey: "estatus_b")
+            newBuz.setValue(fecha, forKey: "fecha_alta_b")
+            newBuz.setValue(fecha, forKey: "fecha_modificacion_b")
             newBuz.setValue(IdSolicitud, forKey: "id_solicitud_b")//esta debe de ser calculable
             newBuz.setValue(Idusuario, forKey: "id_usuario_b")
             newBuz.setValue(0, forKey: "motivo_b")
@@ -877,6 +959,7 @@ class Nuevo: BaseViewController {
             }catch {
                 print(error)
             }
+            
         }
     }
     
@@ -1011,9 +1094,4 @@ class Nuevo: BaseViewController {
             }
     }
     
-}
-extension Nuevogeneral {
-    func Cambio() {
-       guardar = 1
-    }
 }

@@ -85,7 +85,7 @@ class ViewController: UIViewController {
         }else{
             //Eliminarparam()
             //Verparam()
-            
+            //verBuzon()
         }
        
     }
@@ -281,9 +281,7 @@ class ViewController: UIViewController {
             verBuzon()
            // verCatalogos()
             */
-            
-            
-         }
+            }
     }
     
     @objc func ToastExample(message:String){
@@ -360,15 +358,17 @@ class ViewController: UIViewController {
             num = num+1
         }while num < paramArray.count
     }
+    
     @objc func verBuzon(){
         print("Registros del Buzon activo")
         var num = 0
         repeat {
-            print("indice:",num,"Xml:",buzonB[num].solicitud_xml_b!)
-            
+            print("IdSolicitud",buzonA[num].id_solicitud,"Fecha de alta",buzonA[num].fecha_alta!,"estatus",buzonA[num].estatus)
+            //print("indice:",num,"IDSOLICITUD:",buzonB[num].id_solicitud_b,"Xml:",buzonB[num].fecha_alta_b,"Estatus",buzonB[num].estatus_b)
             num = num+1
         }while num < buzonA.count
     }
+    
     @objc func verCatalogos(){
         print("Registros del catalogo Activo")
         var num = 0
@@ -620,6 +620,7 @@ class ViewController: UIViewController {
         }
          self.Buscarparamca()
     }
+    
     //Buscar Catalogo Activo
     @objc func Buscarparamca() {
         self.ToastExample(message: "Obteniendo catalogo activo")

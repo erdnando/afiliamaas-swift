@@ -18,9 +18,8 @@ class Foto: BaseViewController {
     addSlideMenuButton()
         if let availableimage = takenPhoto {
             imageView.image = availableimage
-        print("nombre de la imagen: ",imageView.image!)
         }
-      convert(Imagen: imageView.image!)
+      //convert(Imagen: imageView.image!)
     }
     
     @objc func convert(Imagen:UIImage) {

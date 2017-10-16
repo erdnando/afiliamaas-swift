@@ -1170,6 +1170,8 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
             sol.bfirma = bfirma
             sol.tfirma = tfirma
             sol.marco = Imagen
+            sol.guardar = guardar
+            
             sol.deslizar = 1
             self.navigationController?.pushViewController(sol, animated: false)
         }
@@ -1868,11 +1870,9 @@ class Nuevogeneral: UIViewController,UIPickerViewDelegate,UIScrollViewDelegate,U
                 sol.tidentificaciont = tidentificaciont
                 sol.bfirma = bfirma
                 sol.tfirma = tfirma
-                
                 sol.marco = Imagen
-                if guardar == 1 {
-                    sol.guardar = 1
-                }
+                sol.guardar = guardar
+                
             
                 sol.deslizar = 1
                 self.navigationController?.pushViewController(sol, animated: false)

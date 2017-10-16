@@ -9,7 +9,8 @@
 import UIKit
 
 class Firma: UIViewController {
-    
+    //Variable que Verifica si ya se guardo una vez
+    var guardar = 0
     //General
     @objc var Grnombre = ""
     @objc var Grsnombre = ""
@@ -268,7 +269,7 @@ class Firma: UIViewController {
             Ngen.tidentificaciont = tidentificaciont
             Ngen.bfirma = bfirma
             Ngen.tfirma = tfirma
-            
+            Ngen.guardar = guardar
             Ngen.deslizar = deslizar
             Ngen.margen = margen
             Ngen.marco = marco
