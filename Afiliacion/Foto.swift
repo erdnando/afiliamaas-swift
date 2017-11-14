@@ -15,7 +15,7 @@ class Foto: BaseViewController {
     
     override func viewDidLoad() {
     super.viewDidLoad()
-    addSlideMenuButton()
+   
         if let availableimage = takenPhoto {
             imageView.image = availableimage
         }
@@ -45,6 +45,19 @@ class Foto: BaseViewController {
             self.navigationController?.pushViewController(vista, animated: false)
         }
     }
+    
+    @IBAction func Atras(_ sender: UIBarButtonItem) {
+        let destViewController : UIViewController = self.storyboard!.instantiateViewController(withIdentifier: "Home")
+        let topViewController : UIViewController = self.navigationController!.topViewController!
+        if (topViewController.restorationIdentifier! == destViewController.restorationIdentifier!){
+            print("Same VC")
+        } else {
+            self.navigationController!.pushViewController(destViewController, animated: true)
+        }
+    }
+    
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         

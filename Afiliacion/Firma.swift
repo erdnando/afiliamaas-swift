@@ -116,13 +116,14 @@ class Firma: UIViewController {
     @objc var red: CGFloat = 0.0
     @objc var green: CGFloat = 0.0
     @objc var blue: CGFloat = 0.0
-    @objc var brushWidth: CGFloat = 10.0
+    @objc var brushWidth: CGFloat = 5.0
     @objc var opacity: CGFloat = 1.0
     @objc var swiped = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-      
+       print("valor de nombre",Grnombre)
+       print("valor de deslizar",deslizar)
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         swiped = false
@@ -172,6 +173,7 @@ class Firma: UIViewController {
     
     @IBAction func Guardar(_ sender: UIBarButtonItem) {
         convert(Imagen: Panel.image!)
+        print("Regresando datos",Grnombre)
         if  let Ngen = self.storyboard?.instantiateViewController(withIdentifier: "New") as? Nuevo {
             Ngen.Grnombre = Grnombre
             Ngen.Grsnombre = Grsnombre
@@ -281,7 +283,7 @@ class Firma: UIViewController {
     @objc func convert(Imagen:UIImage) {
         let imageData: NSData = UIImageJPEGRepresentation(Imagen, 0.4)! as NSData
         bfirma = imageData.base64EncodedString(options: .lineLength64Characters)
-        print("Imgen codificada en base 64:",bfirma)
+        print("Imagen codificada en base 64:",bfirma)
         let ticks = String(Date().ticks)
         tfirma = "TEC_"+ticks+".jpg"
         print(tfirma)

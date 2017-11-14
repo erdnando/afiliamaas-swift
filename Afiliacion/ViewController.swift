@@ -19,6 +19,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var Btacceder: UIButton!
     
+    
     //Unique Device Id
     @objc var Uniqueid = UIDevice.current.identifierForVendor!.uuidString
     @objc var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -65,7 +66,7 @@ class ViewController: UIViewController {
         Empresa.layer.cornerRadius = 25
         Empresa.layer.borderWidth = 1
         
-        User.text = "jaimea"
+        User.text = "andresc"
         Pass.text = "12345678"
         Empresa.text = "STF"
         
@@ -84,8 +85,9 @@ class ViewController: UIViewController {
             Parametros()
         }else{
             //Eliminarparam()
-            //Verparam()
+            Verparam()
             //verBuzon()
+            //prueba()
         }
        
     }
@@ -262,6 +264,11 @@ class ViewController: UIViewController {
         if User.text != "" && Pass.text != "" && Empresa.text != ""{
             
             if  Perfil.isOn {
+                User.isEnabled = false
+                Pass.isEnabled = false
+                Empresa.isEnabled = false
+                Btacceder.isEnabled = false
+                Btacceder.backgroundColor = UIColor.darkGray
                  Wslogin()
                 ToastExample(message: "Iniciando Sincronizacion")
             }else {
@@ -277,7 +284,7 @@ class ViewController: UIViewController {
             Verparam()
             print("BuzonB:",buzonA.count)
             print("CatalogoB",cataloA.count)
- 
+            
             verBuzon()
            // verCatalogos()
             */
@@ -341,7 +348,7 @@ class ViewController: UIViewController {
             
         }else{
             if let vc = self.storyboard?.instantiateViewController(withIdentifier: "Home") as? Home {
-                vc.Usuario = User.text!
+                vc.Usuario2 = User.text!
                 vc.compania = Empresa.text!
                 vc.Contrasena = Pass.text!
                 vc.id = Int(userArray[num].id_usuario)
@@ -353,20 +360,47 @@ class ViewController: UIViewController {
     @objc func Verparam(){
         var num = 0
         repeat {
-            print("indice:",num,"Id:",paramArray[num].id_parametro,"parametro:",paramArray[num].parametro!,"valor",paramArray[num].valor!)
+            if paramArray[num].parametro == "MODALIDAD" {
             
+                if paramArray[num].valor == "OFF" {
+                    print("indice:",num,"Id:",paramArray[num].id_parametro,"parametro:",paramArray[num].parametro!,"valor",paramArray[num].valor!)
+                }else {
+                    print("ON")
+                    Updateparam2()
+                }
+            }
+            print("indice:",num,"Id:",paramArray[num].id_parametro,"parametro:",paramArray[num].parametro!,"valor",paramArray[num].valor!)
             num = num+1
         }while num < paramArray.count
     }
+    
+    
+    @objc func Updateparam2(){
+      let request = NSFetchRequest<PARAMETRO>(entityName: "PARAMETRO")
+        do {
+            let searchResults = try context.fetch(request)
+            for task in searchResults {
+                if task.parametro == "MODALIDAD" {
+                    task.valor = "OFF"
+                }
+               
+            }
+        } catch {
+            print("Error with request: \(error)")
+        }
+        (UIApplication.shared.delegate as! AppDelegate).saveContext()
+        print("La aplicacion ya esta en modo OFFline")
+    }
+    
     
     @objc func verBuzon(){
         print("Registros del Buzon activo")
         var num = 0
         repeat {
-            print("IdSolicitud",buzonA[num].id_solicitud,"Fecha de alta",buzonA[num].fecha_alta!,"estatus",buzonA[num].estatus)
-            //print("indice:",num,"IDSOLICITUD:",buzonB[num].id_solicitud_b,"Xml:",buzonB[num].fecha_alta_b,"Estatus",buzonB[num].estatus_b)
+            //print("IdSolicitud",buzonA[num].id_solicitud,"Fecha de alta",buzonA[num].fecha_alta!,"estatus",buzonA[num].estatus)
+            print("indice:",num,"IDSOLICITUD:",buzonB[num].id_solicitud_b,"Xml:",buzonB[num].fecha_alta_b!,"Estatus",buzonB[num].estatus_b)
             num = num+1
-        }while num < buzonA.count
+        }while num < buzonB.count
     }
     
     @objc func verCatalogos(){
@@ -380,6 +414,7 @@ class ViewController: UIViewController {
     }
     
     @objc func Wslogin() {
+       
         let json: [String: Any] = [ "Promotoria":"",
                                     "RegPromotor":"",
                                     "Compania":Empresa.text!,
@@ -392,7 +427,7 @@ class ViewController: UIViewController {
         let jsonData = try? JSONSerialization.data(withJSONObject: json)
         
         // create post request
-        let url = URL(string: "https://stefaninimx.com/mx.com.stefanini.service.api.rest/Service1.svc/Login")!
+        let url = URL(string: "https://sminet.com.mx/mx.com.stefanini.service.api.rest/Service1.svc/Login")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         
@@ -420,11 +455,18 @@ class ViewController: UIViewController {
                         let alert = UIAlertController(title: "AVISO!", message: "¡Login Incorrecto!" , preferredStyle: UIAlertControllerStyle.alert)
                         alert.addAction(UIAlertAction(title: "Aceptar", style: UIAlertActionStyle.default, handler: nil))
                         self.present(alert, animated: true, completion: nil)
+                        self.Perfil.isOn = false
+                        self.User.isEnabled = true
+                        self.Pass.isEnabled = true
+                        self.Empresa.isEnabled = true
+                        self.Btacceder.isEnabled = true
+                        self.Btacceder.backgroundColor = UIColor(red:0.11, green:0.74, blue:0.92, alpha:1.0)
+                      
                     }else {
                         print("usuario encontrado")
                         self.Token = (responseJSON["Token"] as? String)!
                         print("Token Usuario: ",self.Token)
-                        self.Buscarparamba()
+                        self.Wsuuid()
                     }
                     
                 }
@@ -434,6 +476,78 @@ class ViewController: UIViewController {
         }
         task.resume()
     }
+   
+    @objc func Wsuuid(){
+      
+        let json: [String: Any] = ["idUsuario": String(Idusuario),
+                                   "UUID": Uniqueid,
+                                   "llave":["idUsuario":String(Idusuario),
+                                            "Token":self.Token]]
+        
+        let jsonData = try? JSONSerialization.data(withJSONObject: json)
+        
+        // create post request
+        let url = URL(string: "https://sminet.com.mx/mx.com.stefanini.service.api.rest/Service1.svc/validaUUID")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        // insert json data to the request
+        request.httpBody = jsonData
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data, error == nil else {
+                print(error?.localizedDescription ?? "No data")
+                return
+            }
+         
+            
+            let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+            print("Recibiendo datos")
+            if var responseJSON = responseJSON as? [String: Any] {
+                DispatchQueue.main.async {
+                self.ToastExample(message: "Validando usuario en dispositivo movil")
+                    let resultado =  responseJSON["validaUUIDResult"] as! String
+                    print("Respuesta UUID:",resultado)
+                    var validador = ""
+                    let letters = resultado.characters.map{ String($0) }
+                    let longitud = resultado.characters.count
+                    var num = 0
+                    repeat{
+                        if letters[num] == "@" {
+                            break
+                        }else {
+                            validador = validador + letters[num]
+                            num = num+1
+                        }
+                    }while num < longitud
+                  
+                    if validador == "true" {
+                        
+                        print("usuario ligado a este dispositivo")
+                        self.ToastExample(message: "Usuario ligado a este dispositivo")
+                        self.Buscarparamba()
+                       
+                    }else{
+                        let alert = UIAlertController(title: "¡Este perfil del promotor: "+self.User.text!+" no puede instalarse en este dispositivo "+self.Uniqueid, message: "Solicite al administrador el permiso correspondiente" , preferredStyle: UIAlertControllerStyle.alert)
+                        alert.addAction(UIAlertAction(title: "Aceptar", style: UIAlertActionStyle.default, handler: nil))
+                        self.present(alert, animated: true, completion: nil)
+                        self.Perfil.isOn = false
+                        self.User.isEnabled = true
+                        self.Pass.isEnabled = true
+                        self.Empresa.isEnabled = true
+                        self.Btacceder.isEnabled = true
+                        self.Btacceder.backgroundColor = UIColor(red:0.11, green:0.74, blue:0.92, alpha:1.0)
+                    }
+                }
+            }else{
+                print(" no Respuesta Json")
+            }
+      }
+          task.resume()
+    }
+    
     //Buscar buzon activo
     @objc func Buscarparamba(){
         ToastExample(message: "Obteniendo Buzon Activo.....")
@@ -458,7 +572,7 @@ class ViewController: UIViewController {
                     self.Eliminarbuzon(Arreglo: "B")
                 }
             } else {
-                 Buscarbuzon(Arreglo: paramArray[num].valor!)
+                Buscarbuzon(Arreglo: paramArray[num].valor!)
             }
         }else {
             self.Buzoninsert = "A"
@@ -470,7 +584,7 @@ class ViewController: UIViewController {
                     Eliminarbuzon(Arreglo: "A")
                 }
             }else {
-                  Buscarbuzon(Arreglo: paramArray[num].valor!)
+                Buscarbuzon(Arreglo: paramArray[num].valor!)
             }
         }
         
@@ -484,7 +598,7 @@ class ViewController: UIViewController {
         var bandera = true
         if Arreglo == "A" {
             repeat{
-                if buzonA[num].estatus == 6 || buzonA[num].estatus == 7{
+                if buzonA[num].estatus == 6 || buzonA[num].estatus == 7 || buzonA[num].estatus == 0{
                     print("encontre un estatus 6 o 7")
                     bandera = false
                     break
@@ -496,30 +610,35 @@ class ViewController: UIViewController {
                 print("no ay estatus pendientes")
                 ToastExample(message: "No ay estatus pendientes")
                 if buzonB.count == 0 {
-                   self.Buscarparamca()
+                    self.Buscarparamca()
                 }else {
-                      Eliminarbuzon(Arreglo: "B")
+                    Eliminarbuzon(Arreglo: "B")
                 }
                 
             }else {
                 let alert = UIAlertController(title: "¡Aviso!", message: "Tienes Solicitudes Pendientes deseas eliminarlas", preferredStyle: UIAlertControllerStyle.alert)
                 alert.addAction(UIAlertAction(title: "Aceptar", style: UIAlertActionStyle.default,  handler:{ (action: UIAlertAction!) in
                     if self.buzonB.count == 0 {
-                       self.Buscarparamca()
+                        self.Buscarparamca()
                     }else {
                         self.Eliminarbuzon(Arreglo: "B")
                     }
                 }))
                 alert.addAction(UIAlertAction(title: "Cancelar", style: UIAlertActionStyle.cancel, handler:{ (action: UIAlertAction!) in
-                     self.Perfil.isOn = false
-                     self.ToastExample(message: "Proceso de Sincronizacion cancelado")
+                    self.Perfil.isOn = false
+                    self.User.isEnabled = true
+                    self.Pass.isEnabled = true
+                    self.Empresa.isEnabled = true
+                    self.Btacceder.isEnabled = true
+                    self.Btacceder.backgroundColor = UIColor(red:0.11, green:0.74, blue:0.92, alpha:1.0)
+                    self.ToastExample(message: "Proceso de Sincronizacion cancelado")
                 }))
                 self.present(alert, animated: true, completion: nil)
                 
             }
         }else {
             repeat {
-                if buzonB[num].estatus_b == 6 || buzonB[num].estatus_b == 7 {
+                if buzonB[num].estatus_b == 6 || buzonB[num].estatus_b == 7 || buzonB[num].estatus_b == 0 {
                     print("encontre un estatus 6 0 7")
                     bandera = false
                     break
@@ -531,21 +650,27 @@ class ViewController: UIViewController {
                 print("no ay estatus pendientes")
                 ToastExample(message: "No ay estatus pendientes")
                 if buzonA.count == 0 {
-                     self.Buscarparamca()
+                    self.Buscarparamca()
                 }else {
-                     Eliminarbuzon(Arreglo: "A")
+                    Eliminarbuzon(Arreglo: "A")
                 }
                 
             }else {
                 let alert = UIAlertController(title: "¡Aviso!", message: "Tienes Solicitudes Pendientes deseas eliminarlas", preferredStyle: UIAlertControllerStyle.alert)
                 alert.addAction(UIAlertAction(title: "Aceptar", style: UIAlertActionStyle.default,  handler:{ (action: UIAlertAction!) in
                     if self.buzonA.count == 0 {
-                       self.Buscarparamca()
+                        self.Buscarparamca()
                     }else {
                         self.Eliminarbuzon(Arreglo: "A")
                     }
                 }))
                 alert.addAction(UIAlertAction(title: "Cancelar", style: UIAlertActionStyle.cancel, handler:{ (action: UIAlertAction!) in
+                    self.Perfil.isOn = false
+                    self.User.isEnabled = true
+                    self.Pass.isEnabled = true
+                    self.Empresa.isEnabled = true
+                    self.Btacceder.isEnabled = true
+                    self.Btacceder.backgroundColor = UIColor(red:0.11, green:0.74, blue:0.92, alpha:1.0)
                     self.ToastExample(message: "Proceso de Sincronizacion cancelado")
                 }))
                 
@@ -618,7 +743,7 @@ class ViewController: UIViewController {
             }while buzonB.count > 0
             
         }
-         self.Buscarparamca()
+        self.Buscarparamca()
     }
     
     //Buscar Catalogo Activo
@@ -637,16 +762,16 @@ class ViewController: UIViewController {
             print("Tamano de Catalogo A:",cataloA.count)
             self.Catalogoinsert = "B"
             if cataloB.count != 0{
-               self.Eliminarcatalogo(Arreglo: "B")
+                self.Eliminarcatalogo(Arreglo: "B")
             }
         }else {
             self.Catalogoinsert = "A"
             print("Tamano de buzon B:",cataloB.count)
             if cataloA.count != 0 {
-               self.Eliminarcatalogo(Arreglo: "A")
+                self.Eliminarcatalogo(Arreglo: "A")
             }
         }
-         self.Buscarparampa()
+        self.Buscarparampa()
     }
     
     @objc func Eliminarcatalogo(Arreglo:String){
@@ -717,12 +842,12 @@ class ViewController: UIViewController {
             }while cataloB.count > 0
             
         }
-       
+        
     }
     
     //Buscar Producto Activo
     @objc func Buscarparampa() {
-         self.ToastExample(message: "Obteniendo producto activo")
+        self.ToastExample(message: "Obteniendo producto activo")
         var num = 0
         repeat{
             if paramArray[num].parametro == "PRODUCTO_ACTIVO" {
@@ -736,16 +861,16 @@ class ViewController: UIViewController {
             print("Tamano de Producto A:",prodA.count)
             self.productinsert = "B"
             if prodA.count != 0{
-               self.Eliminarproducto(Arreglo: "B")
+                self.Eliminarproducto(Arreglo: "B")
             }
         }else {
             self.productinsert = "A"
             print("Tamano de Producto B:",prodB.count)
             if prodB.count != 0 {
-              self.Eliminarproducto(Arreglo: "A")
+                self.Eliminarproducto(Arreglo: "A")
             }
         }
-         self.Buscarparamaa()
+        self.Buscarparamaa()
     }
     
     @objc func Eliminarproducto(Arreglo:String){
@@ -773,7 +898,7 @@ class ViewController: UIViewController {
                 do {
                     prodA = try managedContext.fetch(fetchRequest) as! [ProductoA]
                     print("Registro borrado")
-                     ToastExample(message: "Eliminando Productos")
+                    ToastExample(message: "Eliminando Productos")
                     id = id-1
                 } catch let error as NSError {
                     print("Error While Fetching Data From DB: \(error.userInfo)")
@@ -803,7 +928,7 @@ class ViewController: UIViewController {
                 do {
                     prodB = try managedContext.fetch(fetchRequest) as! [Producto]
                     print("Registro borrado")
-                     ToastExample(message: "Eliminando Productos")
+                    ToastExample(message: "Eliminando Productos")
                     id = id-1
                 } catch let error as NSError {
                     print("Error While Fetching Data From DB: \(error.userInfo)")
@@ -815,7 +940,7 @@ class ViewController: UIViewController {
     }
     //Buscar Agenda Activa
     @objc func Buscarparamaa() {
-         self.ToastExample(message: "Obteniendo agenda activa")
+        self.ToastExample(message: "Obteniendo agenda activa")
         var num = 0
         repeat{
             if paramArray[num].parametro == "AGENDA_ACTIVA" {
@@ -826,95 +951,25 @@ class ViewController: UIViewController {
             }
         }while num < paramArray.count
         if paramArray[num].valor == "A" {
-                       self.agendinsert = "B"
+            self.agendinsert = "B"
             if prodA.count != 0{
                 //  Buscarbuzon(Arreglo: paramArray[num].valor!)
             }
         }else {
             self.agendinsert = "A"
-         
+            
             if prodB.count != 0 {
                 //   Buscarbuzon(Arreglo: paramArray[num].valor!)
             }
         }
-        Wsuuid()
-    }
-    
-    
-    
-    @objc func Wsuuid(){
-      
-        let json: [String: Any] = ["idUsuario": String(Idusuario),
-                                   "UUID": Uniqueid,
-                                   "llave":["idUsuario":String(Idusuario),
-                                            "Token":self.Token]]
-        
-        let jsonData = try? JSONSerialization.data(withJSONObject: json)
-        
-        // create post request
-        let url = URL(string: "https://stefaninimx.com/mx.com.stefanini.service.api.rest/Service1.svc/validaUUID")!
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        // insert json data to the request
-        request.httpBody = jsonData
-        
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let data = data, error == nil else {
-                print(error?.localizedDescription ?? "No data")
-                return
-            }
-         
-            
-            let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
-            print("Recibiendo datos")
-            if var responseJSON = responseJSON as? [String: Any] {
-                DispatchQueue.main.async {
-                self.ToastExample(message: "Validando usuario en dispositivo movil")
-                    let resultado =  responseJSON["validaUUIDResult"] as! String
-                    print("Respuesta UUID:",resultado)
-                    var validador = ""
-                    let letters = resultado.characters.map{ String($0) }
-                    let longitud = resultado.characters.count
-                    var num = 0
-                    repeat{
-                        if letters[num] == "@" {
-                            break
-                        }else {
-                            validador = validador + letters[num]
-                            num = num+1
-                        }
-                    }while num < longitud
-                  
-                    if validador == "true" {
-                        
-                        print("usuario ligado a este dispositivo")
-                        self.ToastExample(message: "Usuario ligado a este dispositivo")
-                        print("El Buzon a insertar es:",self.Buzoninsert)
-                        print("El Catalogo a insertar es:",self.Catalogoinsert)
-                        print("El producto a insertar es:",self.productinsert)
-                        print("La agenda a insertar es:",self.agendinsert)
-                        self.WsGetBuzon()
-                       
-                       
-                    }else{
-                        let alert = UIAlertController(title: "¡Este perfil del promotor: "+self.User.text!+" no puede instalarse en este dispositivo "+self.Uniqueid, message: "Solicite al administrador el permiso correspondiente" , preferredStyle: UIAlertControllerStyle.alert)
-                        alert.addAction(UIAlertAction(title: "Aceptar", style: UIAlertActionStyle.default, handler: nil))
-                        self.present(alert, animated: true, completion: nil)
-                        
-                    }
-                }
-            }else{
-                print(" no Respuesta Json")
-            }
-      }
-          task.resume()
+        self.WsGetBuzon()
     }
     
     @objc func WsGetBuzon(){
-      
+        print("El Buzon a insertar es:",self.Buzoninsert)
+        print("El Catalogo a insertar es:",self.Catalogoinsert)
+        print("El producto a insertar es:",self.productinsert)
+        print("La agenda a insertar es:",self.agendinsert)
         let json: [String: Any] = [
             "objPromotor": [
                 "Promotoria":"",
@@ -933,7 +988,7 @@ class ViewController: UIViewController {
         let jsonData = try? JSONSerialization.data(withJSONObject: json)
         
         // create post request
-        let url = URL(string: "https://stefaninimx.com/mx.com.stefanini.service.api.rest/Service1.svc/GetBuzon")!
+        let url = URL(string: "https://sminet.com.mx/mx.com.stefanini.service.api.rest/Service1.svc/GetBuzon")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         
@@ -957,7 +1012,7 @@ class ViewController: UIViewController {
                 DispatchQueue.main.async {
                     print("************Ws GetBuzon*************")
                     for i in 0 ..< Solicitud.count{
-                        
+                         self.ToastExample(message: "Obteniendo Solicitudes...")
                          var coment = Solicitud[i]["COMENTARIO"] as? String
                          if coment == nil {
                          coment = ""
@@ -1041,7 +1096,7 @@ class ViewController: UIViewController {
                          if fi == nil {
                          fi = ""
                          }
-                         self.ToastExample(message: "Obteniendo Solicitudes...")
+                        
                          self.Insertarbuzon(coment: coment!, est: esta!, fechaa: fechaar!, fecham: fechamr!, idsol: idsolr!, product: producto!, prom: prome!, sol: solicitud!,ext1: ext1!,ext2:ext2!,ext3:ext3!,ext4:ext4!,ext5:ext5!,docc1:docc1!,docc2:docc2!,docia:docia!,docif:docif!,fi:fi!)
                      
                     }
@@ -1093,8 +1148,7 @@ class ViewController: UIViewController {
             do {
                 try context.save()
                 print("Solicitud insertada A!!!!!!")
-                 self.ToastExample(message: "Obteniendo Solicitudes...")
-            }catch {
+                }catch {
                 print(error)
             }
 
@@ -1131,7 +1185,7 @@ class ViewController: UIViewController {
             do {
                 try context.save()
                 print("Solicitud insertada B!!!!")
-                 self.ToastExample(message: "Obteniendo Solicitudes...")
+                
             }catch {
                 print(error)
             }
@@ -1159,7 +1213,7 @@ class ViewController: UIViewController {
         let jsonData = try? JSONSerialization.data(withJSONObject: json)
         
         // create post request
-        let url = URL(string: "https://stefaninimx.com/mx.com.stefanini.service.api.rest/Service1.svc/GetCatalogosX")!
+        let url = URL(string: "https://sminet.com.mx/mx.com.stefanini.service.api.rest/Service1.svc/GetCatalogosX")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         
@@ -1184,6 +1238,7 @@ class ViewController: UIViewController {
                   
                     print("************Ws Catalogos*************")
                     for i in 0 ..< Solicitud.count{
+                        self.ToastExample(message: "Obteniendo catalogos...")
                         let desc = Solicitud[i]["DESCRIPCION"] as? String
                         //print(desc!)
                         
@@ -1195,15 +1250,15 @@ class ViewController: UIViewController {
                         
                         let padre = Solicitud[i]["PADRE"] as? String
                        //print(padre!)
-                        
-                      self.ToastExample(message: "Obteniendo catalogos...")
                       self.Insertarcatalogo(desc: desc!, idcat: idCat!, idtc: idTipo!, pad: padre!)
                         
                     }
                   
                     if self.userArray.count == 0 {
+                        self.ToastExample(message: "Finalizando...")
                         self.Insertarusuario()
                     }else{
+                        self.ToastExample(message: "Finalizando...")
                         self.EliminarUsuario()
                     }
                   
@@ -1229,7 +1284,7 @@ class ViewController: UIViewController {
             do {
                 try context.save()
                 print("Catalogo insertado")
-                 self.ToastExample(message: "Obteniendo catalogos...")
+              
             }catch {
                 print(error)
             }
@@ -1243,7 +1298,7 @@ class ViewController: UIViewController {
             newCat.setValue(pad, forKey: "padre")
             do {
                 try context.save()
-                 self.ToastExample(message: "Obteniendo catalogos...")
+          
                }catch {
                 print(error)
             }
@@ -1271,7 +1326,7 @@ class ViewController: UIViewController {
             do {
                 userArray = try managedContext.fetch(fetchRequest) as! [USUARIO]
                 print("Usuario borrado")
-                  self.ToastExample(message: "Finalizando...")
+                self.ToastExample(message: "Finalizando...")
             
             } catch let error as NSError {
                 print("Error While Fetching Data From DB: \(error.userInfo)")
@@ -1324,14 +1379,15 @@ class ViewController: UIViewController {
         (UIApplication.shared.delegate as! AppDelegate).saveContext()
         
         if let vc = self.storyboard?.instantiateViewController(withIdentifier: "Home") as? Home {
-            vc.Usuario = User.text!
+            vc.Usuario2 = User.text!
             vc.compania = Empresa.text!
             vc.Contrasena = Pass.text!
             vc.id = Idusuario
+            
             self.navigationController?.pushViewController(vc, animated: false)
         }
-        
     }
+  
 }
 
 

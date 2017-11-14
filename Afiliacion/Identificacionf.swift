@@ -117,7 +117,7 @@ class Identificacionf: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        addSlideMenuButton()
+        
     }
 /*
     override func viewWillAppear(_ animated: Bool) {

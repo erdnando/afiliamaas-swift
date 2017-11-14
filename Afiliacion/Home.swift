@@ -7,15 +7,25 @@
 //
 
 import UIKit
-
+import CoreData
 
 class Home: BaseViewController {
     
     //Datos Usuario
-    @objc var Usuario = ""
+    @objc var Usuario2 = ""
     @objc var Contrasena = ""
     @objc var compania = ""
     @objc var id = 0
+    //Buzon Activo
+    @objc var buzonAct = ""
+   
+    //Contadores
+    var Counttodas = 0
+    var Countnuevas = 0
+    var Countaceptadas = 0
+    var Countenviadas = 0
+    var Countcanceladas = 0
+    var Countrechazadas = 0
     
     //Contenedores
     @IBOutlet weak var Todas: UIView!
@@ -46,27 +56,33 @@ class Home: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        addSlideMenuButton()
        
+        Verparam2()
         
         //Etiquetas Redondas
         EtTodas.layer.masksToBounds = true
         EtTodas.layer.cornerRadius = 17.5
+        EtTodas.text = String(Counttodas)
         
         EtNuevas.layer.masksToBounds = true
         EtNuevas.layer.cornerRadius = 17.5
+        EtNuevas.text = String(Countnuevas)
         
         EtAceptadas.layer.masksToBounds = true
         EtAceptadas.layer.cornerRadius = 17.5
+        EtAceptadas.text = String(Countaceptadas)
         
         EtEnviadas.layer.masksToBounds = true
         EtEnviadas.layer.cornerRadius = 17.5
+        EtEnviadas.text = String(Countenviadas)
         
         EtCanceladas.layer.masksToBounds = true
         EtCanceladas.layer.cornerRadius = 17.5
+        EtCanceladas.text = String(Countcanceladas)
         
         EtRechazadas.layer.masksToBounds = true
         EtRechazadas.layer.cornerRadius = 17.5
+        EtRechazadas.text = String(Countrechazadas)
         
         //Botones Redondos
         BtTodas.layer.cornerRadius = 25
@@ -97,8 +113,97 @@ class Home: BaseViewController {
         
        
     }
-    
- 
+    @objc func Verparam2(){
+        var num = 0
+        repeat {
+            if paramArray[num].parametro == "BUZON_ACTIVO" {
+                print("indice:",num,"Id:",paramArray[num].id_parametro,"parametro:",paramArray[num].parametro!,"valor",paramArray[num].valor!)
+                buzonAct = paramArray[num].valor!
+                break
+            }else {
+                num = num+1
+            }
+        }while num < paramArray.count
+        valorSolicitudes()
+    }
+    @objc func valorSolicitudes(){
+        var num = 0
+        if buzonAct == "A" {
+            Counttodas = buzonA.count
+            print("Total de solicitudes",Counttodas)
+            repeat {
+                if buzonA[num].estatus == 1{
+                    //print("ID",buzonA[num].id_solicitud,"Estatus",buzonA[num].estatus)
+                    Countnuevas = Countnuevas+1
+                    num = num+1
+                }else {
+                    if buzonA[num].estatus == 5{
+                        //print("ID",buzonA[num].id_solicitud,"Estatus",buzonA[num].estatus)
+                        Countenviadas = Countenviadas+1
+                        num = num+1
+                    }else {
+                        if buzonA[num].estatus == 2{
+                            //print("ID",buzonA[num].id_solicitud,"Estatus",buzonA[num].estatus)
+                            Countaceptadas = Countaceptadas+1
+                            num = num+1
+                        }else {
+                            if buzonA[num].estatus == 3{
+                                //print("ID",buzonA[num].id_solicitud,"Estatus",buzonA[num].estatus)
+                                Countrechazadas = Countrechazadas+1
+                                num = num+1
+                            }else {
+                                if buzonA[num].estatus == 6 || buzonA[num].estatus == 0 {
+                                    //print("ID",buzonA[num].id_solicitud,"Estatus",buzonA[num].estatus)
+                                    Countcanceladas = Countcanceladas+1
+                                    num = num+1
+                                }else {
+                                    num = num+1
+                                }
+                            }
+                        }
+                    }
+                }
+            }while num < buzonA.count
+            
+        }else {
+            Counttodas = buzonB.count
+            print("Total de solicitudes",Counttodas)
+            repeat {
+                if buzonB[num].estatus_b == 1{
+                    //print("ID",buzonB[num].id_solicitud_b,"estatus_b",buzonB[num].estatus_b)
+                    Countnuevas = Countnuevas+1
+                    num = num+1
+                }else {
+                    if buzonB[num].estatus_b == 5{
+                    //print("ID",buzonB[num].id_solicitud_b,"estatus_b",buzonB[num].estatus_b)
+                        Countenviadas = Countenviadas+1
+                        num = num+1
+                    }else {
+                        if buzonB[num].estatus_b == 2{
+                        //print("ID",buzonB[num].id_solicitud_b,"estatus_b",buzonB[num].estatus_b)
+                            Countaceptadas = Countaceptadas+1
+                            num = num+1
+                        }else {
+                            if buzonB[num].estatus_b == 3{
+                          //print("ID",buzonB[num].id_solicitud_b,"estatus_b",buzonB[num].estatus_b)
+                                Countrechazadas = Countrechazadas+1
+                                num = num+1
+                            }else {
+                                if buzonB[num].estatus_b == 6 || buzonB[num].estatus_b == 0 {
+                                    //print("ID",buzonB[num].id_solicitud_b,"estatus_b",buzonB[num].estatus_b)
+                                    Countcanceladas = Countcanceladas+1
+                                    num = num+1
+                                }else {
+                                    num = num+1
+                                }
+                            }
+                        }
+                    }
+                }
+            }while num < buzonB.count
+            
+        }
+    }
     
     //funcionalidad de botones
     @IBAction func Todas(_ sender: UIButton) {
@@ -247,10 +352,7 @@ class Home: BaseViewController {
         Canceladas.alpha = 0
         Rechazadas.alpha = 1
     }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+    
     
 
 
